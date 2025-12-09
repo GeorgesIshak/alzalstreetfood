@@ -32,7 +32,7 @@ const Navbar = () => {
         <div className="max-w-7xl w-full px-6 flex justify-between items-center text-sm">
           <div className="flex gap-6 items-center">
             <span className="flex items-center gap-1 text-white">
-              <Phone size={16} className="text-[#6b1415]" /> +1 5589 55488 55
+              <Phone size={16} className="text-[#6b1415]" /> +966 55 601 8333 
             </span>
             <span className="flex items-center gap-1 text-white">
               <Clock size={16} className="text-[#6b1415]" /> Mon-Sat: 11AM - 23PM
