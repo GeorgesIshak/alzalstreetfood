@@ -6,9 +6,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center bg-cover bg-bottom pt-20"
+      className="relative flex items-center justify-center bg-cover bg-center pt-20"
       style={{
-        backgroundImage: "url('/food-banner.jpg')",
+        backgroundImage: "url('/8.jpg')",
         backgroundAttachment: "fixed",
         minHeight: "100vh",
       }}
