@@ -20,7 +20,10 @@ export default function TypoAnim() {
     const chars = text.chars;
 
     // Smooth scrolling
-    const lenis = new Lenis({ lerp: 0.2, smoothWheel: true });
+  const lenis = new Lenis({
+    lerp: 0.1,         // Slightly lower for better smoothness
+    smoothWheel: true, // Use this instead of 'smooth'
+  });
     const raf = (time: number) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
