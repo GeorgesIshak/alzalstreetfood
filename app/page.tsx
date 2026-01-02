@@ -19,20 +19,12 @@ import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   return (
     <>
-      {/* Preloader */}
-      {isLoading && <Preloader onFinish={() => setIsLoading(false)} />}
 
-      {/* Main content */}
-      <div
-        style={{
-          opacity: isLoading ? 0 : 1,
-          transition: 'opacity 0.5s ease-in-out'
-        }}
-      >
+      
         <NewHero />
         <TypoAnim />
         <FoodCategoriesCarousel />
@@ -42,7 +34,6 @@ export default function Home() {
         <RestaurantCarousel />
         <ScrollImageGallery />
         <RestaurantCarousel />
-      </div>
     </>
   );
 }
