@@ -65,10 +65,7 @@ export default function EventsGrid() {
     { image: '/6.jpg', date: 'Dec 30, 2025', title: 'Event Two', description: 'This is the second event.' },
     { image: '/11.avif', date: 'Jan 01, 2026', title: 'Event Three', description: 'Another amazing event.' },
     { image: '/12.jpg', date: 'Jan 05, 2026', title: 'Event Four', description: 'Exciting things happening.' },
-    { image: '/5.jpg', date: 'Jan 10, 2026', title: 'Event Five', description: 'Don’t miss this one.' },
-    { image: '/14.jpg', date: 'Jan 15, 2026', title: 'Event Six', description: 'Final event in series.' },
-    { image: '/7.jpg', date: 'Jan 20, 2026', title: 'Event Seven', description: 'Another cool event.' },
-    { image: '/8.jpg', date: 'Jan 25, 2026', title: 'Event Eight', description: 'Last one this month.' },
+ 
   ];
 
   return (

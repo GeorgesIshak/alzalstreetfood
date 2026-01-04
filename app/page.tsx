@@ -6,6 +6,7 @@ import ScrollImages from "@/components/ScrollImages";
 import Column from "@/components/Column";
 import TypoAnimation from "@/components/TypoAnimation";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
+import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 export default function Home() {
   
 
@@ -17,6 +18,7 @@ export default function Home() {
 
 
    <ScrollImages />
+   <FoodCategoriesCarousel />
 
       <Column />
    <ScrollImageGallery />

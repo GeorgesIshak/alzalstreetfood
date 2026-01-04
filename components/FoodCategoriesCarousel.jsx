@@ -1,39 +1,41 @@
-'use client';
+"use client";
 
-import { useRef, useMemo } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+const categories = [
+  { name: "International Desserts", image: "/11.avif" },
+  { name: "Saudi Desserts", image: "/12.jpg" },
+  { name: "Coffee & Beverages", image: "/13.avif" },
+  { name: "Mexican", image: "/14.jpg" },
+  { name: "All-Day Dining", image: "/15.jpg" },
+  { name: "Arabic & Mediterranean", image: "/11.avif" },
+  { name: "Asian Street Food", image: "/14.jpg" },
+  { name: "American Street Food", image: "/15.jpg" },
+  { name: "Indian Street Food", image: "/11.avif" },
+  { name: "Traditional Saudi", image: "/13.avif" },
+  { name: "Italian", image: "/12.jpg" },
+];
 
 export default function FoodCategoriesCarousel() {
-  const containerRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef(null);
 
+  // Track scroll progress of this specific section
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'start center'],
+    offset: ["start end", "start center"], // Starts when top of section enters bottom of screen
   });
 
-  const backgroundColor = useTransform(scrollYProgress, [0, 1], ['#ffffff', '#6b1415']);
-
-  // Memoize categories to avoid re-creating array on every render
-  const categories = useMemo(
-    () => [
-      { name: 'International Desserts', image: '/11.avif' },
-      { name: 'Saudi Desserts', image: '/12.jpg' },
-      { name: 'Coffee & Beverages', image: '/13.avif' },
-      { name: 'Mexican', image: '/14.jpg' },
-      { name: 'All-Day Dining', image: '/15.jpg' },
-      { name: 'Arabic & Mediterranean', image: '/11.avif' },
-      { name: 'Asian Street Food', image: '/14.jpg' },
-      { name: 'American Street Food', image: '/15.jpg' },
-      { name: 'Indian Street Food', image: '/11.avif' },
-      { name: 'Traditional Saudi', image: '/13.avif' },
-      { name: 'Italian', image: '/12.jpg' },
-    ],
-    []
+  // Animate background from White to Burgundy
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["#ffffff", "#6b1415"]
   );
 
   return (
@@ -47,21 +49,21 @@ export default function FoodCategoriesCarousel() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, ease: 'easeOut' }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="max-w-[1440px] mx-auto px-6 md:px-16 mb-16"
       >
         <div className="flex items-center gap-6 mb-6">
           <motion.span className="text-[14px] uppercase tracking-[0.3em] text-white/80">
             Foods & Drinks
           </motion.span>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            className="flex-1 h-[1px] bg-white/30 origin-left"
+          <motion.div 
+             initial={{ scaleX: 0 }}
+             whileInView={{ scaleX: 1 }}
+             className="flex-1 h-[1px] bg-white/30 origin-left" 
           />
         </div>
 
-        <h2 className="text-[5vw] md:text-[4.5rem] leading-tight text-white">
+        <h2 className="text-[5vw] md:text-[4.5rem] leading-tight  text-white">
           Explore Our <br /> Delicious Foods
         </h2>
       </motion.div>
@@ -72,11 +74,9 @@ export default function FoodCategoriesCarousel() {
           modules={[Autoplay, FreeMode]}
           slidesPerView="auto"
           spaceBetween={28}
-          loop
-          freeMode
-          freeModeMomentum={false} // smooth continuous scroll
-          freeModeSticky={false}
-          speed={7000} // speed of loop
+          loop={true}
+          freeMode={true}
+          speed={7000}
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
@@ -84,14 +84,18 @@ export default function FoodCategoriesCarousel() {
           className="px-0"
         >
           {categories.map((item, index) => (
-            <SwiperSlide key={index} style={{ width: '260px' }}>
-              <div className="group flex flex-col items-center cursor-pointer">
+            <SwiperSlide key={index} style={{ width: "260px" }}>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="group flex flex-col items-center cursor-pointer"
+              >
                 <div className="relative w-full h-[300px] overflow-hidden rounded-2xl shadow-xl">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    sizes="(max-width: 768px) 200px, (max-width: 1024px) 260px, 300px"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
@@ -99,16 +103,16 @@ export default function FoodCategoriesCarousel() {
                 <p className="mt-5 text-lg font-semibold text-white text-center tracking-wide">
                   {item.name}
                 </p>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* ===== GLOBAL SWIPER CSS ===== */}
+      {/* Global CSS to make Swiper scroll perfectly linear */}
       <style jsx global>{`
         .swiper-wrapper {
-          transition-timing-function: linear;
+          transition-timing-function: linear !important;
         }
       `}</style>
     </motion.section>
