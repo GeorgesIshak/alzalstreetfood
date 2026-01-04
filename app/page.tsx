@@ -3,12 +3,8 @@ import NewHero from "@/components/NewHero";
 
 import TypoAnim from "@/components/TypoAnim";
 import ScrollImages from "@/components/ScrollImages";
-import Preloader from "@/components/Preloader";
-import RestaurantCarousel from "@/components/RestaurantCarousel";
-import { useState } from "react";
 import Column from "@/components/Column";
 import TypoAnimation from "@/components/TypoAnimation";
-import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
 export default function Home() {
   
@@ -21,10 +17,8 @@ export default function Home() {
 
 
    <ScrollImages />
-                                                               <FoodCategoriesCarousel />
 
       <Column />
-   <RestaurantCarousel />
    <ScrollImageGallery />
       <TypoAnimation />
 

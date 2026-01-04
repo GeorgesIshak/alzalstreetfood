@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,39 +9,49 @@ import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [
-  '/img1.jpg', '/img2.jpg', '/img3.jpg',
-  '/img4.jpg', '/img5.jpg', '/img6.jpg',
-  '/img7.jpg', '/img5.jpg', '/img6.jpg',
-];
-
 export default function HorizontalScrollGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-  if (!trackRef.current || !sectionRef.current) return;
+  // Memoize image list for performance
+  const images = useMemo(
+    () => [
+      '/img1.jpg',
+      '/img2.jpg',
+      '/img3.jpg',
+      '/img4.jpg',
+      '/img5.jpg',
+      '/img6.jpg',
+      '/img7.jpg',
+      '/img5.jpg',
+      '/img6.jpg',
+    ],
+    []
+  );
 
-  let ctx = gsap.context(() => {
-    const track = trackRef.current;
-    if (!track) return; // <-- guard again for safety
+  useEffect(() => {
+    if (!trackRef.current || !sectionRef.current) return;
 
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - window.innerWidth),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: () => `+=${track.scrollWidth - window.innerWidth}`,
-        scrub: 1,
-        pin: true,
-        invalidateOnRefresh: true,
-      },
-    });
-  }, sectionRef);
+    let ctx = gsap.context(() => {
+      const track = trackRef.current;
+      if (!track) return;
 
-  return () => ctx.revert();
-}, []);
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: () => `+=${track.scrollWidth - window.innerWidth}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
@@ -82,23 +92,22 @@ useEffect(() => {
         </motion.h2>
 
         <motion.p
-       
           className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 mt-4"
         >
           Experience our souk through vibrant stalls, local crafts, culinary delights, and immersive cultural moments.
           Wander through artisan booths, taste authentic flavors, discover hidden gems, and create unforgettable memories
           as you explore the heart of the marketplace.
         </motion.p>
-        <motion.a
-  href="#"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8, duration: 0.8 }}
-  className="main-button mt-8"
->
-  Explore More
-</motion.a>
 
+        <motion.a
+          href="#"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="main-button mt-8"
+        >
+          Explore More
+        </motion.a>
       </motion.div>
 
       {/* Horizontal Slider Section */}
@@ -139,7 +148,7 @@ useEffect(() => {
                   src={src}
                   alt={`Gallery ${i}`}
                   fill
-                  priority={i < 3}
+                  priority={i < 3} // lazy load rest
                   sizes={isBig ? '66vw' : '33vw'}
                   style={{
                     objectFit: 'cover',
