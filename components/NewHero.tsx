@@ -59,15 +59,16 @@ export default function Hero() {
       {/* VIDEO BACKGROUND */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/banner.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
+        src="/banner.webm"
+       autoPlay
+  loop
+  muted
+  playsInline
+  preload="metadata"
       />
 
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/30" />
 
       {/* LEFT VERTICAL TEXT */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10 hidden md:block">
@@ -108,7 +109,7 @@ export default function Hero() {
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#fffdf8] leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#fffdf8] leading-tight"
         >
           A Destination of Discovery
         </motion.h1>

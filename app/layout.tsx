@@ -16,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+      suppressHydrationWarning
         className={`${alZalFont.variable} antialiased `}
       >
         <Navbar />

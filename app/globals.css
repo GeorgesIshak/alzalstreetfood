@@ -210,3 +210,23 @@ background:white;
   background: #e5e5e5; /* highlight color */
   z-index: -1;
 }
+
+
+.main-button {
+  padding: 0.75rem 1.5rem; /* adjust for desired size */
+  border: 1px solid #6b1415; /* same as h2 color */
+  border-radius: 0.5rem;
+  color: #6b1415; /* text color same as h2 */
+  background-color: transparent;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.main-button:hover {
+  background-color: #6b1415; /* burgundy background on hover */
+  color: #ffffff; /* white text on hover */
+  cursor: pointer;
+}
