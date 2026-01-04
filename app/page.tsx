@@ -11,13 +11,10 @@ import TypoAnimation from "@/components/TypoAnimation";
 import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
   
 
   return (
-    <>
-      {isLoading && <Preloader onFinish={() => setIsLoading(false)} />}
-      {!isLoading && (
+   
         <>
           <NewHero />
                                                             <TypoAnim />
@@ -33,7 +30,6 @@ export default function Home() {
 
         </>
       )}
-    </>
-  );
-}
+ 
+
   
