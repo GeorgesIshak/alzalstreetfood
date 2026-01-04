@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import Image from "next/image";
@@ -50,7 +50,7 @@ export default function Header() {
         style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}
       >
         <Link href="#">Our Story</Link>
-      <Link href="#">Explore</Link>
+        <Link href="#">Explore</Link>
         <Link href="#">What's on</Link>
       </nav>
 
@@ -65,7 +65,8 @@ export default function Header() {
           width={120}
           height={200}
           className="object-contain"
-          priority
+          priority // ensures this image is preloaded immediately
+          fetchPriority="high" // tells the browser this is critical
         />
       </div>
 
@@ -76,8 +77,7 @@ export default function Header() {
         style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}
       >
         <Link href="#">Events</Link>
-     
-             <Link href="#">Food & Drink</Link>
+        <Link href="#">Food & Drink</Link>
         <Link href="#">Vendors</Link>
       </nav>
 
@@ -93,6 +93,7 @@ export default function Header() {
     </header>
   );
 }
+
 
 // "use client";
 
