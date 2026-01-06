@@ -3,17 +3,15 @@
 import { motion } from "framer-motion";
 
 interface SectionHeaderProps {
-  subtitle: string;
+  label: string;
   title: React.ReactNode;
-  delay?: number;
   className?: string;
 }
 
 export default function SectionHeader({
-  subtitle,
+  label,
   title,
-  delay = 0,
-  className = ""
+  className = "",
 }: SectionHeaderProps) {
   return (
     <motion.div
@@ -23,26 +21,30 @@ export default function SectionHeader({
       transition={{ duration: 1.2, ease: "easeOut" }}
       className={`max-w-[1440px] mx-auto px-6 md:px-16 pb-16 ${className}`}
     >
+      {/* Top label + line */}
       <div className="flex items-center gap-6 mb-6">
         <motion.span
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: delay + 0.3, duration: 0.5 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           className="text-[14px] uppercase tracking-[0.3em] text-black"
         >
-          {subtitle}
+          {label}
         </motion.span>
+
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ delay: delay + 0.5, duration: 0.8, ease: "circOut" }}
+          transition={{ delay: 0.5, duration: 0.8, ease: "circOut" }}
           className="flex-1 h-[1px] bg-black origin-left"
         />
       </div>
+
+      {/* Title */}
       <motion.h2
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ delay: delay + 0.4, duration: 0.8 }}
+        transition={{ delay: 0.4, duration: 0.8 }}
         className="max-w-[1100px] text-[5vw] md:text-[5rem] leading-tight font-s text-[#6b1415]"
       >
         {title}

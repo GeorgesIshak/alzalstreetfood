@@ -230,3 +230,23 @@ background:white;
   color: #ffffff; /* white text on hover */
   cursor: pointer;
 }
+
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0;
+  animation: verticalFade 1.2s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes verticalFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
