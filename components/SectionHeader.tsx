@@ -19,7 +19,8 @@ export default function SectionHeader({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className={`max-w-[1440px] mx-auto px-6 md:px-16 pb-16 ${className}`}
+      className={`w-[94vw]
+ mx-auto  pb-16 ${className}`}
     >
       {/* Top label + line */}
       <div className="flex items-center gap-6 mb-6">
@@ -45,7 +46,7 @@ export default function SectionHeader({
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
-        className="max-w-[1100px] text-[5vw] md:text-[5rem] leading-tight font-s text-[#6b1415]"
+        className="text-[5vw] md:text-[5rem] leading-tight font-s text-[#6b1415]"
       >
         {title}
       </motion.h2>

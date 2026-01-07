@@ -6,6 +6,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import SectionHeader from "@/components/SectionHeader"; // ✅ import
+import DecorativePattern4 from "./DecorativePattern4";
+import DecorativePattern3 from "./DecorativePattern3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,18 +95,9 @@ export default function EventsGrid() {
     <section className="bg-white pt-32 relative overflow-hidden">
       
       {/* ===== DECORATIVE SVG ===== */}
-      <div className="absolute right-0 top-32 w-[620px] h-[420px] opacity-[0.05] pointer-events-none rotate-[-12deg] translate-x-10 -translate-y-12">
-        <svg viewBox="0 0 700 450" className="w-full h-full text-[#6b1415]">
-          <path d="M150 60 L280 200 L150 340 L20 200 Z" fill="none" stroke="currentColor" strokeWidth="6" />
-          <path d="M150 120 L230 200 L150 280 L70 200 Z" fill="currentColor" opacity="0.4" />
-
-          <path d="M350 40 L520 200 L350 360 L180 200 Z" fill="none" stroke="currentColor" strokeWidth="7" />
-          <path d="M350 110 L450 200 L350 290 L250 200 Z" fill="none" stroke="currentColor" strokeWidth="4" opacity="0.85" />
-          <path d="M350 150 L420 200 L350 250 L280 200 Z" fill="currentColor" opacity="0.55" />
-
-          <path d="M560 70 L680 200 L560 330 L440 200 Z" fill="none" stroke="currentColor" strokeWidth="5" opacity="0.8" />
-          <path d="M560 130 L620 200 L560 270 L500 200 Z" fill="none" stroke="currentColor" strokeWidth="3" opacity="0.6" />
-        </svg>
+      <div className="absolute right-0 top-32 w-[110vw]
+ opacity-[0.05] pointer-events-none">
+     <DecorativePattern3 />
       </div>
 
       {/* ===== SECTION HEADER (REUSABLE) ===== */}
@@ -118,7 +111,8 @@ export default function EventsGrid() {
       />
 
       {/* ===== EVENTS GRID ===== */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16">
+      <div className="w-[94vw]
+ mx-auto ">
         <div
           ref={containerRef}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-12"

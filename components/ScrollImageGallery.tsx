@@ -59,7 +59,7 @@ export default function HorizontalScrollGallery() {
         label="Explore"
         title={
           <>
-            Explore up <br />
+            Explore up 
             thoughtful <br />
             flavors
           </>
@@ -72,7 +72,8 @@ export default function HorizontalScrollGallery() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
         viewport={{ once: true }}
-        className="max-w-[1440px] mx-auto px-6 md:px-16 pb-12"
+        className="w-[94vw]
+] mx-auto "
       >
         <p className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
           Experience our souk through vibrant stalls, local crafts, culinary delights, and immersive cultural moments.
