@@ -7,6 +7,7 @@ import Column from "@/components/Column";
 import TypoAnimation from "@/components/TypoAnimation";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
 import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
+import BecomeVendorSection from "@/components/BecomeVendorSection";
 export default function Home() {
   
 
@@ -22,6 +23,7 @@ export default function Home() {
 
       <Column />
    <ScrollImageGallery />
+   <BecomeVendorSection />
 
         </>
       )}

@@ -62,7 +62,7 @@ export default function TypoAnim() {
   return (
     <section
       ref={containerRef}
-      className="relative w-screen min-h-[100vh] flex flex-col items-center justify-start pt-52 bg-white overflow-hidden"
+      className="relative w-screen min-h-[100vh] flex flex-col items-center justify-start pt-52 bg-[#f0edea] overflow-hidden"
     >
     {/* Small decorative SVGs */}
 <div className="absolute top-8 left-8  pointer-events-none text-[#6b1415]">
@@ -78,7 +78,7 @@ export default function TypoAnim() {
         className="target w-[94vw] text-[5vw] md:text-[3rem] leading-tight text-left font-s text-[#6b1415]"
       >
         At Al Zal Street Food, we don’t just serve street food — we celebrate it.
-        We love the bold flavors, the energy of the streets, and the way great
+        We love the bold flavors, the energy of the streets, and the way <br/>   great
         food brings people together. Every bite reflects the spirit of the places
         it comes from and the hands that prepared it. Whether you arrive hungry
         or simply curious, you’ll find something that speaks to you.

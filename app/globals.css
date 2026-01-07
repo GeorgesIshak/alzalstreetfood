@@ -76,7 +76,7 @@ html.lenis, html.lenis body {
 .container {
   height: 300vh;
   position: relative;
-background:white;
+background:#f0edea ;
   .sticky {
     position: sticky;
     top: 0;
