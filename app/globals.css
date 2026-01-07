@@ -75,7 +75,7 @@ html.lenis, html.lenis body {
 /* ScrollImages.module.scss */
 .container {
   height: 300vh;
-  position: relative;
+        max-width: 100% !important;  position: relative;
 background:#f0edea ;
   .sticky {
     position: sticky;
