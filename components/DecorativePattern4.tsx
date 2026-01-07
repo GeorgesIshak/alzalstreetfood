@@ -4,7 +4,7 @@ export default function DecorativePattern4() {
   viewBox="0 0 1347.29 1347.29"
   xmlns="http://www.w3.org/2000/svg"
   width="100%"    // full width of container
-  height="auto"   // maintain aspect ratio
+  height="100%"   // maintain aspect ratio
 >
 
 
