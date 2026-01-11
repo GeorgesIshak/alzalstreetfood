@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
 import SectionHeader from '@/components/SectionHeader';
+import DecorativePattern4 from './DecorativePattern4';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,15 +16,15 @@ export default function HorizontalScrollGallery() {
 
   const images = useMemo(
     () => [
-      '/img1.jpg',
-      '/img2.jpg',
-      '/img3.jpg',
-      '/img4.jpg',
-      '/img5.jpg',
-      '/img6.jpg',
-      '/img7.jpg',
-      '/img5.jpg',
-      '/img6.jpg',
+      '/food22.jpg',
+      '/food2.jpg',
+      '/food7.jpg',
+      '/food18.jpg',
+      '/food9.jpg',
+      '/food10.jpg',
+      '/food15.jpg',
+      '/food4.jpg',
+      '/food5.jpg',
     ],
     []
   );
@@ -53,13 +54,18 @@ export default function HorizontalScrollGallery() {
   }, []);
 
   return (
-    <>
+    <section className="relative w-screen bg-[#ffffff] pt-20 overflow-hidden">
+      {/* ===== DECORATIVE (NOW RELATIVE TO THIS SECTION) ===== */}
+      <div className="absolute top-24 right-0 w-[500px] h-[300px] pointer-events-none z-10">
+        <DecorativePattern4 />
+      </div>
+
       {/* ===== SECTION HEADER ===== */}
       <SectionHeader
         label="Explore"
         title={
           <>
-            Explore up 
+            Explore up <br />
             thoughtful <br />
             flavors
           </>
@@ -72,8 +78,7 @@ export default function HorizontalScrollGallery() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
         viewport={{ once: true }}
-        className="w-[94vw]
-] mx-auto "
+        className="w-[94vw] mx-auto"
       >
         <p className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
           Experience our souk through vibrant stalls, local crafts, culinary delights, and immersive cultural moments.
@@ -94,10 +99,10 @@ export default function HorizontalScrollGallery() {
       </motion.div>
 
       {/* ===== HORIZONTAL SCROLL GALLERY ===== */}
-      <section
+      <div
         ref={sectionRef}
         className="relative w-screen overflow-hidden bg-white"
-        style={{ height: '100vh' }}
+        style={{ height: '90vh' }}
       >
         <div
           ref={trackRef}
@@ -143,7 +148,7 @@ export default function HorizontalScrollGallery() {
             );
           })}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

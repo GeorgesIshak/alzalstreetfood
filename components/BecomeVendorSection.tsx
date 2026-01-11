@@ -24,7 +24,7 @@ export default function BecomeVendorSection() {
       />
 
       {/* ===== DESCRIPTION + CTA ===== */}
-      <div className="w-[94vw] mx-auto mt-6">
+      <div className="w-[94vw] mx-auto ">
         <p className="max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
           Join our vibrant food destination and showcase your culinary concept to a wide
           and engaged audience. Whether you serve street food, specialty dishes, or

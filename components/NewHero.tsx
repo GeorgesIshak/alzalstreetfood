@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import { siteContent } from "@/content/content";
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = siteContent[lang].hero;
+
   return (
     <section className="relative flex items-center justify-center min-h-[110vh] overflow-hidden">
-      
       {/* VIDEO */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -19,22 +23,32 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/30" />
 
       {/* LEFT TEXT */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 z-10 hidden md:block">
+      <div
+        className={`absolute ${
+          lang === "ar" ? "right-8" : "left-8"
+        } top-1/2 -translate-y-1/2 z-10 hidden md:block`}
+      >
         <span className="vertical-text uppercase tracking-[0.35em] text-white text-[16px] font-['var(--font-alzal)']">
           AL ZAL
         </span>
       </div>
 
       {/* RIGHT TEXT */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 z-10 hidden md:block">
+      <div
+        className={`absolute ${
+          lang === "ar" ? "left-8" : "right-8"
+        } top-1/2 -translate-y-1/2 z-10 hidden md:block`}
+      >
         <span className="vertical-text uppercase tracking-[0.35em] text-white text-[16px] font-['var(--font-alzal)']">
           STREET FOOD
         </span>
       </div>
 
-      {/* CENTER */}
+      {/* CENTER TEXT */}
       <motion.div
-        className="relative z-10 text-center px-6"
+        className={`relative z-10 px-6 ${
+          lang === "ar" ? "text-right" : "text-center"
+        }`}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -46,7 +60,7 @@ export default function Hero() {
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#fffdf8]"
         >
-          A Destination of Discovery
+          {t.title}
         </motion.h1>
 
         <motion.p
@@ -55,7 +69,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-4 text-xl md:text-3xl text-[#fffdf8]/80"
         >
-          All roads lead to Al Zal
+          {t.subtitle}
         </motion.p>
       </motion.div>
     </section>

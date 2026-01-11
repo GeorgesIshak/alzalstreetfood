@@ -34,8 +34,8 @@ export default function ScrollMedia() {
   ];
 
   return (
-    <section className="relative w-screen bg-[#f0edea] ">
-<div className="absolute top-10 right-0 w-[500px] h-[300px] bg-[#f0edea]   pointer-events-none z-9999">
+    <section className="relative w-screen pt-20 bg-[#f0edea] ">
+<div className="absolute top-26 right-0 w-[500px] h-[300px] bg-[#f0edea]  pointer-events-none z-9999">
     <DecorativePattern4 />
   </div>
       {/* ===== EDITORIAL INTRO ===== */}

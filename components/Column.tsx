@@ -85,14 +85,14 @@ export default function EventsGrid() {
   }, []);
 
   const events: Event[] = [
-    { image: '/3.jpg', date: 'Dec 29, 2025', title: 'Event One', description: 'This is the first event.' },
-    { image: '/6.jpg', date: 'Dec 30, 2025', title: 'Event Two', description: 'This is the second event.' },
-    { image: '/11.avif', date: 'Jan 01, 2026', title: 'Event Three', description: 'Another amazing event.' },
-    { image: '/12.jpg', date: 'Jan 05, 2026', title: 'Event Four', description: 'Exciting things happening.' },
+    { image: '/food5.jpg', date: 'Dec 29, 2025', title: 'Event One', description: 'This is the first event.' },
+    { image: '/food11.jpg', date: 'Dec 30, 2025', title: 'Event Two', description: 'This is the second event.' },
+    { image: '/food2.jpg', date: 'Jan 01, 2026', title: 'Event Three', description: 'Another amazing event.' },
+    { image: '/food8.jpg', date: 'Jan 05, 2026', title: 'Event Four', description: 'Exciting things happening.' },
   ];
 
   return (
-    <section className="bg-white pt-32 relative overflow-hidden">
+    <section className="bg-white pt-20 relative overflow-hidden">
       
       {/* ===== DECORATIVE SVG ===== */}
       <div className="absolute right-0 top-32 w-[110vw]
@@ -115,7 +115,7 @@ export default function EventsGrid() {
  mx-auto ">
         <div
           ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-12"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12"
         >
           {events.map((event, idx) => (
             <div

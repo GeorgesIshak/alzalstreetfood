@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { alZalFont } from "./fonts"; // 👈 import font
+import { alZalFont } from "./fonts"; // 👈 your font
+import { LanguageProvider } from "@/context/LanguageContext"; // 👈 import your context
 
 export const metadata: Metadata = {
   title: "Al Zal Street Food",
@@ -16,11 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-      suppressHydrationWarning
-        className={`${alZalFont.variable} antialiased `}
+        suppressHydrationWarning
+        className={`${alZalFont.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        {/* Wrap everything in LanguageProvider */}
+        <LanguageProvider>
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useLanguage } from "@/context/LanguageContext";
+import { siteContent } from "@/content/content";
 
 export default function Header() {
   const leftNavRef = useRef<HTMLDivElement | null>(null);
   const rightNavRef = useRef<HTMLDivElement | null>(null);
 
+  // GSAP animation
   useEffect(() => {
     const leftLinks = leftNavRef.current?.querySelectorAll("a");
     const rightLinks = rightNavRef.current?.querySelectorAll("a");
@@ -35,6 +38,10 @@ export default function Header() {
     }
   }, []);
 
+  // Language context
+  const { lang, setLang } = useLanguage();
+  const t = siteContent[lang].nav;
+
   return (
     <header
       className="absolute top-0 left-0 w-full z-50 grid px-8 py-4 gap-2"
@@ -49,9 +56,9 @@ export default function Header() {
         className="flex gap-10 uppercase font-medium text-[14px] tracking-wide text-white justify-self-start"
         style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}
       >
-        <Link href="#">Our Story</Link>
-        <Link href="#">Explore</Link>
-        <Link href="#">What's on</Link>
+        <Link href="#">{t.story}</Link>
+        <Link href="#">{t.explore}</Link>
+        <Link href="#">{t.whatsOn}</Link>
       </nav>
 
       {/* LOGO */}
@@ -65,8 +72,8 @@ export default function Header() {
           width={120}
           height={200}
           className="object-contain"
-          priority // ensures this image is preloaded immediately
-          fetchPriority="high" // tells the browser this is critical
+          priority
+          fetchPriority="high"
         />
       </div>
 
@@ -76,9 +83,9 @@ export default function Header() {
         className="flex gap-10 uppercase font-medium text-[14px] tracking-wide text-white justify-self-end"
         style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}
       >
-        <Link href="#">Events</Link>
-        <Link href="#">Food & Drink</Link>
-        <Link href="#">Vendors</Link>
+        <Link href="#">{t.events}</Link>
+        <Link href="#">{t.food}</Link>
+        <Link href="#">{t.vendors}</Link>
       </nav>
 
       {/* AR/EN SWITCHER */}
@@ -86,9 +93,19 @@ export default function Header() {
         style={{ gridColumn: "3 / 4", gridRow: "1 / 2", justifySelf: "end" }}
         className="flex items-center uppercase font-medium text-[14px] text-white gap-2"
       >
-        <button>EN</button>
+        <button
+          onClick={() => setLang("en")}
+          className={lang === "en" ? "opacity-100" : "opacity-60"}
+        >
+          EN
+        </button>
         <span>|</span>
-        <button>AR</button>
+        <button
+          onClick={() => setLang("ar")}
+          className={lang === "ar" ? "opacity-100" : "opacity-60"}
+        >
+          AR
+        </button>
       </div>
     </header>
   );

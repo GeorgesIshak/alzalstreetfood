@@ -9,17 +9,18 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const categories = [
-  { name: "International Desserts", image: "/11.avif" },
-  { name: "Saudi Desserts", image: "/12.jpg" },
-  { name: "Coffee & Beverages", image: "/13.avif" },
-  { name: "Mexican", image: "/14.jpg" },
-  { name: "All-Day Dining", image: "/15.jpg" },
-  { name: "Arabic & Mediterranean", image: "/11.avif" },
-  { name: "Asian Street Food", image: "/14.jpg" },
-  { name: "American Street Food", image: "/15.jpg" },
-  { name: "Indian Street Food", image: "/11.avif" },
-  { name: "Traditional Saudi", image: "/13.avif" },
-  { name: "Italian", image: "/12.jpg" },
+  { name: "International Desserts", image: "/food1.jpg" },
+  { name: "Saudi Desserts", image: "/food2.jpg" },
+  { name: "Coffee & Beverages", image: "/food3.jpg" },
+  { name: "Mexican", image: "/food4.jpg" },
+  { name: "All-Day Dining", image: "/food5.jpg" },
+  { name: "Arabic & Mediterranean", image: "/food6.jpg" },
+  { name: "Asian Street Food", image: "/food7.jpg" },
+  { name: "American Street Food", image: "/food8.jpg" },
+  { name: "Indian Street Food", image: "/food9.jpg" },
+  { name: "Traditional Saudi", image: "/food10.jpg" },
+  { name: "Italian", image: "/food11.jpg" },
+ 
 ];
 
 export default function FoodCategoriesCarousel() {
@@ -42,7 +43,7 @@ export default function FoodCategoriesCarousel() {
     <motion.section
       ref={containerRef}
       style={{ backgroundColor }}
-      className="w-screen py-32 overflow-hidden transition-colors duration-300"
+      className="w-screen py-32  overflow-hidden transition-colors duration-300"
     >
       {/* ===== SECTION HEADER ===== */}
       <motion.div
@@ -50,7 +51,7 @@ export default function FoodCategoriesCarousel() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="max-w-[1440px] mx-auto px-6 md:px-16 mb-16"
+        className=" mx-auto w-[96vw] mb-16"
       >
         <div className="flex items-center gap-6 mb-6">
           <motion.span className="text-[14px] uppercase tracking-[0.3em] text-white/80">
@@ -69,7 +70,7 @@ export default function FoodCategoriesCarousel() {
       </motion.div>
 
       {/* ===== CAROUSEL ===== */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16">
+      <div className="w-[96vw] mx-auto ">
         <Swiper
           modules={[Autoplay, FreeMode]}
           slidesPerView="auto"
