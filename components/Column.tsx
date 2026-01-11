@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import SectionHeader from "@/components/SectionHeader"; // ✅ import
-import DecorativePattern4 from "./DecorativePattern4";
 import DecorativePattern3 from "./DecorativePattern3";
 
 gsap.registerPlugin(ScrollTrigger);

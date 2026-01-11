@@ -20,7 +20,7 @@ export default function ScrollMedia() {
     { type: 'image', src: '/img4.jpg' },
     { type: 'image', src: '/img6.jpg' },
     { type: 'image', src: '/img17.jpg' },
-    { type: 'image', src: '/img21.jpg' },
+    { type: 'image', src: '/img18.jpg' },
   ];
 
   const scales = [
