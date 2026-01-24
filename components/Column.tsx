@@ -5,8 +5,9 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import SectionHeader from "@/components/SectionHeader"; // ✅ import
+import SectionHeader from "@/components/SectionHeader";
 import DecorativePattern3 from "./DecorativePattern3";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,11 +15,15 @@ interface Event {
   image: string;
   date: string;
   title: string;
+  titleAr?: string;
   description: string;
+  descriptionAr?: string;
 }
 
 export default function EventsGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const isArabic = lang === "ar";
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
@@ -84,34 +89,72 @@ export default function EventsGrid() {
   }, []);
 
   const events: Event[] = [
-    { image: '/food5.jpg', date: 'Dec 29, 2025', title: 'Event One', description: 'This is the first event.' },
-    { image: '/food11.jpg', date: 'Dec 30, 2025', title: 'Event Two', description: 'This is the second event.' },
-    { image: '/food2.jpg', date: 'Jan 01, 2026', title: 'Event Three', description: 'Another amazing event.' },
-    { image: '/food8.jpg', date: 'Jan 05, 2026', title: 'Event Four', description: 'Exciting things happening.' },
+    {
+      image: "/food5.jpg",
+      date: "Dec 29, 2025",
+      title: "Event One",
+      titleAr: "الفعالية الأولى",
+      description: "This is the first event.",
+      descriptionAr: "هذه هي الفعالية الأولى.",
+    },
+    {
+      image: "/food11.jpg",
+      date: "Dec 30, 2025",
+      title: "Event Two",
+      titleAr: "الفعالية الثانية",
+      description: "This is the second event.",
+      descriptionAr: "هذه هي الفعالية الثانية.",
+    },
+    {
+      image: "/food2.jpg",
+      date: "Jan 01, 2026",
+      title: "Event Three",
+      titleAr: "الفعالية الثالثة",
+      description: "Another amazing event.",
+      descriptionAr: "فعالية مذهلة أخرى.",
+    },
+    {
+      image: "/food8.jpg",
+      date: "Jan 05, 2026",
+      title: "Event Four",
+      titleAr: "الفعالية الرابعة",
+      description: "Exciting things happening.",
+      descriptionAr: "أحداث مثيرة قادمة.",
+    },
   ];
 
   return (
-    <section className="bg-white pt-20 relative overflow-hidden">
-      
+    <section
+      className="bg-white pt-20 relative overflow-hidden"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
       {/* ===== DECORATIVE SVG ===== */}
-      <div className="absolute right-0 top-32 w-[110vw]
- opacity-[0.05] pointer-events-none">
-     <DecorativePattern3 />
+      <div
+        className={`absolute top-32 w-[110vw] opacity-[0.05] pointer-events-none ${
+          isArabic ? "left-0" : "right-0"
+        }`}
+      >
+        <DecorativePattern3 />
       </div>
 
-      {/* ===== SECTION HEADER (REUSABLE) ===== */}
+      {/* ===== SECTION HEADER ===== */}
       <SectionHeader
-        label="Events"
+        label={isArabic ? "الفعاليات" : "Events"}
         title={
-          <>
-            Discover Our <br /> Exciting Events
-          </>
+          isArabic ? (
+            <>
+              اكتشف <br /> فعالياتنا المميزة
+            </>
+          ) : (
+            <>
+              Discover Our <br /> Exciting Events
+            </>
+          )
         }
       />
 
       {/* ===== EVENTS GRID ===== */}
-      <div className="w-[94vw]
- mx-auto ">
+      <div className="w-[94vw] mx-auto">
         <div
           ref={containerRef}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12"
@@ -124,16 +167,20 @@ export default function EventsGrid() {
               <div className="relative w-full h-56 md:h-48">
                 <Image
                   src={event.image}
-                  alt={event.title}
+                  alt={isArabic ? event.titleAr || event.title : event.title}
                   fill
                   className="object-cover"
                 />
               </div>
 
-              <div className="p-4">
+              <div className="p-4 text-start">
                 <p className="text-sm text-gray-500">{event.date}</p>
-                <h3 className="font-semibold text-lg mt-1">{event.title}</h3>
-                <p className="text-gray-700 text-sm mt-1">{event.description}</p>
+                <h3 className="font-semibold text-lg mt-1">
+                  {isArabic ? event.titleAr : event.title}
+                </h3>
+                <p className="text-gray-700 text-sm mt-1">
+                  {isArabic ? event.descriptionAr : event.description}
+                </p>
               </div>
             </div>
           ))}

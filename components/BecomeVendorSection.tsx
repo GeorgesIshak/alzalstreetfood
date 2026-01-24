@@ -2,8 +2,12 @@
 
 import Image from 'next/image';
 import SectionHeader from '@/components/SectionHeader';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function BecomeVendorSection() {
+  const { lang } = useLanguage();
+  const isArabic = lang === 'ar';
+
   const images = [
     { src: '/img23.jpg', alt: 'Image 1', colStart: 2, colEnd: 5, rowStart: 2, rowEnd: 3, className: '' },
     { src: '/img24.jpg', alt: 'Image 2', colStart: 8, colEnd: 13, rowStart: 1, rowEnd: 2, className: 'mb-8' },
@@ -11,32 +15,48 @@ export default function BecomeVendorSection() {
   ];
 
   return (
-    <section className="relative w-full py-20 bg-white">
+    <section
+      className="relative w-full py-20 bg-white"
+      dir={isArabic ? 'rtl' : 'ltr'}
+    >
       {/* ===== SECTION HEADER ===== */}
       <SectionHeader
-        label="Join Us"
+        label={isArabic ? 'انضم إلينا' : 'Join Us'}
         title={
-          <>
-            Become a <br />
-            vendor
-          </>
+          isArabic ? (
+            <>
+              كن 
+              بائعًا
+            </>
+          ) : (
+            <>
+              Become a <br />
+              vendor
+            </>
+          )
         }
       />
 
       {/* ===== DESCRIPTION + CTA ===== */}
-      <div className="w-[94vw] mx-auto ">
+      <div className="w-[94vw] mx-auto">
         <p className="max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
-          Join our vibrant food destination and showcase your culinary concept to a wide
-          and engaged audience. Whether you serve street food, specialty dishes, or
-          signature flavors, this is your opportunity to grow your brand and be part of
-          an unforgettable dining experience.
+          {isArabic
+            ? `انضم إلى وجهتنا الغذائية النابضة بالحياة وعرّف جمهورًا واسعًا
+               بمفهومك المميز. سواء كنت تقدم أطعمة الشارع،
+               أطباقًا متخصصة، أو نكهات فريدة،
+               فهذه فرصتك لتنمية علامتك التجارية
+               والمشاركة في تجربة طعام لا تُنسى.`
+            : `Join our vibrant food destination and showcase your culinary concept to a wide
+               and engaged audience. Whether you serve street food, specialty dishes, or
+               signature flavors, this is your opportunity to grow your brand and be part of
+               an unforgettable dining experience.`}
         </p>
 
         <a
           href="#"
           className="main-button mt-8 inline-block"
         >
-          Apply to Become a Vendor
+          {isArabic ? 'قدّم لتصبح بائعًا' : 'Apply to Become a Vendor'}
         </a>
       </div>
 
@@ -55,7 +75,8 @@ export default function BecomeVendorSection() {
               gridRowStart: img.rowStart,
               gridRowEnd: img.rowEnd,
               willChange: 'transform',
-              transform: 'translate3d(0px, -19.948%, 0px) scale3d(1,1,1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg,0deg)',
+              transform:
+                'translate3d(0px, -19.948%, 0px) scale3d(1,1,1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg,0deg)',
               transformStyle: 'preserve-3d',
             }}
           >

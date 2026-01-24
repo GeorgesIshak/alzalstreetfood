@@ -7,12 +7,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
 import SectionHeader from '@/components/SectionHeader';
 import DecorativePattern4 from './DecorativePattern4';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HorizontalScrollGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const isArabic = lang === 'ar';
 
   const images = useMemo(
     () => [
@@ -36,13 +39,15 @@ export default function HorizontalScrollGallery() {
       const track = trackRef.current;
       if (!track) return;
 
+      const distance = track.scrollWidth - window.innerWidth;
+
       gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth),
+        x: isArabic ? distance : -distance,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: () => `+=${track.scrollWidth - window.innerWidth}`,
+          end: () => `+=${distance}`,
           scrub: 1,
           pin: true,
           invalidateOnRefresh: true,
@@ -51,24 +56,39 @@ export default function HorizontalScrollGallery() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isArabic]);
 
   return (
-    <section className="relative w-screen bg-[#ffffff] pt-20 overflow-hidden">
-      {/* ===== DECORATIVE (NOW RELATIVE TO THIS SECTION) ===== */}
-      <div className="absolute top-24 right-0 w-[500px] h-[300px] pointer-events-none z-10">
+    <section
+      className="relative w-screen bg-[#ffffff] pt-20 overflow-hidden"
+      dir={isArabic ? 'rtl' : 'ltr'}
+    >
+      {/* ===== DECORATIVE ===== */}
+      <div
+        className={`absolute top-24 w-[500px] h-[300px] pointer-events-none z-10 ${
+          isArabic ? 'left-0' : 'right-0'
+        }`}
+      >
         <DecorativePattern4 />
       </div>
 
       {/* ===== SECTION HEADER ===== */}
       <SectionHeader
-        label="Explore"
+        label={isArabic ? 'استكشف' : 'Explore'}
         title={
-          <>
-            Explore up <br />
-            thoughtful <br />
-            flavors
-          </>
+          isArabic ? (
+            <>
+              استكشف 
+              نكهات <br />
+              مدروسة
+            </>
+          ) : (
+            <>
+              Explore up <br />
+              thoughtful <br />
+              flavors
+            </>
+          )
         }
       />
 
@@ -81,9 +101,15 @@ export default function HorizontalScrollGallery() {
         className="w-[94vw] mx-auto"
       >
         <p className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
-          Experience our souk through vibrant stalls, local crafts, culinary delights, and immersive cultural moments.
-          Wander through artisan booths, taste authentic flavors, discover hidden gems, and create unforgettable memories
-          as you explore the heart of the marketplace.
+          {isArabic
+            ? `اكتشف سوقنا من خلال الأكشاك النابضة بالحياة، والحرف المحلية،
+               والنكهات الأصيلة، والتجارب الثقافية الغامرة.
+               تجوّل بين الحرفيين، وتذوّق الأطباق التقليدية،
+               واكتشف الجواهر الخفية، واصنع ذكريات لا تُنسى.`
+            : `Experience our souk through vibrant stalls, local crafts, culinary delights,
+               and immersive cultural moments. Wander through artisan booths, taste authentic
+               flavors, discover hidden gems, and create unforgettable memories
+               as you explore the heart of the marketplace.`}
         </p>
 
         <motion.a
@@ -94,7 +120,7 @@ export default function HorizontalScrollGallery() {
           viewport={{ once: true }}
           className="main-button mt-8 inline-block"
         >
-          Explore More
+          {isArabic ? 'اكتشف المزيد' : 'Explore More'}
         </motion.a>
       </motion.div>
 

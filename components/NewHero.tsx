@@ -9,17 +9,31 @@ export default function Hero() {
   const t = siteContent[lang].hero;
 
   return (
-    <section className="relative flex items-center justify-center min-h-[110vh] overflow-hidden">
+    <section className="relative flex items-center justify-center min-h-[100vh] overflow-hidden">
       {/* VIDEO */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/banner.webm"
         autoPlay
         loop
         muted
         playsInline
-      />
+      >
+        {/* Mobile video */}
+        <source
+          src="/mobile-banner.webm"
+          type="video/webm"
+          media="(max-width: 768px)"
+        />
 
+        {/* Desktop video */}
+        <source
+          src="/video-banner.webm"
+          type="video/webm"
+          media="(min-width: 769px)"
+        />
+      </video>
+
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
       {/* LEFT TEXT */}

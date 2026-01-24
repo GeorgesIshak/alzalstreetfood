@@ -22,7 +22,7 @@ export default function RestaurantCarousel() {
         label={isArabic ? "استكشف" : "Explore"}
         title={
           isArabic ? (
-            <>استكشف <br />نكهات <br />مميزة</>
+            <>استكشف نكهات <br />مميزة</>
           ) : (
             <>Explore up thoughtful <br />flavors</>
           )

@@ -20,6 +20,7 @@ We love the bold flavors, the energy of the streets, and the way great food brin
       contact: "Contact us",
       copyright: "© 2026 Al Zal Street Food",
     },
+    
   },
   ar: {
     nav: {

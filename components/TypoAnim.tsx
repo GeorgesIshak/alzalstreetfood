@@ -17,7 +17,7 @@ export default function TypoAnim() {
   const { lang } = useLanguage();
 
   const content = {
-    en: `At Al Zal Street Food, we don’t just serve street food — we celebrate it.
+    en: `At Al Zal Street Food, we don’t just serve street food we celebrate it.
 We love the bold flavors, the energy of the streets, and the way
 great food brings people together. Every bite reflects the spirit of the places
 it comes from and the hands that prepared it. Whether you arrive hungry
