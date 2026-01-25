@@ -20,7 +20,7 @@ export default function SectionHeader({
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 1.2, ease: "easeOut" }}
       className={`w-[94vw]
- mx-auto  pb-16 ${className}`}
+ mx-auto  ${className}`}
     >
       {/* Top label + line */}
       <div className="flex items-center gap-6 mb-6">

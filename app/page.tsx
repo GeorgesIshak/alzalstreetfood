@@ -9,6 +9,8 @@ import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 import BecomeVendorSection from "@/components/BecomeVendorSection";
 import Footer from "@/components/Footer";
 import RestaurantCarousel from "@/components/RestaurantCarousel";
+import FindUs from "@/components/FindUs";
+import StorySection from "@/components/StorySection";
 export default function Home() {
   
 
@@ -16,6 +18,7 @@ export default function Home() {
    
         <>
           <NewHero />
+          <StorySection />
                                                             <TypoAnim />
                                                                   <RestaurantCarousel />
 
@@ -26,9 +29,10 @@ export default function Home() {
 
       <Column />
    <ScrollImageGallery />
+      <FindUs />
+
    <BecomeVendorSection />
 
-   <Footer />
 
         </>
       )}

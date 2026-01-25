@@ -26,7 +26,7 @@ export default function EventsGrid() {
   const isArabic = lang === "ar";
 
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
 
     const raf = (time: number) => {
       lenis.raf(time);
@@ -35,49 +35,30 @@ export default function EventsGrid() {
     requestAnimationFrame(raf);
 
     const ctx = gsap.context(() => {
-      const items = containerRef.current?.querySelectorAll('.event-card');
-
-      items?.forEach((item, i) => {
+      gsap.utils.toArray<HTMLElement>(".event-card").forEach((card, i) => {
         gsap.fromTo(
-          item,
-          {
-            y: 50 + (i % 4) * 20,
-            opacity: 0,
-            scale: 0.95,
-          },
+          card,
+          { y: 60, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            scale: 1,
+            duration: 1,
+            delay: i * 0.1,
             ease: "power3.out",
-            delay: (i % 4) * 0.1,
             scrollTrigger: {
-              trigger: item,
-              start: "top bottom-=100",
-              end: "top center",
+              trigger: card,
+              start: "top bottom-=120",
               scrub: 1,
             },
           }
         );
 
-        item.addEventListener("mouseenter", () => {
-          gsap.to(item, {
-            y: -10,
-            scale: 1.05,
-            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-            duration: 0.3,
-            ease: "power2.out",
-          });
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, { y: -10, duration: 0.35 });
         });
 
-        item.addEventListener("mouseleave", () => {
-          gsap.to(item, {
-            y: 0,
-            scale: 1,
-            boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
-            duration: 0.3,
-            ease: "power2.out",
-          });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, { y: 0, duration: 0.35 });
         });
       });
     }, containerRef);
@@ -90,45 +71,42 @@ export default function EventsGrid() {
 
   const events: Event[] = [
     {
-      image: "/food5.jpg",
-      date: "Dec 29, 2025",
-      title: "Event One",
-      titleAr: "الفعالية الأولى",
-      description: "This is the first event.",
-      descriptionAr: "هذه هي الفعالية الأولى.",
+      image: "/event1.jpg",
+      date: "July 12–14",
+      title: "Local Food Fest",
+      titleAr: "مهرجان الطعام المحلي",
+      description:
+        "Join us downtown for three days of amazing food trucks, live music, and family fun.",
+      descriptionAr:
+        "انضم إلينا في وسط المدينة لثلاثة أيام من شاحنات الطعام والموسيقى والمرح.",
     },
     {
-      image: "/food11.jpg",
-      date: "Dec 30, 2025",
-      title: "Event Two",
-      titleAr: "الفعالية الثانية",
-      description: "This is the second event.",
-      descriptionAr: "هذه هي الفعالية الثانية.",
+      image: "/events2.jpg",
+      date: "August 3",
+      title: "Brewery Nights at East Bay",
+      titleAr: "ليالي إيست باي",
+      description:
+        "oin us downtown for three days of amazing food trucks, live music, and family fun.",
+      descriptionAr:
+        "انضم إلينا في وسط المدينة لثلاثة أيام من شاحنات الطعام والموسيقى والمرح.",
     },
     {
-      image: "/food2.jpg",
-      date: "Jan 01, 2026",
-      title: "Event Three",
-      titleAr: "الفعالية الثالثة",
-      description: "Another amazing event.",
-      descriptionAr: "فعالية مذهلة أخرى.",
-    },
-    {
-      image: "/food8.jpg",
-      date: "Jan 05, 2026",
-      title: "Event Four",
-      titleAr: "الفعالية الرابعة",
-      description: "Exciting things happening.",
-      descriptionAr: "أحداث مثيرة قادمة.",
+      image: "/events3.jpg",
+      date: "August 10–11",
+      title: "Summer Farmers Market",
+      titleAr: "سوق المزارعين الصيفي",
+      description:
+        "Special extended hours at Westside Market.",
+      descriptionAr:
+        "ساعات ممتدة خاصة في سوق ويست سايد.",
     },
   ];
 
   return (
     <section
-      className="bg-white pt-20 relative overflow-hidden"
+      className="pt-24 relative overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      {/* ===== DECORATIVE SVG ===== */}
       <div
         className={`absolute top-32 w-[110vw] opacity-[0.05] pointer-events-none ${
           isArabic ? "left-0" : "right-0"
@@ -137,54 +115,72 @@ export default function EventsGrid() {
         <DecorativePattern3 />
       </div>
 
-      {/* ===== SECTION HEADER ===== */}
       <SectionHeader
         label={isArabic ? "الفعاليات" : "Events"}
         title={
           isArabic ? (
             <>
-              اكتشف <br /> فعالياتنا المميزة
+              اكتشف <br /> فعالياتنا
             </>
           ) : (
             <>
-              Discover Our <br /> Exciting Events
+              Discover Our <br /> Events
             </>
           )
         }
       />
 
-      {/* ===== EVENTS GRID ===== */}
       <div className="w-[94vw] mx-auto">
         <div
           ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-20"
         >
           {events.map((event, idx) => (
-            <div
-              key={idx}
-              className="event-card rounded-lg overflow-hidden bg-white shadow-lg cursor-pointer will-change-transform"
-            >
-              <div className="relative w-full h-56 md:h-48">
+            <div key={idx} className="event-card">
+              {/* IMAGE */}
+              <div className="relative h-[280px] rounded-[28px] overflow-hidden">
                 <Image
                   src={event.image}
-                  alt={isArabic ? event.titleAr || event.title : event.title}
+                  alt={event.title}
                   fill
                   className="object-cover"
                 />
               </div>
 
-              <div className="p-4 text-start">
-                <p className="text-sm text-gray-500">{event.date}</p>
-                <h3 className="font-semibold text-lg mt-1">
+              {/* CONTENT */}
+              <div className="relative -mt-20 mx-6 bg-white rounded-[24px] p-7 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                <h3 className="text-xl font-semibold mb-2">
                   {isArabic ? event.titleAr : event.title}
                 </h3>
-                <p className="text-gray-700 text-sm mt-1">
+
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
                   {isArabic ? event.descriptionAr : event.description}
                 </p>
+
+                <div className="flex items-center justify-between">
+                  {/* DATE BADGE */}
+                  <div className="flex items-center gap-2 bg-[#6b1415] text-[#ffffff] text-sm px-4 py-2 rounded-full">
+                    <span>{event.date}</span>
+                  </div>
+
+                  {/* READ MORE */}
+                  <span className="flex items-center gap-2 font-medium text-[#6b1415] hover:underline cursor-pointer">
+                    {isArabic ? "اقرأ المزيد" : "Read More"}
+                    <span>→</span>
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* MAIN BUTTON */}
+        {/* <div className="flex justify-center pb-20">
+          <button className=" main-button2">
+            {isArabic ? "عرض جميع الفعاليات" : "View All Events"}
+            <span>→</span>
+          </button>
+        </div> */}
       </div>
     </section>
   );

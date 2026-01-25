@@ -21,7 +21,7 @@
     display: none;
 }
 
-body {
+body ,html {
     overflow-x: hidden;
 
 }
@@ -249,4 +249,30 @@ background:#f0edea ;
     opacity: 1;
     transform: translateY(0) rotate(0deg);
   }
+}
+
+
+
+
+.main-button2 {
+  padding: 0.75rem 1.5rem; /* adjust for desired size */
+  border: 1px solid #6b1415; /* same as h2 color */
+  border-radius: 0.5rem;
+  background-color: #6b1415; /* burgundy background on hover */
+  color: #ffffff; /* white text on hover */
+  font-size: 1.15rem;
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.main-button2:hover {
+
+  cursor: pointer;
+
+
+   color: #6b1415; /* text color same as h2 */
+  background-color: transparent;
+    border: 1px solid #6b1415; /* same as h2 color */
 }
