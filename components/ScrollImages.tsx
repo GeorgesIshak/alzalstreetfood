@@ -39,14 +39,15 @@ export default function ScrollMedia() {
 
   return (
     <section className="relative w-screen pt-20 bg-[#f0edea]">
-      {/* Decorative pattern */}
-      <div
-        className={`absolute top-26 w-[500px] h-[300px] pointer-events-none z-10 ${
-          isArabic ? 'left-0' : 'right-0'
-        }`}
-      >
-        <DecorativePattern4 />
-      </div>
+     {/* Decorative pattern */}
+<div
+  className={`absolute top-26 w-[500px] h-[300px] pointer-events-none z-10 ${
+    isArabic ? 'left-0' : 'right-0'
+  } hidden md:block`} // <-- hide on mobile, show from md breakpoint
+>
+  <DecorativePattern4 />
+</div>
+
 
       {/* ===== EDITORIAL INTRO ===== */}
       <SectionHeader

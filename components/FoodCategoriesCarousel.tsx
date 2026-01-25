@@ -116,7 +116,7 @@ export default function FoodCategoriesCarousel() {
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                 </div>
 
-                <p className="mt-5 text-lg font-semibold text-white text-center tracking-wide">
+                <p className="mt-5 text-[14px] uppercase tracking-[0.3em] text-center text-white/80">
                   {isArabic ? item.nameAr : item.name}
                 </p>
               </motion.div>

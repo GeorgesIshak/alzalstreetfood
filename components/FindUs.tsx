@@ -50,7 +50,7 @@ const info = [
   ];
 
   return (
-    <section className="relative py-32 bg-[#fffdf9] overflow-hidden">
+    <section className="relative pt-16 bg-[#fffdf9] overflow-hidden">
       <motion.div
         initial="hidden"
         whileInView="visible"

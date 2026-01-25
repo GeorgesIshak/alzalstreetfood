@@ -63,11 +63,11 @@ export default function HorizontalScrollGallery() {
       className="relative w-screen bg-[#ffffff] pt-20 overflow-hidden"
       dir={isArabic ? 'rtl' : 'ltr'}
     >
-      {/* ===== DECORATIVE ===== */}
+      {/* ===== DECORATIVE PATTERN (hidden on mobile) ===== */}
       <div
         className={`absolute top-24 w-[500px] h-[300px] pointer-events-none z-10 ${
           isArabic ? 'left-0' : 'right-0'
-        }`}
+        } hidden md:block`}
       >
         <DecorativePattern4 />
       </div>
@@ -78,15 +78,13 @@ export default function HorizontalScrollGallery() {
         title={
           isArabic ? (
             <>
-              استكشف 
-              نكهات <br />
-              مدروسة
+              استكشف <br />
+              نكهات مدروسة
             </>
           ) : (
             <>
               Explore up <br />
-              thoughtful <br />
-              flavors
+              thoughtful flavors
             </>
           )
         }
@@ -98,7 +96,7 @@ export default function HorizontalScrollGallery() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
         viewport={{ once: true }}
-        className="w-[94vw] mx-auto"
+        className="w-[94vw] mx-auto mb-12"
       >
         <p className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
           {isArabic
@@ -132,17 +130,7 @@ export default function HorizontalScrollGallery() {
       >
         <div
           ref={trackRef}
-          style={{
-            display: 'grid',
-            gridAutoFlow: 'column',
-            gridAutoColumns: '1fr',
-            height: '100%',
-            alignItems: 'center',
-            padding: '0 2vw',
-            width: 'max-content',
-            willChange: 'transform',
-            columnGap: '2vw',
-          }}
+          className="grid grid-flow-col auto-cols-max h-full items-center px-[2vw] gap-[2vw] w-max will-change-transform"
         >
           {images.map((src, i) => {
             const isBig = i % 3 === 0;
@@ -150,14 +138,9 @@ export default function HorizontalScrollGallery() {
             return (
               <div
                 key={i}
-                style={{
-                  position: 'relative',
-                  height: '70vh',
-                  gridColumn: isBig ? 'span 2' : 'span 1',
-                  minWidth: '22vw',
-                  paddingInline: '1vw',
-                  boxSizing: 'border-box',
-                }}
+                className={`relative h-[70vh] 
+                  min-w-[40vw] md:min-w-[22vw] 
+                  ${isBig ? 'md:min-w-[44vw]' : ''}`}
               >
                 <Image
                   src={src}

@@ -100,7 +100,7 @@ export default function Header() {
            <button onClick={() => setIsOpen(false)} className="text-white">
              <X size={32} strokeWidth={1.5} />
            </button>
-           <Image src="/white-logo.png" alt="Logo" width={100} height={50} className="object-contain" />
+           <Image src="/white-logo.png" alt="Logo" width={140} height={120} className="object-contain" />
            <div className="w-8" /> {/* Visual Balance */}
         </div>
         

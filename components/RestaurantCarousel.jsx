@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,14 +9,14 @@ import Image from "next/image";
 import { restaurants } from "@/data/restaurants";
 import SectionHeader from "./SectionHeader";
 import { useLanguage } from "@/context/LanguageContext";
-import { ArrowUpRight } from "lucide-react"; // Matching footer style
+import { ArrowUpRight } from "lucide-react";
 
 export default function RestaurantCarousel() {
   const { lang } = useLanguage();
   const isArabic = lang === "ar";
 
   return (
-    <section className="w-screen overflow-hidden bg-[#f0edea] py-24">
+    <section className="w-full overflow-hidden bg-[#f0edea] py-16 md:py-24">
       {/* ===== HEADER ===== */}
       <SectionHeader
         label={isArabic ? "استكشف" : "Explore"}
@@ -30,10 +30,10 @@ export default function RestaurantCarousel() {
       />
 
       <Swiper
-        key={lang} 
-        dir={isArabic ? "rtl" : "ltr"} 
+        key={lang}
+        dir={isArabic ? "rtl" : "ltr"}
         modules={[Autoplay, FreeMode]}
-        spaceBetween={30}
+        spaceBetween={20} // smaller gap on mobile
         slidesPerView="auto"
         loop={true}
         freeMode={{ enabled: true, momentum: false }}
@@ -41,15 +41,18 @@ export default function RestaurantCarousel() {
         autoplay={{
           delay: 0,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true, 
+          pauseOnMouseEnter: true,
         }}
-        className="px-12 py-10"
+        className="px-4 md:px-8 lg:px-12 py-10 mt-10"
       >
-        {restaurants.map((item, index) => (
-          <SwiperSlide key={item.id} className="!w-[415px] !h-[560px]">
+        {restaurants.map((item) => (
+          <SwiperSlide
+            key={item.id}
+            className="!w-[280px] sm:!w-[340px] md:!w-[415px] !h-[420px] sm:!h-[480px] md:!h-[560px]"
+          >
             <div className="group relative h-full w-full overflow-hidden cursor-pointer rounded-[2.5rem] bg-[#1a1a1a] transition-all duration-700">
               
-              {/* IMAGE: Subtle desaturation on hover */}
+              {/* IMAGE */}
               <Image
                 src={item.image}
                 alt={isArabic ? item.nameAr || item.name : item.name}
@@ -61,33 +64,29 @@ export default function RestaurantCarousel() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#6b1415]/10 via-black/40 to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-100 z-[5]" />
 
               {/* INITIAL CENTER TITLE */}
-              <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center text-4xl font-serif italic text-white z-10 transition-all duration-700 group-hover:opacity-0 group-hover:-translate-y-[150%] tracking-tight">
+              <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center text-2xl sm:text-3xl md:text-4xl font-serif italic text-white z-10 transition-all duration-700 group-hover:opacity-0 group-hover:-translate-y-[150%] tracking-tight">
                 {isArabic ? item.nameAr || item.name : item.name}
               </h2>
 
               {/* HOVER CONTENT */}
-              <div className={`absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-10 transition-all duration-700`}>
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 md:px-10 transition-all duration-700">
                 
-                {/* 1. Category in Brand Maroon */}
-                <span className="text-[#f0edea] bg-[#6b1415] px-3 py-1 rounded-md uppercase tracking-[0.2em] text-[10px] font-bold mb-6 translate-y-8 opacity-0 transition-all duration-500 delay-[100ms] group-hover:translate-y-0 group-hover:opacity-100">
+                <span className="text-[#f0edea] bg-[#6b1415] px-3 py-1 rounded-md uppercase tracking-[0.2em] text-[10px] font-bold mb-4 sm:mb-6 translate-y-8 opacity-0 transition-all duration-500 delay-[100ms] group-hover:translate-y-0 group-hover:opacity-100">
                   {isArabic ? item.categoryAr || item.category : item.category}
                 </span>
 
-                {/* 2. Name */}
-                <h3 className="text-4xl font-bold text-white mb-4 translate-y-8 opacity-0 transition-all duration-500 delay-[200ms] group-hover:translate-y-0 group-hover:opacity-100">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-4 translate-y-8 opacity-0 transition-all duration-500 delay-[200ms] group-hover:translate-y-0 group-hover:opacity-100">
                   {isArabic ? item.nameAr || item.name : item.name}
                 </h3>
 
-                {/* 3. Description */}
-                <p className="text-white/80 text-sm leading-relaxed mb-10 translate-y-8 opacity-0 transition-all duration-500 delay-[300ms] group-hover:translate-y-0 group-hover:opacity-100">
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-10 translate-y-8 opacity-0 transition-all duration-500 delay-[300ms] group-hover:translate-y-0 group-hover:opacity-100">
                   {isArabic ? item.descriptionAr || item.description : item.description}
                 </p>
 
-                {/* 4. Button: Matching Footer Style */}
                 <div className="translate-y-8 opacity-0 transition-all duration-500 delay-[400ms] group-hover:translate-y-0 group-hover:opacity-100">
-                  <button className="group/btn relative inline-flex items-center gap-2 rounded-full border-2 border-white/80 px-8 py-3 text-sm font-bold text-white hover:bg-white hover:text-[#6b1415] transition-all duration-500">
+                  <button className="group/btn relative inline-flex items-center gap-2 rounded-full border-2 border-white/80 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold text-white hover:bg-white hover:text-[#6b1415] transition-all duration-500">
                     {isArabic ? "استكشف" : "Explore"}
-                    <ArrowUpRight size={18} className="group-hover/btn:rotate-45 transition-transform duration-300" />
+                    <ArrowUpRight size={16} className="group-hover/btn:rotate-45 transition-transform duration-300" />
                   </button>
                 </div>
               </div>

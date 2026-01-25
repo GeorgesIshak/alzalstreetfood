@@ -148,7 +148,7 @@ export default function EventsGrid() {
               </div>
 
               {/* CONTENT */}
-              <div className="relative -mt-20 mx-6 bg-white rounded-[24px] p-7 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+              <div className="relative -mt-20 mx-6 bg-white rounded-[24px] p-7 shadow-[0_20px_40px_rgba(107,20,21,0.5)]">
                 <h3 className="text-xl font-semibold mb-2">
                   {isArabic ? event.titleAr : event.title}
                 </h3>
