@@ -36,27 +36,9 @@ export default function Hero() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* LEFT TEXT */}
-      <div
-        className={`absolute ${
-          lang === "ar" ? "right-8" : "left-8"
-        } top-1/2 -translate-y-1/2 z-10 hidden md:block`}
-      >
-        <span className="vertical-text uppercase tracking-[0.35em] text-white text-[16px] font-['var(--font-alzal)']">
-          AL ZAL
-        </span>
-      </div>
+   
 
-      {/* RIGHT TEXT */}
-      <div
-        className={`absolute ${
-          lang === "ar" ? "left-8" : "right-8"
-        } top-1/2 -translate-y-1/2 z-10 hidden md:block`}
-      >
-        <span className="vertical-text uppercase tracking-[0.35em] text-white text-[16px] font-['var(--font-alzal)']">
-          STREET FOOD
-        </span>
-      </div>
+    
 
       {/* CENTER TEXT */}
       <motion.div

@@ -10,15 +10,15 @@ export const siteContent = {
     },
     hero: {
       title: "A Destination of Discovery",
-      subtitle: "All roads lead to Al Zal",
-      verticalLeft: "AL ZAL",
+      subtitle: "All roads lead to Azzal",
+      verticalLeft: "Azzal",
       verticalRight: "STREET FOOD",
     },
-    typoAnimText: `At Al Zal Street Food, we don’t just serve street food — we celebrate it.
+    typoAnimText: `At Azzal Street Food, we don’t just serve street food — we celebrate it.
 We love the bold flavors, the energy of the streets, and the way great food brings people together. Every bite reflects the spirit of the places it comes from and the hands that prepared it. Whether you arrive hungry or simply curious, you’ll find something that speaks to you.`,
     footer: {
       contact: "Contact us",
-      copyright: "© 2026 Al Zal Street Food",
+      copyright: "© 2026 Azzal Street Food",
     },
     
   },

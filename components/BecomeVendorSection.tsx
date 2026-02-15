@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -8,86 +7,52 @@ export default function BecomeVendorSection() {
   const { lang } = useLanguage();
   const isArabic = lang === 'ar';
 
-  const images = [
-    { src: '/img23.jpg', alt: 'Image 1', colStart: 2, colEnd: 5, rowStart: 2, rowEnd: 3, className: '' },
-    { src: '/img24.jpg', alt: 'Image 2', colStart: 8, colEnd: 13, rowStart: 1, rowEnd: 2, className: 'mb-8' },
-    { src: '/img25.jpg', alt: 'Image 3', colStart: 6, colEnd: 10, rowStart: 3, rowEnd: 4, className: 'mt-4' },
-  ];
-
   return (
     <section
-      className="relative w-full py-20 bg-white"
+      className="relative w-full py-24 bg-white"
       dir={isArabic ? 'rtl' : 'ltr'}
     >
-      {/* ===== SECTION HEADER ===== */}
-      <SectionHeader
-        label={isArabic ? 'انضم إلينا' : 'Join Us'}
-        title={
-          isArabic ? (
-            <>
-              كن 
-              بائعًا
-            </>
-          ) : (
-            <>
-              Become a <br />
-              vendor
-            </>
-          )
-        }
-      />
+      <div className="w-[94%] mx-auto">
 
-      {/* ===== DESCRIPTION + CTA ===== */}
-      <div className="w-[94vw] mx-auto">
-        <p className="max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
-          {isArabic
-            ? `انضم إلى وجهتنا الغذائية النابضة بالحياة وعرّف جمهورًا واسعًا
-               بمفهومك المميز. سواء كنت تقدم أطعمة الشارع،
-               أطباقًا متخصصة، أو نكهات فريدة،
-               فهذه فرصتك لتنمية علامتك التجارية
-               والمشاركة في تجربة طعام لا تُنسى.`
-            : `Join our vibrant food destination and showcase your culinary concept to a wide
-               and engaged audience. Whether you serve street food, specialty dishes, or
-               signature flavors, this is your opportunity to grow your brand and be part of
-               an unforgettable dining experience.`}
-        </p>
+        {/* ===== SECTION HEADER ===== */}
+        <SectionHeader
+          label={isArabic ? 'انضم إلينا' : 'Join Us '}
+          title={
+            isArabic ? (
+              <>كن جزءًا<br />  من الزل</>
+            ) : (
+              <>Be Part of <br /> Azzal</>
+            )
+          }
+        />
 
-        <a
-          href="#"
-          className="main-button mt-8 inline-block"
-        >
-          {isArabic ? 'قدّم لتصبح بائعًا' : 'Apply to Become a Vendor'}
-        </a>
-      </div>
+        {/* ===== DESCRIPTION ===== */}
+        <div className="mt-12 max-w-[820px]">
+          <p className="text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
+            {isArabic
+              ? `يمنح الزل ستريت فود صنّاع الطعام مساحة حقيقية لعرض مفاهيمهم،
+                 والتواصل المباشر مع جمهور متفاعل، ضمن بيئة تقدّر الأصالة،
+                 وتحتفي بالجودة، وتؤمن بأن التجربة المشتركة تصنع الفرق.
+                 سواء كنت تقدّم طعامًا شعبيًا بروح جديدة،
+                 أو تجربة عالمية برؤية مختلفة،
+                 في الزل تجد المساحة لتنمو وتُكتشف.`
+              : `Azzal Street Food offers culinary creators a platform to showcase their concepts
+                 and connect directly with an engaged audience.
+                 Whether you serve street food with a fresh spirit
+                 or global cuisine with a distinctive vision,
+                 Azzal provides the space to grow, be discovered,
+                 and thrive within an environment that values authenticity,
+                 quality, and shared experience.`}
+          </p>
 
-      {/* ===== IMAGE GRID WITH STATIC 3D TRANSFORM ===== */}
-      <div
-        className="grid grid-cols-12 grid-rows-[min-content] gap-2 w-[94vw] mx-auto mt-12"
-        style={{ placeItems: 'start stretch' }}
-      >
-        {images.map((img, idx) => (
-          <div
-            key={idx}
-            className={`relative overflow-hidden rounded-xl aspect-[2/3] h-[34em] flex justify-start items-center ${img.className}`}
-            style={{
-              gridColumnStart: img.colStart,
-              gridColumnEnd: img.colEnd,
-              gridRowStart: img.rowStart,
-              gridRowEnd: img.rowEnd,
-              willChange: 'transform',
-              transform:
-                'translate3d(0px, -19.948%, 0px) scale3d(1,1,1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg,0deg)',
-              transformStyle: 'preserve-3d',
-            }}
+          {/* ===== CTA BUTTON ===== */}
+          <a
+            href="#"
+            className="main-button mt-10 inline-block"
           >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-        ))}
+            {isArabic ? 'قدّم الآن' : 'Apply Now'}
+          </a>
+        </div>
       </div>
     </section>
   );

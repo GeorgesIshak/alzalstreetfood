@@ -46,7 +46,7 @@ export default function SectionHeader({
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
-        className="text-[5vw] md:text-[5rem] leading-tight font-s text-[#6b1415]"
+        className="text-[7vw] md:text-[5rem] leading-tight font-s text-[#6b1415]"
       >
         {title}
       </motion.h2>

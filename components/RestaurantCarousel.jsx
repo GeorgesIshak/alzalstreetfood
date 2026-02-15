@@ -16,18 +16,19 @@ export default function RestaurantCarousel() {
   const isArabic = lang === "ar";
 
   return (
-    <section className="w-full overflow-hidden bg-[#f0edea] py-16 md:py-24">
+    <section className="w-full overflow-hidden bg-[#ffffff] py-16 md:py-24">
       {/* ===== HEADER ===== */}
-      <SectionHeader
-        label={isArabic ? "استكشف" : "Explore"}
-        title={
-          isArabic ? (
-            <>استكشف نكهات <br />مميزة</>
-          ) : (
-            <>Explore up thoughtful <br />flavors</>
-          )
-        }
-      />
+   <SectionHeader
+  label={isArabic ? "استكشف" : "Explore"}
+  title={
+    isArabic ? (
+      <>الزل، مساحة <br />للاكتشاف</>
+    ) : (
+      <>A Destination <br />for Discovery</>
+    )
+  }
+/>
+
 
       <Swiper
         key={lang}

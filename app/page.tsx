@@ -1,41 +1,57 @@
-'use client'; // 👈 Add this
-import NewHero from "@/components/NewHero";
+'use client';
 
+import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import Preloader from "@/components/Preloader";
+import Navbar from "@/components/Navbar";
+import NewHero from "@/components/NewHero";
+import StorySection from "@/components/StorySection";
 import TypoAnim from "@/components/TypoAnim";
+import RestaurantCarousel from "@/components/RestaurantCarousel";
 import ScrollImages from "@/components/ScrollImages";
+import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
 import Column from "@/components/Column";
 import ScrollImageGallery from "@/components/ScrollImageGallery";
-import FoodCategoriesCarousel from "@/components/FoodCategoriesCarousel";
+import FindUs from "@/components/FindUs";
 import BecomeVendorSection from "@/components/BecomeVendorSection";
 import Footer from "@/components/Footer";
-import RestaurantCarousel from "@/components/RestaurantCarousel";
-import FindUs from "@/components/FindUs";
-import StorySection from "@/components/StorySection";
+
 export default function Home() {
-  
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Lock scroll during loading to prevent header/video jumps
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isLoading]);
 
   return (
-   
-        <>
-          <NewHero />
-          <StorySection />
-                                                            <TypoAnim />
-                                                                  <RestaurantCarousel />
+    <main className="relative">
+      {/* 1. PRELOADER OVERLAY */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader onFinish={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
-{/* / I-23843661 */}
-
-   <ScrollImages />
-   <FoodCategoriesCarousel />
-
-      <Column />
-   <ScrollImageGallery />
-      <FindUs />
-
-   <BecomeVendorSection />
-
-
-        </>
-      )}
- 
-
-  
+      {/* 2. MAIN CONTENT (Mounted immediately to prevent layout jumps) */}
+      <div className={`transition-opacity duration-1000 ${isLoading ? "opacity-0" : "opacity-100"}`}>
+        <Navbar />
+        <NewHero />
+        <StorySection />
+        <TypoAnim />
+        <RestaurantCarousel />
+        <ScrollImages />
+        <FoodCategoriesCarousel />
+        <Column />
+        <ScrollImageGallery />
+        <FindUs />
+        <BecomeVendorSection />
+        <Footer />
+      </div>
+    </main>
+  );
+}

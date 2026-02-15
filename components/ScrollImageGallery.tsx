@@ -4,7 +4,7 @@ import { useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; // Added Variants
 import SectionHeader from '@/components/SectionHeader';
 import DecorativePattern4 from './DecorativePattern4';
 import { useLanguage } from '@/context/LanguageContext';
@@ -17,17 +17,22 @@ export default function HorizontalScrollGallery() {
   const { lang } = useLanguage();
   const isArabic = lang === 'ar';
 
+  // "Disappearing" variants for text/button as requested previously
+  const textVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: 'blur(4px)' },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: 'blur(0px)',
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+    }
+  };
+
   const images = useMemo(
     () => [
-      '/food22.jpg',
-      '/food2.jpg',
-      '/food7.jpg',
-      '/food18.jpg',
-      '/food9.jpg',
-      '/food10.jpg',
-      '/food15.jpg',
-      '/food4.jpg',
-      '/food5.jpg',
+      '/food22.jpg', '/food2.jpg', '/food7.jpg',
+      '/food18.jpg', '/food9.jpg', '/food10.jpg',
+      '/food15.jpg', '/food4.jpg', '/food5.jpg',
     ],
     []
   );
@@ -39,7 +44,11 @@ export default function HorizontalScrollGallery() {
       const track = trackRef.current;
       if (!track) return;
 
+      // Calculate horizontal distance
       const distance = track.scrollWidth - window.innerWidth;
+      
+      // Check if mobile to adjust scroll speed
+      const isMobile = window.innerWidth < 768;
 
       gsap.to(track, {
         x: isArabic ? distance : -distance,
@@ -47,7 +56,9 @@ export default function HorizontalScrollGallery() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: () => `+=${distance}`,
+          // FIX: On mobile, we reduce the scroll distance (the "pin" duration)
+          // 1.2x for mobile (faster) vs 1.0x for desktop (natural)
+          end: () => `+=${isMobile ? distance * 0.8 : distance}`, 
           scrub: 1,
           pin: true,
           invalidateOnRefresh: true,
@@ -56,102 +67,71 @@ export default function HorizontalScrollGallery() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isArabic]);
+  }, [isArabic, images.length]); // Added dependency
 
   return (
     <section
       className="relative w-screen bg-[#ffffff] pt-20 overflow-hidden"
       dir={isArabic ? 'rtl' : 'ltr'}
     >
-      {/* ===== DECORATIVE PATTERN (hidden on mobile) ===== */}
-      <div
-        className={`absolute top-24 w-[500px] h-[300px] pointer-events-none z-10 ${
-          isArabic ? 'left-0' : 'right-0'
-        } hidden md:block`}
-      >
+      <div className={`absolute top-24 w-[500px] h-[300px] pointer-events-none z-10 ${isArabic ? 'left-0' : 'right-0'} hidden md:block`}>
         <DecorativePattern4 />
       </div>
 
-      {/* ===== SECTION HEADER ===== */}
       <SectionHeader
         label={isArabic ? 'استكشف' : 'Explore'}
-        title={
-          isArabic ? (
-            <>
-              استكشف <br />
-              نكهات مدروسة
-            </>
-          ) : (
-            <>
-              Explore up <br />
-              thoughtful flavors
-            </>
-          )
-        }
+        title={isArabic ? <>استكشف الزل</> : <>Explore <br /> the AZZal</>}
       />
 
-      {/* ===== DESCRIPTION + CTA ===== */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        viewport={{ once: true }}
-        className="w-[94vw] mx-auto mb-12"
-      >
-        <p className="max-w-[600px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80">
-          {isArabic
-            ? `اكتشف سوقنا من خلال الأكشاك النابضة بالحياة، والحرف المحلية،
-               والنكهات الأصيلة، والتجارب الثقافية الغامرة.
-               تجوّل بين الحرفيين، وتذوّق الأطباق التقليدية،
-               واكتشف الجواهر الخفية، واصنع ذكريات لا تُنسى.`
-            : `Experience our souk through vibrant stalls, local crafts, culinary delights,
-               and immersive cultural moments. Wander through artisan booths, taste authentic
-               flavors, discover hidden gems, and create unforgettable memories
-               as you explore the heart of the marketplace.`}
-        </p>
-
-        <motion.a
-          href="#"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="main-button mt-8 inline-block"
+      <div className="w-[94vw] mx-auto mb-12">
+        <motion.p
+          variants={textVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          className="max-w-[820px] text-[1.05rem] md:text-[1.2rem] text-[#6b1415]/80 leading-relaxed"
         >
-          {isArabic ? 'اكتشف المزيد' : 'Explore More'}
-        </motion.a>
-      </motion.div>
+          {isArabic
+            ? `عِش تجربة تسمح لحواسك بالانبهار، من خلال التنقّل بين أكشاك الطعام...`
+            : `Engage your senses as you move between food stalls...`}
+        </motion.p>
 
-      {/* ===== HORIZONTAL SCROLL GALLERY ===== */}
+        <motion.div
+          variants={textVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <a href="#" className="main-button mt-8 inline-block">
+            {isArabic ? 'اكتشف المزيد' : 'Explore More'}
+          </a>
+        </motion.div>
+      </div>
+
       <div
         ref={sectionRef}
-        className="relative w-screen overflow-hidden bg-white"
-        style={{ height: '90vh' }}
+        className="relative w-screen overflow-hidden bg-white h-[70vh] md:h-[90vh]"
+        // Reduced height on mobile so user isn't "trapped" in the pin for too long
       >
         <div
           ref={trackRef}
-          className="grid grid-flow-col auto-cols-max h-full items-center px-[2vw] gap-[2vw] w-max will-change-transform"
+          className="flex h-full items-center px-[4vw] gap-[4vw] md:gap-[2vw] w-max will-change-transform"
         >
           {images.map((src, i) => {
             const isBig = i % 3 === 0;
-
             return (
               <div
                 key={i}
-                className={`relative h-[70vh] 
-                  min-w-[40vw] md:min-w-[22vw] 
-                  ${isBig ? 'md:min-w-[44vw]' : ''}`}
+                // Reduced mobile width from 40vw to 75vw (to see more of the next image)
+                className={`relative h-[50vh] md:h-[70vh] min-w-[75vw] md:min-w-[22vw] ${isBig ? 'md:min-w-[44vw]' : ''}`}
               >
                 <Image
                   src={src}
-                  alt={`Gallery ${i}`}
+                  alt={`Gallery ${i + 1}`}
                   fill
-                  priority={i < 3}
-                  sizes={isBig ? '66vw' : '33vw'}
-                  style={{
-                    objectFit: 'cover',
-                    borderRadius: '14px',
-                  }}
+                  priority={i < 2}
+                  sizes="(max-width: 768px) 75vw, 33vw"
+                  className="object-cover rounded-[14px]"
                 />
               </div>
             );

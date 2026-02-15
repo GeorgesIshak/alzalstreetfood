@@ -27,18 +27,18 @@ export default function ScrollMedia() {
     { type: 'image', src: '/img18.jpg' },
   ];
 
-  const scales = [
-    useTransform(scrollYProgress, [0, 1], [1, 4]),
-    useTransform(scrollYProgress, [0, 1], [1, 5]),
-    useTransform(scrollYProgress, [0, 1], [1, 6]),
-    useTransform(scrollYProgress, [0, 1], [1, 7]),
-    useTransform(scrollYProgress, [0, 1], [1, 8]),
-    useTransform(scrollYProgress, [0, 1], [1, 9]),
-    useTransform(scrollYProgress, [0, 1], [1, 10]),
-  ];
+  // const scales = [
+  //   useTransform(scrollYProgress, [0, 1], [1, 4]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 5]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 6]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 7]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 8]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 9]),
+  //   useTransform(scrollYProgress, [0, 1], [1, 10]),
+  // ];
 
   return (
-    <section className="relative w-screen pt-20 bg-[#f0edea]">
+    <section className="relative w-screen pt-20 bg-[#ffffff]">
      {/* Decorative pattern */}
 <div
   className={`absolute top-26 w-[500px] h-[300px] pointer-events-none z-10 ${
@@ -50,22 +50,17 @@ export default function ScrollMedia() {
 
 
       {/* ===== EDITORIAL INTRO ===== */}
-      <SectionHeader
-        label={isArabic ? 'اكتشف' : 'What’s On'}
-        title={
-          isArabic ? (
-            <>
-              قوائم مدروسة <br />
-              بجذورٍ أصيلة
-            </>
-          ) : (
-            <>
-              Thoughtful menus, <br />
-              rooted in tradition
-            </>
-          )
-        }
-      />
+   <SectionHeader
+  label={isArabic ? "اكتشف" : "What’s On"}
+  title={
+    isArabic ? (
+      <>تجارب تتجدّد <br /> باستمرار</>
+    ) : (
+      <>Ever Evolving <br /> Experiences</>
+    )
+  }
+/>
+
 
       {/* ===== IMMERSIVE SCROLL MEDIA ===== */}
       <div ref={container} className="container">
@@ -73,7 +68,7 @@ export default function ScrollMedia() {
           {media.map((item, index) => (
             <motion.div
               key={index}
-              style={{ scale: scales[index] }}
+              // style={{ scale: scales[index] }}
               className={`el el-${index + 1}`}
             >
               <div className="imageContainer">

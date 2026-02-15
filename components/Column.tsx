@@ -1,24 +1,17 @@
-'use client';
+"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import SectionHeader from "@/components/SectionHeader";
 import DecorativePattern3 from "./DecorativePattern3";
 import { useLanguage } from "@/context/LanguageContext";
+import { EVENTS } from "@/data/events";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface Event {
-  image: string;
-  date: string;
-  title: string;
-  titleAr?: string;
-  description: string;
-  descriptionAr?: string;
-}
 
 export default function EventsGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,44 +62,8 @@ export default function EventsGrid() {
     };
   }, []);
 
-  const events: Event[] = [
-    {
-      image: "/event1.jpg",
-      date: "July 12–14",
-      title: "Local Food Fest",
-      titleAr: "مهرجان الطعام المحلي",
-      description:
-        "Join us downtown for three days of amazing food trucks, live music, and family fun.",
-      descriptionAr:
-        "انضم إلينا في وسط المدينة لثلاثة أيام من شاحنات الطعام والموسيقى والمرح.",
-    },
-    {
-      image: "/events2.jpg",
-      date: "August 3",
-      title: "Brewery Nights at East Bay",
-      titleAr: "ليالي إيست باي",
-      description:
-        "oin us downtown for three days of amazing food trucks, live music, and family fun.",
-      descriptionAr:
-        "انضم إلينا في وسط المدينة لثلاثة أيام من شاحنات الطعام والموسيقى والمرح.",
-    },
-    {
-      image: "/events3.jpg",
-      date: "August 10–11",
-      title: "Summer Farmers Market",
-      titleAr: "سوق المزارعين الصيفي",
-      description:
-        "Special extended hours at Westside Market.",
-      descriptionAr:
-        "ساعات ممتدة خاصة في سوق ويست سايد.",
-    },
-  ];
-
   return (
-    <section
-      className="pt-24 relative overflow-hidden"
-      dir={isArabic ? "rtl" : "ltr"}
-    >
+    <section className="pt-24 relative overflow-hidden" dir={isArabic ? "rtl" : "ltr"}>
       <div
         className={`absolute top-32 w-[110vw] opacity-[0.05] pointer-events-none ${
           isArabic ? "left-0" : "right-0"
@@ -115,36 +72,32 @@ export default function EventsGrid() {
         <DecorativePattern3 />
       </div>
 
-      <SectionHeader
-        label={isArabic ? "الفعاليات" : "Events"}
-        title={
-          isArabic ? (
-            <>
-              اكتشف <br /> فعالياتنا
-            </>
-          ) : (
-            <>
-              Discover Our <br /> Events
-            </>
-          )
-        }
-      />
+    <SectionHeader
+  label={isArabic ? "الفعاليات" : "Events"}
+  title={
+    isArabic ? (
+      <>لحظات تُعاش</>
+    ) : (
+      <>Moments to <br /> be Lived</>
+    )
+  }
+/>
+
 
       <div className="w-[94vw] mx-auto">
         <div
           ref={containerRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-20"
         >
-          {events.map((event, idx) => (
-            <div key={idx} className="event-card">
+          {EVENTS.map((event, idx) => (
+            <Link
+              key={event.slug}
+              href={`/events/${event.slug}`}
+              className="event-card block"
+            >
               {/* IMAGE */}
               <div className="relative h-[280px] rounded-[28px] overflow-hidden">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={event.image} alt={event.title} fill className="object-cover" />
               </div>
 
               {/* CONTENT */}
@@ -158,29 +111,18 @@ export default function EventsGrid() {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  {/* DATE BADGE */}
-                  <div className="flex items-center gap-2 bg-[#6b1415] text-[#ffffff] text-sm px-4 py-2 rounded-full">
-                    <span>{event.date}</span>
+                  <div className="flex items-center gap-2 bg-[#6b1415] text-white text-sm px-4 py-2 rounded-full">
+                    <span>{event.dateLabel}</span>
                   </div>
 
-                  {/* READ MORE */}
-                  <span className="flex items-center gap-2 font-medium text-[#6b1415] hover:underline cursor-pointer">
-                    {isArabic ? "اقرأ المزيد" : "Read More"}
-                    <span>→</span>
+                  <span className="flex items-center gap-2 font-medium text-[#6b1415] hover:underline">
+                    {isArabic ? "اقرأ المزيد" : "Read More"} <span>→</span>
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-
-        {/* MAIN BUTTON */}
-        {/* <div className="flex justify-center pb-20">
-          <button className=" main-button2">
-            {isArabic ? "عرض جميع الفعاليات" : "View All Events"}
-            <span>→</span>
-          </button>
-        </div> */}
       </div>
     </section>
   );

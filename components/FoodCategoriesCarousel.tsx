@@ -68,17 +68,14 @@ export default function FoodCategoriesCarousel() {
           />
         </div>
 
-        <h2 className="text-[5vw] md:text-[4.5rem] leading-tight text-white">
-          {isArabic ? (
-            <>
-              استكشف <br /> أطعمتنا الشهية
-            </>
-          ) : (
-            <>
-              Explore Our <br /> Delicious Foods
-            </>
-          )}
-        </h2>
+     <h2 className="text-[7vw] md:text-[4.5rem] leading-tight text-white">
+  {isArabic ? (
+    <>مذاقات تُروى</>
+  ) : (
+    <>Flavors with <br /> Stories</>
+  )}
+</h2>
+
       </motion.div>
 
       {/* ===== CAROUSEL ===== */}

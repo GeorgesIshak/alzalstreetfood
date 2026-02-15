@@ -16,19 +16,12 @@ export default function TypoAnim() {
   // 🌍 GLOBAL LANGUAGE (from navbar switcher)
   const { lang } = useLanguage();
 
-  const content = {
-    en: `At Al Zal Street Food, we don’t just serve street food we celebrate it.
-We love the bold flavors, the energy of the streets, and the way
-great food brings people together. Every bite reflects the spirit of the places
-it comes from and the hands that prepared it. Whether you arrive hungry
-or simply curious, you’ll find something that speaks to you.`,
+const content = {
+  en: `At Azzal, the stories of culinary creators intersect with those of visitors, as flavor and memory come together in a vibrant environment that reflects community spirit and attention to detail. An experience that evolves with every visit and leaves a lasting impression beyond the moment.`,
 
-    ar: `في الزل ستريت فود، نحن لا نقدّم الطعام فقط — بل نحتفل به.
-نحن نحب النكهات الجريئة، وحيوية الشوارع، والطريقة التي
-يجمع بها الطعام الرائع الناس معًا. كل لقمة تعكس روح الأماكن
-التي تأتي منها والأيدي التي أعدتها. سواء أتيت جائعًا
-أو فضوليًا، ستجد شيئًا يتحدث إليك.`,
-  };
+  ar: `في الزل، تجتمع قصص صنّاع الطعام مع قصص الزوّار، وتلتقي الذاكرة بالمذاق في بيئة حيّة تعكس روح المجتمع وتقدّر التفاصيل. تجربة تتغيّر مع كل زيارة، وتترك أثرًا يتجاوز اللحظة.`,
+};
+
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -81,7 +74,7 @@ or simply curious, you’ll find something that speaks to you.`,
   return (
     <section
       ref={containerRef}
-      className="relative w-screen min-h-[120vh] flex flex-col items-center justify-start pt-52 pb-20 overflow-hidden bg-[#f0edea]"
+      className="relative w-screen min-h-[120vh] flex flex-col items-center justify-start pt-52 pb-20 overflow-hidden bg-[#ffffff]"
     >
       {/* Decorative SVGs */}
       <div className="absolute top-8 right-16 pointer-events-none text-[#6b1415]">
@@ -97,7 +90,8 @@ or simply curious, you’ll find something that speaks to you.`,
         ref={textRef}
         key={lang}
         dir={lang === "ar" ? "rtl" : "ltr"}
-        className={`w-[90vw] md:text-[3rem] leading-[70px] font-normal text-[#6b1415] ${
+        className={`w-[90vw] leading-[70px]  text-[1.5rem] sm:text-[2.3rem] md:text-[3rem]
+font-normal text-[#6b1415] ${
           lang === "ar" ? "text-right" : "text-left"
         }`}
       >

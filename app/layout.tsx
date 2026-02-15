@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { alZalFont } from "./fonts"; // 👈 your font
 import { LanguageProvider } from "@/context/LanguageContext"; // 👈 import your context
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Al Zal Street Food",
@@ -22,7 +23,7 @@ export default function RootLayout({
       >
         {/* Wrap everything in LanguageProvider */}
         <LanguageProvider>
-          <Navbar />
+        
           {children}
         </LanguageProvider>
       </body>

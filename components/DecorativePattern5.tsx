@@ -4,7 +4,7 @@ export default function DecorativePattern5() {
   viewBox="140 530 1207 817"  // (maxX - minX, maxY - minY)
   xmlns="http://www.w3.org/2000/svg"
   width="100%"
-  height="160px"
+  height="120px"
 >
 
 

@@ -1,134 +1,167 @@
-'use client';
+"use client";
 
-import { Instagram, Facebook, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
-import { motion, Variants } from 'framer-motion';
+import Link from "next/link";
+import Image from "next/image";
+import { Twitter, Youtube, Instagram, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+const SOCIALS = [
+  { name: "Instagram", href: "https://instagram.com", icon: Instagram },
+  { name: "X", href: "https://x.com", icon: Twitter },
+  { name: "YouTube", href: "https://youtube.com", icon: Youtube },
+];
 
-  // Explicitly typing variants to resolve the TS 'variants' error
-  const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
-    }
-  };
-
-  const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+export default function SiteFooter() {
+  const { lang } = useLanguage();
+  const isArabic = lang === "ar";
 
   return (
-    <footer className="relative bg-[#fffdf4] text-[#6b1415] pt-32 pb-12 overflow-hidden border-t border-[#6b1415]/10">
-      <motion.div 
-        className="w-[94%] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
+    <footer
+      className="w-full bg-[#FAFAFA] text-[#0B0B0B] pt-20"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      <div className="w-[94vw] mx-auto">
         
-        {/* TOP SECTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
-          <div className="max-w-4xl">
-            <motion.h2 variants={fadeInUp} className="font-serif text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] tracking-tighter">
-              A Destination 
-            </motion.h2>
-            <motion.h2 variants={fadeInUp} className="font-serif text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] tracking-tighter italic">
-              of Discovery.
-            </motion.h2>
-            
-            <motion.p variants={fadeInUp} className="mt-8 text-xl opacity-80 max-w-md">
-              All roads lead to Al Zal. Experience the heartbeat of street food culture.
-            </motion.p>
-          </div>
-          
-          <motion.div variants={fadeInUp} className="flex lg:justify-end">
-            <button className="group relative inline-flex items-center gap-2 rounded-full border-2 border-[#6b1415] px-10 py-4 text-xl font-medium hover:bg-[#6b1415] hover:text-[#fffdf4] transition-all duration-500">
-              Reach Out to Us
-              <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" />
-            </button>
-          </motion.div>
-        </div>
+        {/* ===== MAIN GRID ===== */}
+<div className="grid grid-cols-1 lg:grid-cols-5 gap-12 text-left items-start">
 
-        {/* MIDDLE SECTION: Navigation Reveal */}
-        <motion.div 
-          variants={fadeInUp}
-          className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-[#6b1415]/20 pt-12"
-        >
-          <div className="flex flex-col gap-4">
-            <span className="text-xs uppercase tracking-widest opacity-50 font-bold">Explore</span>
-            <a href="#" className="text-lg hover:underline decoration-1 transition-all">About Us</a>
-            <a href="#" className="text-lg hover:underline decoration-1 transition-all">Vendors</a>
-            <a href="#" className="text-lg hover:underline decoration-1 transition-all">Our Story</a>
+          {/* LOGO (2 columns) */}
+          <div className="lg:col-span-2">
+            <Link href="/" aria-label="Home" className="inline-flex">
+              <Image
+                src="/azzal-logo.png"
+                alt="Azzal"
+                width={340}
+                height={120}
+                priority
+                className="h-[120px] w-auto object-contain"
+              />
+            </Link>
           </div>
-          <div className="flex flex-col gap-4">
-            <span className="text-xs uppercase tracking-widest opacity-50 font-bold">Visit</span>
-            <p className="text-lg leading-relaxed">Al Zal Street,<br />Location, KSA</p>
+
+          {/* NAV (1 column) */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-8">
+              {isArabic ? "استكشف" : "Explore"}
+            </h4>
+
+            <ul className="space-y-4">
+              {["Explore", "Events", "Food & Drinks", "Find Us"].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={`/${item
+                      .toLowerCase()
+                      .replace(/ & /g, "-")
+                      .replace(/ /g, "-")}`}
+                    className="text-black/60 hover:text-[#6b1415] transition"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-2 lg:items-end">
-             <span className="text-xs uppercase tracking-widest opacity-50 font-bold">Inquiries</span>
-             <a href="mailto:contact@alzalstreetfood.com" className="text-2xl md:text-4xl font-serif hover:italic transition-all duration-300 border-b border-transparent hover:border-[#6b1415]">
-              contact@alzalstreetfood.com
+
+          {/* LOCATION (1 column) */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-8">
+              {isArabic ? "الزيارة" : "Visit Us"}
+            </h4>
+
+            <address className="not-italic text-black/60 leading-relaxed mb-6">
+              JAX District – Diriyah, Riyadh
+              <br />
+              Studio Youth · Public Programs Building
+              <br />
+              Riyadh 13732
+            </address>
+
+            <a
+              href="https://maps.google.com"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-black/10 text-sm font-semibold hover:bg-[#6b1415] hover:text-white transition-all duration-300"
+            >
+              {isArabic ? "الاتجاهات" : "Get Directions"}
+              <ArrowUpRight
+                size={16}
+                className="group-hover:rotate-45 transition-transform"
+              />
             </a>
           </div>
-        </motion.div>
 
-        {/* BOTTOM ROW */}
-        <motion.div 
-          variants={fadeInUp}
-          className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8"
-        >
-          {/* Socials */}
-          <div className="flex gap-3">
-            {[Instagram, Facebook, Twitter, Linkedin].map((Icon, idx) => (
-              <motion.a
-                key={idx}
-                href="#"
-                whileHover={{ y: -5 }}
-                className="w-12 h-12 flex items-center justify-center rounded-full border border-[#6b1415]/30 hover:bg-[#6b1415] hover:text-[#fffdf4] transition-colors duration-300"
-              >
-                <Icon size={20} />
-              </motion.a>
-            ))}
+          {/* CONTACT (1 column) */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-8">
+              {isArabic ? "معلومات التواصل" : "Contact Info"}
+            </h4>
+
+            <ul className="space-y-4 text-black/60 text-sm leading-relaxed">
+              <li>
+                <span className="font-semibold text-black/50">
+                  {isArabic ? "الهاتف:" : "Phone:"}
+                </span>{" "}
+                <a
+                  href="tel:+966500000000"
+                  className="hover:text-[#6b1415] transition"
+                >
+                  +966 50 000 0000
+                </a>
+              </li>
+
+              <li>
+                <span className="font-semibold text-black/50">
+                  {isArabic ? "البريد:" : "Email:"}
+                </span>{" "}
+                <a
+                  href="mailto:hello@alzal.com"
+                  className="hover:text-[#6b1415] transition"
+                >
+                  hello@alzal.com
+                </a>
+              </li>
+
+              <li className="pt-4 border-t border-black/10">
+                <p className="font-semibold text-black/50 mb-2">
+                  {isArabic ? "ساعات العمل" : "Opening Hours"}
+                </p>
+                <p>
+                  {isArabic
+                    ? "يومياً: 4:00 مساءً – 12:00 منتصف الليل"
+                    : "Daily: 4:00 PM – 12:00 AM"}
+                </p>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div className="text-sm opacity-60 font-medium tracking-wide uppercase">
-            © {currentYear} AL ZAL STREET FOOD.
+        {/* ===== BOTTOM BAR ===== */}
+        <div className="border-t border-black/10 mt-16 py-8 flex flex-col md:flex-row justify-between items-left gap-6">
+          <p className="text-[13px] text-black/40">
+            © {new Date().getFullYear()} Azzal.{" "}
+            {isArabic ? "جميع الحقوق محفوظة." : "All rights reserved."}
+          </p>
+
+          <div className="flex items-center gap-4">
+            {SOCIALS.map((s) => {
+              const Icon = s.icon;
+              return (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={s.name}
+                  className="h-10 w-10 flex items-center justify-center rounded-full border border-black/10 text-black/40 hover:text-white hover:bg-[#6b1415] hover:border-[#6b1415] transition-all duration-300"
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
           </div>
+        </div>
 
-          <div 
-            onClick={scrollToTop}
-            className="text-sm opacity-60 font-medium cursor-pointer hover:opacity-100 transition-opacity flex items-center gap-2"
-          >
-            BACK TO TOP <span className="text-lg">↑</span>
-          </div>
-        </motion.div>
-
-        {/* BACKGROUND WATERMARK */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          
-          whileInView={{ opacity: 0.04 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute -bottom-10 right-0 pointer-events-none select-none"
-        >
-          <h1 className="text-[22vw] font-serif leading-none uppercase">AL ZAL</h1>
-        </motion.div>
-      </motion.div>
+      </div>
     </footer>
   );
 }
