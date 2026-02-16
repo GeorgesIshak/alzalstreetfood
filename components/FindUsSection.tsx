@@ -41,6 +41,7 @@ export default function FindUsSection() {
 
   return (
     <section
+      // 'overflow-hidden' is critical to stop the background blur from causing sideways scroll
       className="relative w-full py-20 bg-white overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
@@ -66,11 +67,14 @@ export default function FindUsSection() {
         }
       />
 
+      {/* Kept your 94vw width as requested */}
       <div className="w-[94vw] mx-auto mt-12">
-        <div className="grid grid-cols-12 gap-12 items-start">
+        {/* Reduced gap to 6 on mobile (gap-6) and 12 on desktop (lg:gap-12) */}
+        <div className="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+          
           {/* ===== LEFT: TEXT + ARRIVE ===== */}
           <div className="col-span-12 lg:col-span-6">
-            <p className="max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
+            <p className="max-w-full lg:max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
               {isArabic
                 ? "يقع الزل ستريت فود في موقع يسهل الوصول إليه، ليكون نقطة التقاء تجمع الزوّار من مختلف الجهات في قلب المدينة."
                 : "Al Zal Street Food is located in an easily accessible area, serving as a meeting point that brings visitors together from across the city."}
@@ -80,6 +84,7 @@ export default function FindUsSection() {
               {isArabic ? "كيفية الوصول" : "How to Arrive"}
             </p>
 
+            {/* Grid for Arrival Cards */}
             <div className="mt-4 grid grid-cols-12 gap-3">
               {arrive.map((item) => {
                 const Icon = item.icon;
@@ -89,7 +94,7 @@ export default function FindUsSection() {
                     className="col-span-12 sm:col-span-6 rounded-xl border border-black/10 bg-white p-6"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="h-11 w-11 rounded-xl bg-[#6b1415]/10 flex items-center justify-center p-2.5">
+                      <div className="shrink-0 h-11 w-11 rounded-xl bg-[#6b1415]/10 flex items-center justify-center p-2.5">
                         <Icon className="text-[#6b1415]" size={20} />
                       </div>
 
@@ -112,7 +117,8 @@ export default function FindUsSection() {
           <div className="col-span-12 lg:col-span-6">
             <div className="lg:sticky lg:top-28">
               <div className="rounded-xl border border-black/10 overflow-hidden bg-white">
-                <div className="h-[360px] md:h-[430px] lg:h-[520px] w-full">
+                {/* Adjusted height for mobile (h-[300px]) so it fits better on small screens */}
+                <div className="h-[300px] md:h-[430px] lg:h-[520px] w-full">
                   <iframe
                     title="Al Zal Location"
                     className="h-full w-full"
@@ -124,7 +130,7 @@ export default function FindUsSection() {
               </div>
 
               <p
-                className={`mt-6 text-sm md:text-base text-[#6b1415]/70 leading-relaxed max-w-[520px] ${
+                className={`mt-6 text-sm md:text-base text-[#6b1415]/70 leading-relaxed max-w-full lg:max-w-[520px] ${
                   isArabic ? "text-right" : "text-left"
                 }`}
               >
@@ -138,4 +144,5 @@ export default function FindUsSection() {
       </div>
     </section>
   );
+
 }

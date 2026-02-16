@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/RestaurantCarousel.jsx", "components/StoreLocator.js"  ],
+, "components/RestaurantCarousel.tsx", "components/StoreLocator.js"  ],
   "exclude": ["node_modules"]
 }

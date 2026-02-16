@@ -23,7 +23,7 @@ export default function Header() {
 
   const navLinks = [
     { name: t.story, href: "#" },
-    { name: t.explore, href: "#" },
+    { name: t.explore, href: "/explore" },
     { name: t.whatsOn, href: "#" },
     { name: t.events, href: "#" },
     { name: t.food, href: "#" },
@@ -69,7 +69,7 @@ export default function Header() {
             <Link href="#" className="hover:text-gray-300 transition-colors">
               {t.story}
             </Link>
-            <Link href="#" className="hover:text-gray-300 transition-colors">
+            <Link href="/explore" className="hover:text-gray-300 transition-colors">
               {t.explore}
             </Link>
             <Link href="#" className="hover:text-gray-300 transition-colors">
@@ -127,7 +127,7 @@ export default function Header() {
               <Link href="#" className="hover:text-gray-300 transition-colors">
                 {t.food}
               </Link>
-              <Link href="#" className="hover:text-gray-300 transition-colors">
+              <Link href="/vendors" className="hover:text-gray-300 transition-colors">
                 {t.vendors}
               </Link>
             </nav>

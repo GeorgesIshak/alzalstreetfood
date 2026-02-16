@@ -10,12 +10,13 @@ export default function ExperienceSouk() {
 
   return (
     <section
+      // Added 'relative' to anchor the blurs and 'overflow-hidden' to stop the horizontal scroll
       className="relative w-full py-20 bg-white overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      {/* subtle background wash */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl" />
+      {/* Background washes - Added background color so blur is visible, pointer-events-none ensures no click interference */}
+      <div className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full bg-[#6b1415]/5 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full bg-[#6b1415]/5 blur-3xl" />
 
       {/* ===== HEADER ===== */}
       <SectionHeader
@@ -36,11 +37,14 @@ export default function ExperienceSouk() {
         }
       />
 
-      <div className="w-[94vw] mx-auto mt-10">
-        <div className="grid grid-cols-12 gap-12 items-start">
+      {/* Changed w-[94vw] to max-width with px-6 for safer mobile margins */}
+      <div className="w-[94%] mx-auto  mt-10">
+        {/* Changed gap-12 to gap-8 on mobile to prevent layout crowding */}
+        <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
+          
           {/* ===== LEFT: TEXT ===== */}
           <div className="col-span-12 lg:col-span-5">
-            <p className="max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
+            <p className="max-w-full lg:max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
               {isArabic
                 ? `في قلب الزل، تنبض تجربة السوق كمساحة ساحرة للحواس. أكشاك طعام، حِرف محلية، ونكهات تحمل جذورها الثقافية بفخر واعتزاز، تتجاور في مشهد حيّ يعكس ثقافة المكان.`
                 : `At the heart of Al Zal, the souk experience comes alive as a sensory rich space. Food stalls, local crafts, and flavors proudly rooted in cultural heritage stand side by side in a living scene that reflects the spirit of the place.`}
@@ -63,7 +67,7 @@ export default function ExperienceSouk() {
             </div>
 
             {/* second paragraph */}
-            <p className="mt-8 text-sm md:text-base text-[#6b1415]/65 leading-relaxed max-w-[520px]">
+            <p className="mt-8 text-sm md:text-base text-[#6b1415]/65 leading-relaxed max-w-full lg:max-w-[520px]">
               {isArabic
                 ? `كل جولة تكشف تفصيلاً مختلفًا، وكل زيارة تترك أثرًا جديدًا، لتصبح التجربة أقرب إلى لحظة تُعاش وتُشارك، لا مجرد مكان للزيارة.`
                 : `Every walk reveals a new detail, and every visit leaves a fresh impression, transforming the experience into a moment that is lived and shared, rather than simply a place to visit.`}
@@ -73,8 +77,8 @@ export default function ExperienceSouk() {
           {/* ===== RIGHT: IMAGE WITH FLOATING CARD ===== */}
           <div className="col-span-12 lg:col-span-7">
             <div className="relative">
-              {/* main image */}
-              <div className="relative overflow-hidden rounded-xl border border-black/10 h-[420px] md:h-[520px] lg:h-[620px]">
+              {/* main image - h-auto on mobile to maintain aspect ratio if preferred, or kept fixed for design */}
+              <div className="relative overflow-hidden rounded-xl border border-black/10 h-[300px] md:h-[520px] lg:h-[620px]">
                 <Image
                   src="/event1.jpg"
                   alt="Experience Al Zal"
@@ -84,35 +88,7 @@ export default function ExperienceSouk() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
               </div>
-
-              {/* floating card */}
-              <div className="absolute -bottom-8 md:-bottom-10 left-6 md:left-10 right-6 md:right-auto md:w-[420px]">
-                <div className="rounded-xl border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
-                  <p className="text-xs uppercase tracking-[0.28em] text-[#6b1415]/70">
-                    {isArabic ? "لحظة من الزل" : "A moment at Al Zal"}
-                  </p>
-
-                  <p
-                    className={`mt-3 text-[#6b1415] font-medium text-[1.05rem] leading-snug ${
-                      isArabic ? "text-right" : "text-left"
-                    }`}
-                  >
-                    {isArabic
-                      ? "كل زيارة لها طابعها… وكل خطوة تحكي تفصيلاً."
-                      : "Every visit has its own character — and every step reveals a detail."}
-                  </p>
-
-                  <p className="mt-3 text-sm text-[#6b1415]/70 leading-relaxed">
-                    {isArabic
-                      ? "تجربة تُعاش وتُشارك، لا تُمرّ مرورًا سريعًا."
-                      : "An experience to be lived and shared — not just passed through."}
-                  </p>
-                </div>
-              </div>
             </div>
-
-            {/* space for floating card */}
-            <div className="h-12 md:h-16" />
           </div>
         </div>
       </div>

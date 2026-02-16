@@ -31,8 +31,7 @@ export default function VendorsPage() {
       .filter((r) => {
         const matchesSearch =
           r.name.toLowerCase().includes(q) ||
-          r.category.toLowerCase().includes(q) ||
-          r.description.toLowerCase().includes(q);
+          r.category.toLowerCase().includes(q) ;
         const matchesCategory = category === "All" || r.category === category;
         return matchesSearch && matchesCategory;
       });

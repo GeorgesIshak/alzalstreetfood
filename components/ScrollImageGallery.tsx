@@ -80,7 +80,7 @@ export default function HorizontalScrollGallery() {
 
       <SectionHeader
         label={isArabic ? 'استكشف' : 'Explore'}
-        title={isArabic ? <>استكشف الزل</> : <>Explore <br /> the AZZal</>}
+        title={isArabic ? <>استكشف الزل</> : <>Explore <br /> the Azzal</>}
       />
 
       <div className="w-[94vw] mx-auto mb-12">
@@ -92,8 +92,8 @@ export default function HorizontalScrollGallery() {
           className="max-w-[820px] text-[1.05rem] md:text-[1.2rem] text-[#6b1415]/80 leading-relaxed"
         >
           {isArabic
-            ? `عِش تجربة تسمح لحواسك بالانبهار، من خلال التنقّل بين أكشاك الطعام...`
-            : `Engage your senses as you move between food stalls...`}
+            ? `ععِش تجربة تسمح لحواسك بالانبهار، من خلال التنقّل بين أكشاك الطعام، والحِرف المحلية، والنكهات التي تعكس ثقافتنا وأصالتنا.كل زاوية تحمل تفصيلاً جديدًا، وكل زيارة تفتح بابًا لاكتشاف مختلف، في مساحة تنبض بالحياة وروح المجتمع.ِ`
+            : `Engage your senses as you move between food stalls, local crafts, and flavors rooted in culture and authenticity. Every corner reveals something new, turning each visit into a lived and shared moment within a vibrant community space.`}
         </motion.p>
 
         <motion.div

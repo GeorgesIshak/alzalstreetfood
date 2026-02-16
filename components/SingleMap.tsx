@@ -41,34 +41,40 @@ export default function ImmersiveMap() {
   );
 
   return (
-    <main className="fixed inset-0 bg-[#050505] overflow-hidden touch-none w-screen h-[100svh]">
+    <main className="fixed inset-0 bg-[#050505] overflow-hidden w-full h-dvh touch-none">
       <TransformWrapper
-        initialScale={1}
-        minScale={1}
+        initialScale={0.8}
+        minScale={0.8}
         maxScale={6}
         centerOnInit
         wheel={{ step: 0.06 }}
-        panning={{ velocityDisabled: false, activationKeys: [] }}
+        // ✅ better mobile feel: avoid inertial weirdness + avoid click conflicts
+        panning={{
+          velocityDisabled: true,
+          allowLeftClickPan: true,
+          allowRightClickPan: true,
+          excluded: ["button"],
+        }}
         doubleClick={{ disabled: true }}
       >
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
-            {/* MAP VIEWPORT */}
             <TransformComponent
-              wrapperClass="!w-screen !h-[100svh]"
+              // ✅ w-full/h-full instead of w-screen + strong touch control
+              wrapperClass="!w-full !h-full touch-none"
               contentClass="flex items-center justify-center"
             >
-              <div className="relative w-screen h-[100svh] flex-shrink-0">
+              {/* LARGE CANVAS */}
+              <div className="relative w-[1200px] h-[800px] md:w-[2000px] md:h-[1200px] flex-shrink-0">
                 <Image
                   src="/dark-render.png"
                   alt="Azzal Map"
                   fill
                   priority
                   unoptimized
-                  className="object-cover pointer-events-none select-none"
+                  className="object-contain pointer-events-none select-none"
                 />
 
-                {/* MARKERS */}
                 {items.map((item) => {
                   const isActive = activeId === item.id;
 
@@ -76,13 +82,13 @@ export default function ImmersiveMap() {
                     <button
                       key={item.id}
                       type="button"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         triggerHaptic();
                         setActiveId(item.id === activeId ? null : item.id);
                       }}
                       style={{ left: `${item.x}%`, top: `${item.y}%` }}
                       className="absolute z-10 -translate-x-1/2 -translate-y-1/2 group"
-                      aria-label={`Open ${item.name}`}
                     >
                       <div className="relative">
                         <div className="transition-transform duration-300 group-hover:scale-110">
@@ -100,10 +106,6 @@ export default function ImmersiveMap() {
                         >
                           {pad2(item.order)}
                         </span>
-
-                        {isActive && (
-                          <span className="absolute inset-[-10px] rounded-full bg-[#87212E]/20 blur-md -z-10" />
-                        )}
                       </div>
                     </button>
                   );
@@ -115,13 +117,12 @@ export default function ImmersiveMap() {
             <AnimatePresence>
               {activeVendor && (
                 <motion.div
-                  initial={{ y: 120, opacity: 0, filter: "blur(10px)" }}
-                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ y: 120, opacity: 0, filter: "blur(10px)" }}
-                  transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[92vw] max-w-[420px] z-50"
+                  initial={{ y: 120, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 120, opacity: 0 }}
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[92vw] max-w-[420px] z-[200]"
                 >
-                  <div className="bg-white/95 backdrop-blur-2xl rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.55)] border border-white flex items-center gap-4">
+                  <div className="bg-white/95 backdrop-blur-2xl rounded-3xl p-5 shadow-2xl border border-white flex items-center gap-4">
                     <div className="w-16 h-16 rounded-2xl bg-neutral-100 overflow-hidden relative shrink-0">
                       <Image
                         src={activeVendor.image}
@@ -132,21 +133,19 @@ export default function ImmersiveMap() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-neutral-900 truncate tracking-tight">
+                      <h3 className="font-bold text-neutral-900 truncate">
                         {activeVendor.name}
                       </h3>
-                      <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">
+                      <p className="text-[10px] font-black text-neutral-400 uppercase">
                         Kiosk #{pad2(activeVendor.order)}
-                      </p>
-                      <p className="mt-1 text-sm text-neutral-600 line-clamp-2">
-                        {activeVendor.description}
                       </p>
                     </div>
 
                     <button
                       type="button"
                       onClick={() => setActiveId(null)}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:bg-neutral-200 transition"
+                      className="w-10 h-10 rounded-full bg-neutral-100 text-neutral-800"
+                      aria-label="Close"
                     >
                       ✕
                     </button>
@@ -155,29 +154,30 @@ export default function ImmersiveMap() {
               )}
             </AnimatePresence>
 
-            {/* ZOOM CONTROLS */}
-            <div className="absolute right-8 bottom-10 flex flex-col gap-3 z-50">
-              <div className="flex flex-col bg-white/10 backdrop-blur-xl border border-white/10 rounded-full overflow-hidden shadow-2xl">
-                <button
-                  onClick={() => zoomIn(0.5)}
-                  className="w-12 h-12 flex items-center justify-center text-white text-xl hover:bg-white/10 transition"
-                >
-                  +
-                </button>
-                <div className="h-px bg-white/10 mx-3" />
-                <button
-                  onClick={() => zoomOut(0.5)}
-                  className="w-12 h-12 flex items-center justify-center text-white text-xl hover:bg-white/10 transition"
-                >
-                  −
-                </button>
-              </div>
-
+            {/* CONTROLS */}
+            <div className="absolute right-6 bottom-10 flex flex-col gap-3 z-[200]">
               <button
-                onClick={() => resetTransform()}
-                className="w-12 h-12 rounded-full bg-white text-black font-black text-[10px] uppercase shadow-xl hover:scale-105 active:scale-95 transition"
+                type="button"
+                onClick={() => zoomIn(0.5)}
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full text-white text-2xl"
+                aria-label="Zoom in"
               >
-                1:1
+                +
+              </button>
+              <button
+                type="button"
+                onClick={() => zoomOut(0.5)}
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full text-white text-2xl"
+                aria-label="Zoom out"
+              >
+                −
+              </button>
+              <button
+                type="button"
+                onClick={() => resetTransform()}
+                className="w-12 h-12 bg-white rounded-full text-black text-[10px] font-bold"
+              >
+                RESET
               </button>
             </div>
           </>

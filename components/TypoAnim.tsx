@@ -74,7 +74,7 @@ const content = {
   return (
     <section
       ref={containerRef}
-      className="relative w-screen min-h-[120vh] flex flex-col items-center justify-start pt-52 pb-20 overflow-hidden bg-[#ffffff]"
+      className="relative w-screen min-h-[90vh] lg:min-h-[120vh] flex flex-col items-center justify-start pt-52 pb-20 overflow-hidden bg-[#ffffff]"
     >
       {/* Decorative SVGs */}
       <div className="absolute top-8 right-16 pointer-events-none text-[#6b1415]">
@@ -90,7 +90,7 @@ const content = {
         ref={textRef}
         key={lang}
         dir={lang === "ar" ? "rtl" : "ltr"}
-        className={`w-[90vw] leading-[70px]  text-[1.5rem] sm:text-[2.3rem] md:text-[3rem]
+        className={`w-[90vw] leading-[40px] lg:leading-[80px] text-[1.2rem] sm:text-[1.6rem] md:text-[3rem]
 font-normal text-[#6b1415] ${
           lang === "ar" ? "text-right" : "text-left"
         }`}
