@@ -10,39 +10,40 @@ type FAQItem = { q: string; a: string };
 
 const FAQS_EN: FAQItem[] = [
   {
-    q: "What is Al Zal Street Food?",
-    a: "Al Zal Street Food is a destination in the heart of Riyadh that brings together diverse cuisines, cultural experiences, and a variety of concepts within one vibrant space.",
+    q: "What is Street Food?",
+    a: "Street Food is a destination in the heart of Riyadh that brings together diverse cuisines and social experiences in one vibrant space.",
+
   },
   {
     q: "Does the experience change over time?",
-    a: "Yes. Menus and concepts are regularly refreshed to offer visitors a different experience with every visit.",
+    a: "Yes, menus and concepts are regularly refreshed to offer visitors something new.",
   },
   {
-    q: "Is Al Zal suitable for families and friends?",
-    a: "Al Zal is an open and welcoming space designed to suit everyone, regardless of different preferences.",
+    q: "Is Street Food suitable for families?",
+    a: "Yes, it is a welcoming destination suitable for families and friends.",
   },
   {
-    q: "Are there events or accompanying activities?",
-    a: "Yes. Al Zal hosts unique seasonal events and experiences that add a new social and cultural dimension to the destination.",
+    q: "Are there events?",
+    a: "Yes, Street Food hosts seasonal events and social experiences throughout the year.",
   },
 ];
 
 const FAQS_AR: FAQItem[] = [
   {
-    q: "ما هو الزل ستريت فود؟",
-    a: "الزل ستريت فود وجهة في قلب الرياض تجمع كل العالم طعام متنوع، تجارب ثقافية، والمفاهيم المتنوعة في مساحة واحدة نابضة بالحياة.",
+    q: "ما هو مشروع سِكّة الأطعمة؟",
+    a: "وجهة حضرية في قلب الرياض تجمع المأكولات المتنوعة والتجارب الاجتماعية في مساحة واحدة.",
   },
   {
     q: "هل تتغيّر التجربة مع الوقت؟",
-    a: "نعم. تتجدّد القوائم والمفاهيم بشكل دوري لتمنح الزوّار تجربة مختلفة في كل زيارة.",
+    a: "نعم، يتم تحديث المفاهيم وقوائم الطعام بشكل مستمر لتقديم تجربة مختلفة في كل زيارة.",
   },
   {
-    q: "هل الزل مناسب للعائلات والأصدقاء؟",
-    a: "الزل مساحة مفتوحة ومناسبة للجميع، صُممت لتناسب مختلف الفئات باختلاف تفضيلاتهم.",
+    q: "هل المكان مناسب للعائلات؟",
+    a: "نعم، سِكّة الأطعمة وجهة مفتوحة ومناسبة للعائلات والأصدقاء.",
   },
   {
-    q: "هل توجد فعاليات أو أنشطة مصاحبة؟",
-    a: "نعم. يستضيف الزل فعاليات وتجارب موسمية فريدة من نوعها تضيف بُعدًا جديدًا اجتماعيًا وثقافيًا للمكان.",
+    q: "هل توجد فعاليات؟",
+    a: "نعم، يستضيف المشروع فعاليات وتجارب موسمية تضيف بُعدًا اجتماعيًا وثقافيًا للمكان.",
   },
 ];
 

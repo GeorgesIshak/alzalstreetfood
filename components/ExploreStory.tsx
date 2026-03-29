@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
+import DecorativePattern4 from "./DecorativePattern4";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ExploreStory() {
@@ -9,20 +10,33 @@ export default function ExploreStory() {
   const isArabic = lang === "ar";
 
   return (
-    <section className="relative w-full py-20 bg-white" dir={isArabic ? "rtl" : "ltr"}>
+    <section
+      className="relative w-full py-20 bg-white"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      {/* Decorative pattern */}
+      <div
+        className={`absolute top-26 w-[500px] h-[260px] pointer-events-none z-10 ${
+          isArabic ? "left-0" : "right-0"
+        } hidden md:block`}
+      >
+        <DecorativePattern4 />
+      </div>
+
       <SectionHeader
         label={isArabic ? "قصتنا وتجربتنا" : "Our Story & Experience"}
         title={
           isArabic ? (
             <>
-              نكهة الشارع
+ثقافة الطعام  
               <br />
               بروح السوق
             </>
           ) : (
             <>
-              Street food culture <br />
-              with souk soul
+              Street food culture
+ <br />
+              with a souk spirit
             </>
           )
         }
@@ -39,7 +53,12 @@ export default function ExploreStory() {
 
             <div className="flex flex-col mt-10">
               <div className="relative overflow-hidden rounded-xl border border-black/10 h-[320px] md:h-[360px] lg:h-[420px]">
-                <Image src="/events2.jpg" alt="Enjoying food moments" fill className="object-cover" />
+                <Image
+                  src="/events2.jpg"
+                  alt="Enjoying food moments"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>

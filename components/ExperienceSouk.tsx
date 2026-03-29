@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
+import DecorativePattern4 from "./DecorativePattern4";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ExperienceSouk() {
@@ -10,47 +11,49 @@ export default function ExperienceSouk() {
 
   return (
     <section
-      // Added 'relative' to anchor the blurs and 'overflow-hidden' to stop the horizontal scroll
       className="relative w-full py-20 bg-white overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      {/* Background washes - Added background color so blur is visible, pointer-events-none ensures no click interference */}
+      {/* Decorative pattern */}
+      <div
+        className={`absolute top-26 w-[500px] h-[260px] pointer-events-none z-10 ${
+          isArabic ? "left-0" : "right-0"
+        } hidden md:block`}
+      >
+        <DecorativePattern4 />
+      </div>
+
+      {/* Background washes */}
       <div className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full bg-[#6b1415]/5 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full bg-[#6b1415]/5 blur-3xl" />
 
-      {/* ===== HEADER ===== */}
       <SectionHeader
-        label={isArabic ? "تجربة الزل" : "Experience Al Zal"}
+        label={isArabic ? "تجربة سِكّة الأطعمة" : "Experience Street Food"}
         title={
           isArabic ? (
             <>
-              اكتشف الزل
+              تجربة
               <br />
-              في قلب السوق
-            </>
+سِكّة الأطعمة            </>
           ) : (
             <>
               Experience <br />
-              Al Zal
+              Street Food
             </>
           )
         }
       />
 
-      {/* Changed w-[94vw] to max-width with px-6 for safer mobile margins */}
-      <div className="w-[94%] mx-auto  mt-10">
-        {/* Changed gap-12 to gap-8 on mobile to prevent layout crowding */}
+      <div className="w-[94%] mx-auto mt-10">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* ===== LEFT: TEXT ===== */}
           <div className="col-span-12 lg:col-span-5">
             <p className="max-w-full lg:max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
               {isArabic
-                ? `في قلب الزل، تنبض تجربة السوق كمساحة ساحرة للحواس. أكشاك طعام، حِرف محلية، ونكهات تحمل جذورها الثقافية بفخر واعتزاز، تتجاور في مشهد حيّ يعكس ثقافة المكان.`
-                : `At the heart of Al Zal, the souk experience comes alive as a sensory rich space. Food stalls, local crafts, and flavors proudly rooted in cultural heritage stand side by side in a living scene that reflects the spirit of the place.`}
+                ? `فعِش تجربة سِكّة الأطعمة في قلب السوق، حيث تجتمع أكشاك الطعام والحرف المحلية والنكهات المستوحاة من التراث في مساحة نابضة بالحياة تعكس روح المكان.
+`
+                : `Experience Street Food at the heart of the souk, where food stalls, local crafts, and flavors rooted in heritage come together in a vibrant space that reflects the spirit of the place`}
             </p>
 
-            {/* elegant chips */}
             <div className="mt-10 flex flex-wrap gap-3">
               {[
                 isArabic ? "أكشاك طعام" : "Food stalls",
@@ -66,18 +69,16 @@ export default function ExperienceSouk() {
               ))}
             </div>
 
-            {/* second paragraph */}
-            <p className="mt-8 text-sm md:text-base text-[#6b1415]/65 leading-relaxed max-w-full lg:max-w-[520px]">
+         <p className="mt-8 text-sm md:text-base text-[#6b1415]/65 leading-relaxed max-w-full lg:max-w-[520px]">
               {isArabic
-                ? `كل جولة تكشف تفصيلاً مختلفًا، وكل زيارة تترك أثرًا جديدًا، لتصبح التجربة أقرب إلى لحظة تُعاش وتُشارك، لا مجرد مكان للزيارة.`
-                : `Every walk reveals a new detail, and every visit leaves a fresh impression, transforming the experience into a moment that is lived and shared, rather than simply a place to visit.`}
+                ? `كل خطوة تكشف تفصيلاً جديدًا، وكل زيارة تترك أثرًا مختلفًا، لتتحول التجربة إلى لحظة تُعاش وتُشارك، لا مجرد مكان للزيارة.
+`
+                : `Every walk reveals a new detail, and every visit leaves a fresh impression, transforming the experience into a moment that is lived and shared rather than simply a place to visit.`}
             </p>
           </div>
 
-          {/* ===== RIGHT: IMAGE WITH FLOATING CARD ===== */}
           <div className="col-span-12 lg:col-span-7">
             <div className="relative">
-              {/* main image - h-auto on mobile to maintain aspect ratio if preferred, or kept fixed for design */}
               <div className="relative overflow-hidden rounded-xl border border-black/10 h-[300px] md:h-[520px] lg:h-[620px]">
                 <Image
                   src="/event1.jpg"

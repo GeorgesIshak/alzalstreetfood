@@ -46,8 +46,7 @@ export default function Home() {
         <RestaurantCarousel />
         <ScrollImages />
         <FoodCategoriesCarousel />
-        <Column />
-        <ScrollImageGallery />
+       <ScrollImageGallery />
         <FindUs />
         <BecomeVendorSection />
         <Footer />

@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
+import DecorativePattern3 from "./DecorativePattern3";
+import { useLanguage } from "@/context/LanguageContext";
 
 const gallery = [
   { src: "/food1.jpg", alt: "Street food stalls" },
@@ -13,24 +15,42 @@ const gallery = [
 ];
 
 export default function ExploreGallery() {
+  const { lang } = useLanguage();
+  const isArabic = lang === "ar";
+
   return (
-    <section className="relative w-full py-20 bg-white">
-      {/* ===== HEADER ===== */}
+    <section
+      className="relative w-full py-20 bg-white overflow-hidden"
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      {/* Decorative pattern */}
+      <div
+        className={`absolute top-32 w-[110vw] opacity-[0.05] pointer-events-none ${
+          isArabic ? "left-0" : "right-0"
+        }`}
+      >
+        <DecorativePattern3 />
+      </div>
+
       <SectionHeader
-        label="Festival Vibes"
+        label={isArabic ? "أجواء المهرجان" : "Festival Vibes"}
         title={
-          <>
-            The energy, <br />
-            captured in moments
-          </>
+          isArabic ? (
+            <>
+              الطاقة التي
+              <br />
+              تلتقطها اللحظات
+            </>
+          ) : (
+            <>
+             Moments that capture  <br />
+the energy of the place.            </>
+          )
         }
       />
 
-      {/* ===== GALLERY ===== */}
-      <div className="w-[94vw] mx-auto mt-14">
+      <div className="w-[94vw] mx-auto mt-14 relative z-10">
         <div className="grid grid-cols-12 gap-4">
-          
-          {/* HERO IMAGE */}
           <div className="col-span-12 md:col-span-8">
             <div className="relative overflow-hidden rounded-xl border border-black/10 h-[340px] md:h-[520px]">
               <Image
@@ -43,7 +63,6 @@ export default function ExploreGallery() {
             </div>
           </div>
 
-          {/* SIDE IMAGE */}
           <div className="col-span-12 md:col-span-4">
             <div className="relative overflow-hidden rounded-xl border border-black/10 h-[340px] md:h-[520px]">
               <Image
@@ -55,7 +74,6 @@ export default function ExploreGallery() {
             </div>
           </div>
 
-          {/* SUPPORTING GRID */}
           {gallery.slice(2).map((img, idx) => (
             <div
               key={idx}
@@ -71,7 +89,6 @@ export default function ExploreGallery() {
               </div>
             </div>
           ))}
-
         </div>
       </div>
     </section>

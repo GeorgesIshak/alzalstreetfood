@@ -8,36 +8,36 @@ export default function FindUsSection() {
   const { lang } = useLanguage();
   const isArabic = lang === "ar";
 
-  const arrive = [
-    {
-      icon: Car,
-      title: isArabic ? "بالسيارة" : "By Car",
-      desc: isArabic
-        ? "يمكن الوصول بسهولة عبر الطرق الرئيسية مع توفر مواقف قريبة."
-        : "Easily accessible via main roads with nearby parking available.",
-    },
-    {
-      icon: Bus,
-      title: isArabic ? "بوسائل النقل" : "By Public Transport",
-      desc: isArabic
-        ? "يقع الموقع في نطاق يسهل الوصول إليه عبر وسائل النقل العامة، بما في ذلك محطتا مترو قصر الحكم ومجمع المحاكم."
-        : "The location is easily accessible via public transportation, including Qasr Al Hokm Metro Station and Courts Complex Metro Station.",
-    },
-    {
-      icon: Navigation,
-      title: isArabic ? "بسيارات الأجرة والتطبيقات" : "By Taxi & Ride Apps",
-      desc: isArabic
-        ? "يمكن الوصول إلى الموقع مباشرة عبر تطبيقات النقل المختلفة، بما في ذلك تطبيق درب (Darb App)."
-        : "The location can be accessed directly via various transportation applications, including the Darb App.",
-    },
-    {
-      icon: MapPin,
-      title: isArabic ? "مشياً على الأقدام" : "On Foot",
-      desc: isArabic
-        ? "موقع مناسب للتنقّل سيرًا لمن يفضلون استكشاف المنطقة والتجوّل فيها."
-        : "A walkable location for those who prefer to explore the area on foot.",
-    },
-  ];
+const arrive = [
+  {
+    icon: Car,
+    title: isArabic ? "بواسطة السيارة" : "By Car",
+    desc: isArabic
+      ? "يمكن الوصول إلى الموقع بسهولة عبر الطرق الرئيسية، مع توفر مواقف قريبة للسيارات."
+      : "Easily accessible through main roads, with nearby parking available.",
+  },
+  {
+    icon: Bus,
+    title: isArabic ? "بواسطة النقل العام" : "By Public Transport",
+    desc: isArabic
+      ? "يمكن الوصول إلى الوجهة عبر وسائل النقل العام، بما في ذلك محطة مترو قصر الحكم ومحطة مجمع المحاكم."
+      : "The destination can be reached using public transportation, including Qasr Al Hokm Metro Station and Courts Complex Metro Station.",
+  },
+  {
+    icon: Navigation,
+    title: isArabic ? "بواسطة سيارات الأجرة وتطبيقات النقل" : "By Taxi & Ride Apps",
+    desc: isArabic
+      ? "يمكن الوصول إلى الموقع بسهولة عبر سيارات الأجرة وتطبيقات النقل المختلفة، بما في ذلك تطبيق درب."
+      : "Visitors can reach the destination easily through ride-hailing and transportation apps, including the Darb app.",
+  },
+  {
+    icon: MapPin,
+    title: isArabic ? "سيرًا على الأقدام" : "On Foot",
+    desc: isArabic
+      ? "كما يمكن الوصول إلى الموقع سيرًا على الأقدام لمن يفضل استكشاف المنطقة المحيطة."
+      : "The destination is also easily walkable for visitors exploring the surrounding area.",
+  },
+];
 
   return (
     <section
@@ -55,13 +55,11 @@ export default function FindUsSection() {
           isArabic ? (
             <>
               كل الطرق
-              <br />
-              تؤدي إلى الزل
-            </>
+              <br /> تقود إلى سِكّة الأطعمة            </>
           ) : (
             <>
               All roads lead <br />
-              to Al Zal
+              to Street Food
             </>
           )
         }
@@ -76,8 +74,8 @@ export default function FindUsSection() {
           <div className="col-span-12 lg:col-span-6">
             <p className="max-w-full lg:max-w-[620px] text-[1.1rem] md:text-[1.25rem] text-[#6b1415]/80 leading-relaxed">
               {isArabic
-                ? "يقع الزل ستريت فود في موقع يسهل الوصول إليه، ليكون نقطة التقاء تجمع الزوّار من مختلف الجهات في قلب المدينة."
-                : "Al Zal Street Food is located in an easily accessible area, serving as a meeting point that brings visitors together from across the city."}
+                ? "تقع الوجهة في قلب مدينة الرياض، وتُعد مكانًا يسهل الوصول إليه ويجمع الزوار من مختلف أنحاء المدينة للاستمتاع بتجربة طعام نابضة بالحياة."
+                : "Located in the heart of Riyadh, the destination is easily accessible and serves as a vibrant meeting point for visitors from across the city."}
             </p>
 
             <p className="mt-10 text-xs uppercase tracking-[0.28em] text-[#6b1415]/60 font-bold">

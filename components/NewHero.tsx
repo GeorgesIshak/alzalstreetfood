@@ -20,15 +20,15 @@ export default function Hero() {
       >
         {/* Mobile video */}
         <source
-          src="/mobile-banner.webm"
-          type="video/webm"
+          src="/video2.mp4"
+          type="video/mp4"
           media="(max-width: 768px)"
         />
 
         {/* Desktop video */}
         <source
-          src="/video-banner.webm"
-          type="video/webm"
+          src="/video2.mp4"
+          type="video/mp4"
           media="(min-width: 769px)"
         />
       </video>
@@ -59,14 +59,6 @@ export default function Hero() {
           {t.title}
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mt-4 text-xl md:text-3xl text-[#fffdf8]/80"
-        >
-          {t.subtitle}
-        </motion.p>
       </motion.div>
     </section>
   );

@@ -61,7 +61,7 @@ export default function HeroScrollVideo() {
               className="fixed z-10 overflow-hidden origin-center shadow-2xl will-change-transform "
             >
               <video
-                src="/archtecture-video.webm"
+                src="/video3.mp4"
                 autoPlay
                 loop
                 muted
@@ -104,10 +104,10 @@ export default function HeroScrollVideo() {
                     ].join(" ")}
                   >
                     {isArabic ? (
-                      <>في الزل ستريت فود، لا تبدأ التجربة من نقطة واحدة ولا تنتهي عند أخرى.</>
+                      <>في سِكّة الأطعمة لا تبدأ التجربة من نقطة واحدة ولا تنتهي عند أخرى. تنقّل بين الأكشاك واكتشف شيئًا جديدًا في كل خطوة.</>
                     ) : (
                       <>
-                        At Azzal Street Food,{" "}
+                        At Street Food,{" "}
                         <span className="text-[#6b1415] italic font-medium">
                           the experience
                         </span>{" "}

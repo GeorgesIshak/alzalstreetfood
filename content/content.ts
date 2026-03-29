@@ -9,10 +9,8 @@ export const siteContent = {
       vendors: "Vendors",
     },
     hero: {
-      title: "A Destination of Discovery",
-      subtitle: "All roads lead to Azzal",
-      verticalLeft: "Azzal",
-      verticalRight: "STREET FOOD",
+      title: "World Of Flavors",
+    
     },
     typoAnimText: `At Azzal Street Food, we don’t just serve street food — we celebrate it.
 We love the bold flavors, the energy of the streets, and the way great food brings people together. Every bite reflects the spirit of the places it comes from and the hands that prepared it. Whether you arrive hungry or simply curious, you’ll find something that speaks to you.`,
@@ -32,10 +30,8 @@ We love the bold flavors, the energy of the streets, and the way great food brin
       vendors: "الباعة",
     },
     hero: {
-      title: "وجهة الاكتشاف",
-      subtitle: "كل الطرق تؤدي إلى الزل",
-      verticalLeft: "الزل",
-      verticalRight: "ستريت فود",
+      title: "وجهة منوعة",
+     
     },
     typoAnimText: `في الزل ستريت فود، نحن لا نقدّم الطعام فقط — بل نحتفل به.
 نحن نحب النكهات الجريئة، وحيوية الشوارع، والطريقة التي يجمع بها الطعام الرائع الناس معًا. كل لقمة تعكس روح الأماكن التي تأتي منها والأيدي التي أعدتها. سواء أتيت جائعًا أو فضوليًا، ستجد شيئًا يتحدث إليك.`,

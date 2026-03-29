@@ -55,7 +55,7 @@ export default function HeaderSolid() {
           <div className="flex justify-center">
             <Link href="/">
               <Image
-                src="/azzal-logo.png"
+                src="/streetfood.png"
                 alt="Logo"
                 priority
                 width={1000}
@@ -108,7 +108,7 @@ export default function HeaderSolid() {
 
           <Link href="/" className="absolute left-1/2 -translate-x-1/2">
             <Image
-              src="/azzal-logo.png"
+              src="/streetfood.png"
               alt="Logo"
               width={1000}
               height={300}

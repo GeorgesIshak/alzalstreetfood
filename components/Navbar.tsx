@@ -81,12 +81,12 @@ export default function Header() {
           <div className="flex justify-center">
             <Link href="/">
               <Image
-                src="/azzal-logo.png"
+                src="/streetfood-logo.png"
                 alt="Logo"
                 priority
                 width={1000}
                 height={300}
-                className="h-[70px] w-auto object-contain"
+                className="h-[120px] w-[120px] object-cover"
               />
             </Link>
           </div>
@@ -146,7 +146,7 @@ export default function Header() {
           {/* Logo Middle (absolute center) */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 z-10">
             <Image
-              src="/azzal-logo.png"
+              src="/streetfood-logo.png"
               alt="Logo"
               priority
               width={1000}
@@ -180,7 +180,7 @@ export default function Header() {
           >
             <div className="flex justify-between items-center mb-16">
               <Image
-                src="/azzal-logo.png"
+                src="/streetfood-logo.png"
                 alt="Logo"
                 priority
                 width={1000}

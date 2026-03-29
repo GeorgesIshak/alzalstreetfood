@@ -2,14 +2,50 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Youtube, Instagram, ArrowUpRight } from "lucide-react";
+import {  Music , Instagram, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
+const XLogo = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+  </svg>
+);
+const TikTokLogo = () => (
+  <svg 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+const SnapchatLogo = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M12 2c3.5 0 6 2.5 6 6v2c0 .5.2.9.6 1.2.7.5 1.4.7 1.4 1.3 0 .6-.6.9-1.4 1.1-.5.1-.8.5-.7 1 .2.7.7 1.4.7 2 0 .9-.9 1.3-1.8 1.3-.8 0-1.5-.3-2.2-.3-.6 0-1.3.3-2.6.3s-2-.3-2.6-.3c-.7 0-1.4.3-2.2.3-.9 0-1.8-.4-1.8-1.3 0-.6.5-1.3.7-2 .1-.5-.2-.9-.7-1-.8-.2-1.4-.5-1.4-1.1 0-.6.7-.8 1.4-1.3.4-.3.6-.7.6-1.2V8c0-3.5 2.5-6 6-6z"/>
+  </svg>
+);
 const SOCIALS = [
-  { name: "Instagram", href: "https://instagram.com", icon: Instagram },
-  { name: "X", href: "https://x.com", icon: Twitter },
-  { name: "YouTube", href: "https://youtube.com", icon: Youtube },
+  { name: "Instagram", href: "https://www.instagram.com/riyadhstfood?igsh=MXMzaXlyYnVxcXZ0aA==", icon: Instagram },
+  { name: "X", href: "https://x.com/riyadhstfood?s=21&t=4LoGe2Bo13XdaX8oh3dVLw", icon: XLogo }, // Use the new component here
+  { name: "Tiktok ", href: "https://www.tiktok.com/@riyadhstfood?_r=1&_t=ZS-94WS5sir3A4", icon: TikTokLogo  },
+  { 
+    name: "Snapchat", 
+    href: "https://www.snapchat.com/@riyadhstfood", 
+    icon: SnapchatLogo 
+  },
 ];
+
 
 export default function SiteFooter() {
   const { lang } = useLanguage();
@@ -29,8 +65,8 @@ export default function SiteFooter() {
           <div className="lg:col-span-2">
             <Link href="/" aria-label="Home" className="inline-flex">
               <Image
-                src="/azzal-logo.png"
-                alt="Azzal"
+                src="/street-food.png"
+                alt="Street Food"
                 width={340}
                 height={120}
                 priority

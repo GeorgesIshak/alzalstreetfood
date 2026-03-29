@@ -6,6 +6,8 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
 import { restaurants } from "@/data/restaurants";
+import Navbar from "@/components/Navbar";
+import NewHero from "@/components/NewHero";
 import { Search, SlidersHorizontal, X, LayoutGrid, Grid2X2 ,Grid3X3} from "lucide-react";
 
 export default function VendorsPage() {
@@ -43,8 +45,10 @@ export default function VendorsPage() {
   }, [isFilterOpen]);
 
   return (
-    <section dir={isArabic ? "rtl" : "ltr"} className="pt-32 pb-24 bg-white min-h-screen">
-      <div className="w-[94vw] mx-auto">
+    <section dir={isArabic ? "rtl" : "ltr"} className=" pb-24 bg-white min-h-screen">
+      <Navbar />
+              <NewHero />
+      <div className="w-[94vw] pt-32 mx-auto">
         
         <SectionHeader
           label={isArabic ? "الطعام والمشروبات" : "Food & Vendors"}

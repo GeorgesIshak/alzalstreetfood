@@ -72,8 +72,8 @@ export default function AboutUs() {
 
           <p className="text-[1.02rem] md:text-[1.12rem] text-[#6b1415]/80 leading-relaxed">
             {isArabic
-              ? " الزل ستريت فود هو مساحة مفتوحة لمحبي الطعام، حيث تتلاقى النكهات المحلية الأصيلة مع تجارب عالمية تُقدَّم برؤية معاصرة. هنا، لا يقتصر الطعام على ما يُقدَّم على الطاولة، بل يمتد ليصبح تجربة تُعاش، ومسارًا للاكتشاف، ووسيلة للتواصل."
-              : "Azzal Street Food is an open, welcoming space for food lovers, where authentic local flavors meet globally inspired experiences presented through a contemporary lens. Here, food goes beyond what is served, becoming a lived experience, a journey of discovery, and a point of connection."}
+              ? " تُعد سِكّة الأطعمة وجهة مفتوحة ترحّب بعشّاق المذاقات، حيث تلتقي النكهات المحلية الأصيلة بالإلهام العالمي في تجربة طهي معاصرة. هنا لا يقتصر الطعام على ما يُقدَّم في الأطباق، بل يتحول إلى رحلة اكتشاف وتجربة تجمع الناس حول المذاق واللحظة المشتركة. في سِكّة الأطعمة تتقاطع قصص صُنّاع الطعام مع قصص الزوّار، حيث تجتمع النكهات والذكريات في أجواء نابضة بالحياة تعكس روح المجتمع والاهتمام بالتفاصيل، لتقدّم تجربة تتجدّد مع كل زيارة وتترك أثرًا يتجاوز اللحظة."
+              : "Street Food is an open and welcoming destination for food lovers, where authentic local flavors meet globally inspired culinary experiences presented through a contemporary perspective. Here, food goes beyond what is served, becoming a journey of discovery and a shared moment that connects people. At Street Food, the stories of food creators intersect with those of visitors, where flavors and memories come together in a vibrant setting that reflects community spirit and attention to detail. An experience that evolves with every visit and leaves a lasting impression."}
           </p>
 
           <motion.a
@@ -93,8 +93,8 @@ export default function AboutUs() {
             className="relative w-2/3 h-[320px] md:h-[380px] lg:h-[500px] rounded-2xl overflow-hidden shadow-lg group"
           >
             <Image
-              src="/food11.jpg"
-              alt="Alzal Street Food"
+              src="/2.webp"
+              alt="Street Food"
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 90vw"
@@ -115,8 +115,8 @@ export default function AboutUs() {
               className="relative w-full h-[140px] md:h-[160px] lg:h-[200px] rounded-2xl overflow-hidden shadow-lg group"
             >
               <Image
-                src="/food21.jpg"
-                alt="Alzal Street Food"
+                src="/8.webp"
+                alt=" Street Food"
                 fill
                 priority
                 sizes="(min-width: 1024px) 18vw, 30vw"
@@ -129,8 +129,8 @@ export default function AboutUs() {
               className="relative w-full h-[140px] md:h-[160px] lg:h-[200px] rounded-2xl overflow-hidden shadow-lg group"
             >
               <Image
-                src="/food13.jpg"
-                alt="Alzal Street Food"
+                src="/7.webp"
+                alt=" Street Food"
                 fill
                 priority
                 sizes="(min-width: 1024px) 18vw, 30vw"

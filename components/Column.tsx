@@ -87,7 +87,7 @@ export default function EventsGrid() {
       <div className="w-[94vw] mx-auto">
         <div
           ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-20"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-12 pb-20"
         >
           {EVENTS.map((event, idx) => (
             <Link

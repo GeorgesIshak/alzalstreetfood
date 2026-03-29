@@ -26,30 +26,59 @@ export type EventData = {
   priceLabel?: "Free" | "Ticketed";
 };
 
-
 export const EVENTS: EventData[] = [
   // =========================
   // DAILY EVENT
   // =========================
   {
-    slug: "daily-street-experience",
+    slug: "face-painting",
     type: "daily",
     image: "/event1.jpg",
     dateLabel: "Every day",
-    title: "Daily Street Food Experience",
-    titleAr: "تجربة أكل الشارع اليومية",
+    title: "Face Painting",
+    titleAr: "رسم الوجه",
 
     description:
-      "A daily celebration of street food, culture, and atmosphere at the heart of Al Zal.",
+      "Enjoy face painting with creative designs and colorful artwork, adding a fun and interactive touch for visitors of all ages.",
     descriptionAr:
-      "تجربة يومية تجمع أكل الشارع والثقافة والأجواء في قلب الزال.",
+      "استمتعوا معنا بتجربة رسم الوجه بتصاميم مبتكرة وألوان مميزة، تضيف أجواءً تفاعلية ممتعة للزوار من جميع الأعمار.",
 
     fullDescription:
-      "The Daily Street Food Experience brings Al Zal to life every evening with a curated selection of street food vendors, open-air seating, and a relaxed social atmosphere. Guests are invited to wander freely between stalls, explore diverse flavors, and enjoy the space at their own pace. This daily experience is designed for casual visits, spontaneous meetups, and anyone looking to enjoy great food in a vibrant setting.",
+      "Enjoy face painting with creative designs and colorful artwork, adding a fun and interactive touch for visitors of all ages.",
     fullDescriptionAr:
-      "تجربة أكل الشارع اليومية تُحيي «الزال» كل مساء من خلال مجموعة مختارة من أكشاك الطعام، جلسات مفتوحة، وأجواء اجتماعية مريحة. يمكن للزوار التجوّل بحرية بين الأكشاك، استكشاف نكهات متنوعة، والاستمتاع بالمكان على وتيرتهم الخاصة. صُممت هذه التجربة للزيارات العفوية واللقاءات البسيطة ومحبي الطعام.",
+      "استمتعوا معنا بتجربة رسم الوجه بتصاميم مبتكرة وألوان مميزة، تضيف أجواءً تفاعلية ممتعة للزوار من جميع الأعمار.",
 
-    time: "04:00 PM – 12:00 AM",
+    time: "04:00 PM – 10:00 PM",
+    location: {
+      name: "Al Zal Street Food",
+      details: "Kids Activity Area",
+      directionsUrl: "https://maps.google.com",
+    },
+    priceLabel: "Free",
+  },
+
+  // =========================
+  // DAILY EVENT
+  // =========================
+  {
+    slug: "best-outfit-competition",
+    type: "daily",
+    image: "/events2.jpg",
+    dateLabel: "Every day",
+    title: "Best Outfit Competition",
+    titleAr: "مسابقة أجمل زي",
+
+    description:
+      "Join the Best Outfit Competition and showcase your unique style, adding a fun and interactive experience within the vibrant atmosphere of Street Food.",
+    descriptionAr:
+      "شاركوا معنا في مسابقة أجمل زي واستعرضوا أسلوبكم المميز، لتعيشوا تجربة تفاعلية ممتعة ضمن أجواء سِكّة الأطعم.",
+
+    fullDescription:
+      "Join the Best Outfit Competition and showcase your unique style, adding a fun and interactive experience within the vibrant atmosphere of Street Food.",
+    fullDescriptionAr:
+      "شاركوا معنا في مسابقة أجمل زي واستعرضوا أسلوبكم المميز، لتعيشوا تجربة تفاعلية ممتعة ضمن أجواء سِكّة الأطعم.",
+
+    time: "06:00 PM – 11:00 PM",
     location: {
       name: "Al Zal Street Food",
       details: "Main Courtyard",
@@ -62,57 +91,57 @@ export const EVENTS: EventData[] = [
   // WEEKLY EVENT
   // =========================
   {
-    slug: "weekend-nights",
+    slug: "oud-performance",
     type: "weekly",
-    image: "/events2.jpg",
-    dateLabel: "Every Fri & Sat",
-    title: "Weekend Nights",
-    titleAr: "ليالي نهاية الأسبوع",
+    image: "/events3.jpg",
+    dateLabel: "Every Weekend",
+    title: "Oud Performance",
+    titleAr: "عزف العود",
 
     description:
-      "Weekly night vibes with extended hours, music, and limited menus across vendors.",
+      "Experience the timeless sound of the oud through a live performance that celebrates the beauty of traditional Arabic music in a warm and authentic atmosphere.",
     descriptionAr:
-      "أجواء أسبوعية ليلية مع ساعات ممتدة وموسيقى وقوائم محدودة لدى الأكشاك.",
+      "استمتعوا بعزف حي لآلة العود يجسد جمال الموسيقى العربية الأصيلة ويضفي أجواءً دافئة تعكس روح التراث.",
 
     fullDescription:
-      "Weekend Nights transform Al Zal into a high-energy night market every Friday and Saturday. With extended opening hours, live DJ performances, and exclusive vendor menus, the space shifts into a lively evening destination. This weekly event is ideal for groups, friends, and visitors looking to experience Al Zal after dark in a more energetic atmosphere.",
+      "Experience the timeless sound of the oud through a live performance that celebrates the beauty of traditional Arabic music in a warm and authentic atmosphere.",
     fullDescriptionAr:
-      "تحوّل ليالي نهاية الأسبوع «الزال» إلى سوق ليلي نابض بالحياة كل يوم جمعة وسبت. مع ساعات عمل ممتدة، عروض دي جي مباشرة، وقوائم خاصة من الأكشاك، يصبح المكان وجهة مسائية مليئة بالطاقة. هذه الفعالية مثالية للأصدقاء والمجموعات الباحثة عن تجربة مختلفة بعد غروب الشمس.",
+      "استمتعوا بعزف حي لآلة العود يجسد جمال الموسيقى العربية الأصيلة ويضفي أجواءً دافئة تعكس روح التراث.",
 
-    time: "06:00 PM – 01:00 AM",
+    time: "08:00 PM – 10:00 PM",
     location: {
       name: "Al Zal Street Food",
-      details: "Central Stage Area",
+      details: "Central Stage",
       directionsUrl: "https://maps.google.com",
     },
     priceLabel: "Free",
   },
 
   // =========================
-  // ONE-TIME EVENT
+  // DAILY EVENT
   // =========================
   {
-    slug: "kids-creative-workshop",
-    type: "one-time",
-    image: "/events3.jpg",
-    dateLabel: "12 Feb 2026",
-    title: "Kids Creative Workshop",
-    titleAr: "ورشة إبداع للأطفال",
+    slug: "henna-art",
+    type: "daily",
+    image: "/events2.jpg",
+    dateLabel: "Every day",
+    title: "Henna Art",
+    titleAr: "فن الحناء",
 
     description:
-      "A one-time hands-on workshop designed to inspire creativity in a fun environment.",
+      "Discover the art of traditional henna with intricate designs inspired by heritage, offering visitors a cultural experience and a unique artistic touch.",
     descriptionAr:
-      "فعالية لمرة واحدة بنشاطات عملية لتحفيز الإبداع في بيئة ممتعة وآمنة.",
+      "اكتشفوا فن الحناء التقليدي بتصاميم مستوحاة من التراث، لتعيشوا تجربة ثقافية تضيف لمسة فنية مميزة لزيارتكم.",
 
     fullDescription:
-      "The Kids Creative Workshop is a special one-day event designed to encourage creativity and imagination through hands-on activities. Children will take part in guided art and craft sessions within a safe and welcoming environment. This workshop offers families a meaningful experience where learning and fun come together in a relaxed setting.",
+      "Discover the art of traditional henna with intricate designs inspired by heritage, offering visitors a cultural experience and a unique artistic touch.",
     fullDescriptionAr:
-      "ورشة الإبداع للأطفال هي فعالية خاصة ليوم واحد تهدف إلى تشجيع الإبداع والخيال من خلال أنشطة عملية. يشارك الأطفال في جلسات فنية وحِرفية بإشراف مختصين، ضمن بيئة آمنة ومريحة. تقدم هذه الورشة تجربة قيّمة للعائلات تجمع بين التعلم والمتعة.",
+      "اكتشفوا فن الحناء التقليدي بتصاميم مستوحاة من التراث، لتعيشوا تجربة ثقافية تضيف لمسة فنية مميزة لزيارتكم.",
 
-    time: "04:00 PM – 06:00 PM",
+    time: "04:00 PM – 10:00 PM",
     location: {
-      name: "JAX District – Diriyah, Riyadh",
-      details: "Studio Youth · Public Programs Building",
+      name: "Al Zal Street Food",
+      details: "Cultural Corner",
       directionsUrl: "https://maps.google.com",
     },
     priceLabel: "Free",
