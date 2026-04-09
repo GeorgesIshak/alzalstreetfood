@@ -19,12 +19,12 @@ export default function ScrollMedia() {
 
   const media = [
     { type: 'video' },
-    { type: 'image', src: '/img9.jpg' },
-    { type: 'image', src: '/img28.jpg' },
-    { type: 'image', src: '/img4.jpg' },
-    { type: 'image', src: '/img6.jpg' },
-    { type: 'image', src: '/img17.jpg' },
-    { type: 'image', src: '/img18.jpg' },
+    { type: 'image', src: '/evolving4.jpg' },
+    { type: 'image', src: '/evolving6.jpg' },
+    { type: 'image', src: '/evolving3.jpg' },
+    { type: 'image', src: '/evolving1.jpg' },
+    { type: 'image', src: '/evolving2.jpg' },
+    { type: 'image', src: '/evolving5.jpg' },
   ];
 
   // const scales = [
@@ -77,30 +77,15 @@ export default function ScrollMedia() {
                     src={item.src!}
                     alt={`media ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                 ) : (
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  >
-                    {/* Mobile video */}
-                    <source
-                      src="/mobile-architecture.webm"
-                      type="video/webm"
-                      media="(max-width: 768px)"
-                    />
-
-                    {/* Desktop video */}
-                    <source
-                      src="/archtecture-video.webm"
-                      type="video/webm"
-                      media="(min-width: 769px)"
-                    />
-                  </video>
+                  <Image
+                    src="/evolving7.jpg"
+                    alt={'Street Food '}
+                    fill
+                    className="object-fill"
+                  />
                 )}
               </div>
             </motion.div>

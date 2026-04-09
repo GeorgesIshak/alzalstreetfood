@@ -124,7 +124,7 @@ export default function WhereToFindUs() {
             className="relative lg:col-span-1 rounded-[2.5rem] overflow-hidden min-h-[420px] lg:min-h-full group"
           >
             <Image
-              src="/food3.jpg"
+              src="/food1.jpg"
               alt={isArabic ? 'جمهور مهرجان الطعام' : 'Food festival crowd'}
               fill
               priority
@@ -147,7 +147,7 @@ export default function WhereToFindUs() {
               className="relative rounded-2xl overflow-hidden group shadow-xl border border-gray-100 h-full"
             >
               <Image
-                src="/food4.jpg"
+                src="/food2.jpg"
                 alt={isArabic ? 'أطباق المهرجان' : 'Festival food'}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -160,7 +160,7 @@ export default function WhereToFindUs() {
               className="relative rounded-2xl overflow-hidden group shadow-xl border border-gray-100 h-full"
             >
               <Image
-                src="/food5.jpg"
+                src="/food3.jpg"
                 alt={isArabic ? 'زوار يستمتعون' : 'Crowd enjoying food'}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"

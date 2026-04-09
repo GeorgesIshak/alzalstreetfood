@@ -93,7 +93,7 @@ export default function AboutUs() {
             className="relative w-2/3 h-[320px] md:h-[380px] lg:h-[500px] rounded-2xl overflow-hidden shadow-lg group"
           >
             <Image
-              src="/2.webp"
+              src="/experience1.jpg"
               alt="Street Food"
               fill
               priority
@@ -115,7 +115,7 @@ export default function AboutUs() {
               className="relative w-full h-[140px] md:h-[160px] lg:h-[200px] rounded-2xl overflow-hidden shadow-lg group"
             >
               <Image
-                src="/8.webp"
+                src="/experience2.jpg"
                 alt=" Street Food"
                 fill
                 priority
@@ -129,7 +129,7 @@ export default function AboutUs() {
               className="relative w-full h-[140px] md:h-[160px] lg:h-[200px] rounded-2xl overflow-hidden shadow-lg group"
             >
               <Image
-                src="/7.webp"
+                src="/experience3.jpg"
                 alt=" Street Food"
                 fill
                 priority
