@@ -32,23 +32,17 @@ export default function HeaderSolid() {
 
   return (
     <>
-      {/* SOLID HEADER */}
-      <header className=" w-full bg-white border-b border-[#6b1415]/10 z-50 px-6 py-5 md:px-12">
+      {/* HEADER */}
+      <header className="w-full bg-white border-b border-[#6b1415]/10 z-50 px-6 py-6 md:px-12">
         
         {/* DESKTOP */}
         <div className="hidden md:grid grid-cols-3 items-center w-full">
 
           {/* LEFT */}
           <nav className="flex gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-[#6b1415]">
-            <Link href="#" className="hover:opacity-70 transition-opacity">
-              {t.story}
-            </Link>
-            <Link href="#" className="hover:opacity-70 transition-opacity">
-              {t.explore}
-            </Link>
-            <Link href="#" className="hover:opacity-70 transition-opacity">
-              {t.whatsOn}
-            </Link>
+            <Link href="#" className="hover:opacity-70 transition-opacity">{t.story}</Link>
+            <Link href="#" className="hover:opacity-70 transition-opacity">{t.explore}</Link>
+            <Link href="#" className="hover:opacity-70 transition-opacity">{t.whatsOn}</Link>
           </nav>
 
           {/* CENTER LOGO */}
@@ -59,8 +53,8 @@ export default function HeaderSolid() {
                 alt="Logo"
                 priority
                 width={1000}
-                height={200}
-                className="h-[40px] w-auto object-contain"
+                height={300}
+                className="h-[60px] md:h-[70px] lg:h-[85px] w-auto object-contain"
               />
             </Link>
           </div>
@@ -85,17 +79,11 @@ export default function HeaderSolid() {
               </button>
             </div>
 
-            {/* Right Nav */}
+            {/* RIGHT NAV */}
             <nav className="flex gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-[#6b1415]">
-              <Link href="#" className="hover:opacity-70 transition-opacity">
-                {t.events}
-              </Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity">
-                {t.food}
-              </Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity">
-                {t.vendors}
-              </Link>
+              <Link href="#" className="hover:opacity-70 transition-opacity">{t.events}</Link>
+              <Link href="#" className="hover:opacity-70 transition-opacity">{t.food}</Link>
+              <Link href="#" className="hover:opacity-70 transition-opacity">{t.vendors}</Link>
             </nav>
           </div>
         </div>
@@ -112,7 +100,7 @@ export default function HeaderSolid() {
               alt="Logo"
               width={1000}
               height={300}
-              className="h-[45px] w-auto object-contain"
+              className="h-[60px] w-auto object-contain"
             />
           </Link>
 
@@ -137,11 +125,11 @@ export default function HeaderSolid() {
           >
             <div className="flex justify-between items-center mb-16">
               <Image
-                src="/azzal-logo.png"
+                src="/streetfood.png"
                 alt="Logo"
                 width={1000}
                 height={300}
-                className="h-[50px] w-auto object-contain"
+                className="h-[70px] w-auto object-contain"
               />
               <button onClick={() => setIsOpen(false)} className="text-[#6b1415] p-2">
                 <X size={30} strokeWidth={1.5} />

@@ -17,9 +17,9 @@ export default function TypoAnim() {
   const { lang } = useLanguage();
 
 const content = {
-  en: `At Azzal, the stories of culinary creators intersect with those of visitors, as flavor and memory come together in a vibrant environment that reflects community spirit and attention to detail. An experience that evolves with every visit and leaves a lasting impression beyond the moment.`,
+  en: `At Street Food, the stories of culinary creators intersect with those of visitors, as flavor and memory come together in a vibrant environment that reflects community spirit and attention to detail. An experience that evolves with every visit and leaves a lasting impression beyond the moment.`,
 
-  ar: `في الزل، تجتمع قصص صنّاع الطعام مع قصص الزوّار، وتلتقي الذاكرة بالمذاق في بيئة حيّة تعكس روح المجتمع وتقدّر التفاصيل. تجربة تتغيّر مع كل زيارة، وتترك أثرًا يتجاوز اللحظة.`,
+  ar: `في سِكّة الأطعمة، تجتمع قصص صنّاع الطعام مع قصص الزوّار، وتلتقي الذاكرة بالمذاق في بيئة حيّة تعكس روح المجتمع وتقدّر التفاصيل. تجربة تتغيّر مع كل زيارة، وتترك أثرًا يتجاوز اللحظة`,
 };
 
 

@@ -141,6 +141,7 @@ background:#ffffff ;
     }
   }
 }
+
 .preloader {
   height: 100vh;
   width: 100vw;
@@ -150,8 +151,8 @@ background:#ffffff ;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #141516;
-  z-index: 9999; /* Very high to ensure it's on top of everything */
+  background-color: #FFFFFF; /* ✅ White background */
+  z-index: 9999;
   overflow: hidden;
 }
 
@@ -163,24 +164,21 @@ background:#ffffff ;
 
 .preloader p {
   display: flex;
-  color: white;
+  color: #6b1415cc; /* ✅ Your specific text color */
   font-size: 42px;
+  font-weight: 500;
   align-items: center;
   position: absolute;
-  z-index: 10000; /* higher than preloader container for safety */
+  z-index: 10000;
 }
 
 .preloader p span {
   display: block;
   width: 10px;
   height: 10px;
-  background-color: white;
+  background-color: #6b1415c; /* ✅ Dot matches text color */
   border-radius: 50%;
   margin-right: 10px;
-}
-.vertical-text {
-  writing-mode: vertical-lr;
-  text-orientation: upright;
 }
 
 

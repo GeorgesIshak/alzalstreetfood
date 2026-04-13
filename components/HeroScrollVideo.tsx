@@ -28,7 +28,7 @@ export default function HeroScrollVideo() {
   // - smaller initial height
   // - smaller header offset (top)
   const height = useTransform(smoothProgress, [0, 0.7], ["70vh", "100vh"]);
-  const top = useTransform(smoothProgress, [0, 0.7], ["12vh", "0vh"]);
+  const top = useTransform(smoothProgress, [0, 0.7], ["18vh", "0vh"]);
 
   const videoSinkY = useTransform(smoothProgress, [0.8, 1], ["0%", "15%"]);
   const videoBlur = useTransform(smoothProgress, [0.8, 1], [

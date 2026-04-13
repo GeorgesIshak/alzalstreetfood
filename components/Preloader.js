@@ -10,22 +10,19 @@ export default function Preloader({ onFinish }) {
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
-  // Set viewport dimensions
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
 
-  // Cycle words
   useEffect(() => {
     if (index >= words.length - 1) {
-      setTimeout(() => onFinish && onFinish(), 500); // Notify parent to hide preloader
+      setTimeout(() => onFinish && onFinish(), 500);
       return;
     }
     const timer = setTimeout(() => setIndex(index + 1), index === 0 ? 1000 : 150);
     return () => clearTimeout(timer);
   }, [index, onFinish]);
 
-  // Animate SVG curve
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height} L0 0`;
   const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
 
@@ -46,7 +43,7 @@ export default function Preloader({ onFinish }) {
           <>
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.75, transition: { duration: 1, delay: 0.2 } }}
+              animate={{ opacity: 1, transition: { duration: 1, delay: 0.2 } }}
             >
               <span></span>
               {words[index]}
@@ -56,7 +53,7 @@ export default function Preloader({ onFinish }) {
                 variants={curve}
                 initial="initial"
                 exit="exit"
-                fill="#141516"
+                fill="#FFFFFF"  
               />
             </svg>
           </>

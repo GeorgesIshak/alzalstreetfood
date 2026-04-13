@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Flame } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import { useLanguage } from '@/context/LanguageContext';
@@ -10,7 +10,6 @@ export default function WhereToFindUs() {
   const { lang } = useLanguage();
   const isArabic = lang === 'ar';
 
-  // Animation for text/cards
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -20,54 +19,56 @@ export default function WhereToFindUs() {
     },
   };
 
-  // Specific Image Animation: Re-triggers on scroll
   const imageAnimation: Variants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.9, 
-      y: 30,
-      filter: 'blur(4px)' 
-    },
+    hidden: { opacity: 0, scale: 0.9, y: 30, filter: 'blur(4px)' },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       filter: 'blur(0px)',
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   const stagger: Variants = {
     hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.12 },
-    },
+    visible: { transition: { staggerChildren: 0.12 } },
   };
 
   const info = [
     {
       icon: MapPin,
-      title: isArabic ? 'موقع الفعالية' : 'Festival Location',
-      line1: isArabic ? 'الرياض – فعاليات موسمية' : 'Riyadh – Seasonal Pop-Ups',
-      line2: isArabic ? 'المملكة العربية السعودية' : 'Kingdom of Saudi Arabia',
+      title: isArabic ? 'موقع سِكّة الأطعمة' : 'Street Food Location',
+      line1: isArabic
+        ? 'شارع الشيخ محمد بن إبراهيم\nحي الديرة'
+        : 'Sheikh Mohammed bin Ibrahim Street\nDeira District',
+      line2: isArabic
+        ? 'الرياض، المملكة العربية السعودية'
+        : 'Riyadh, Kingdom of Saudi Arabia',
     },
     {
       icon: Clock,
       title: isArabic ? 'ساعات العمل' : 'Opening Hours',
-      line1: isArabic ? 'يوميًا' : 'Daily',
-      line2: isArabic ? '4:00 مساءً – 1:00 صباحًا' : '4:00 PM – 1:00 AM',
+      line1: isArabic
+        ? 'السبت – الأربعاء: 7:00 ص – 12:00 ص\nالخميس: 7:00 ص – 1:00 ص'
+        : 'Sat – Wed: 7:00 AM – 12:00 AM\nThu: 7:00 AM – 1:00 AM',
+      line2: isArabic
+        ? 'الجمعة: 12:00 م – 1:00 ص'
+        : 'Friday: 12:00 PM – 1:00 AM',
     },
     {
       icon: Phone,
       title: isArabic ? 'رقم التواصل' : 'Contact Number',
-      line1: '+966 5X XXX XXXX',
-      line2: isArabic ? 'اتصل أو عبر واتساب' : 'Call or WhatsApp us',
+      line1: '+966 55 601 8333',
+      line2: isArabic ? 'اتصل أو واتساب' : 'Call or WhatsApp',
+      link: 'tel:+966556018333',
     },
     {
       icon: Mail,
       title: isArabic ? 'البريد الإلكتروني والتجّار' : 'Email & Vendors',
-      line1: 'hello@alzalstreetfood.com',
+      line1: 'info@steeetfood.com',
       line2: isArabic ? 'استفسارات التجّار والفعاليات' : 'Vendor & event inquiries',
+      link: 'mailto:info@steeetfood.com',
     },
   ];
 
@@ -79,20 +80,24 @@ export default function WhereToFindUs() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        // key change: once: false ensures it disappears/reappears
         viewport={{ once: false, margin: '-100px' }}
         variants={stagger}
         className="w-[94%] mx-auto"
       >
         <SectionHeader
           label={isArabic ? 'موقعنا' : 'Find Us'}
-          title={isArabic ? <>في قلب  <br />الرياض</> : <>At the Heart <br /> of Riyadh</>}
+          title={
+            isArabic ? (
+              <>في قلب <br /> الرياض</>
+            ) : (
+              <>At the Heart <br /> of Riyadh</>
+            )
+          }
         />
 
-        {/* GRID */}
         <div className="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           
-          {/* LEFT — INFO BOXES */}
+          {/* LEFT */}
           <motion.div variants={stagger} className="flex flex-col gap-4">
             {info.map((item, i) => {
               const Icon = item.icon;
@@ -109,8 +114,22 @@ export default function WhereToFindUs() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-[#1a1a1a]">{item.title}</h3>
-                      <p className="text-sm opacity-70 mt-1">{item.line1}</p>
-                      <p className="text-sm mt-2 font-medium text-[#6b1415]/80">{item.line2}</p>
+
+                      {/* line1 */}
+                      {item.link ? (
+                        <a href={item.link} className="text-sm opacity-70 mt-1 block whitespace-pre-line hover:underline">
+                          {item.line1}
+                        </a>
+                      ) : (
+                        <p className="text-sm opacity-70 mt-1 whitespace-pre-line">
+                          {item.line1}
+                        </p>
+                      )}
+
+                      {/* line2 */}
+                      <p className="text-sm mt-2 font-medium text-[#6b1415]/80 whitespace-pre-line">
+                        {item.line2}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -118,7 +137,7 @@ export default function WhereToFindUs() {
             })}
           </motion.div>
 
-          {/* CENTER — HERO IMAGE (Updated with re-triggering animation) */}
+          {/* CENTER IMAGE */}
           <motion.div
             variants={imageAnimation}
             className="relative lg:col-span-1 rounded-[2.5rem] overflow-hidden min-h-[420px] lg:min-h-full group"
@@ -131,15 +150,9 @@ export default function WhereToFindUs() {
               className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#6b1415]/80 via-transparent to-transparent" />
-            <div className={`absolute bottom-10 text-white ${isArabic ? 'right-10 text-right' : 'left-10 text-left'}`}>
-              <Flame className="mb-4 text-[#ffb07c]" size={32} />
-              <h4 className="text-3xl font-serif leading-tight">
-                {isArabic ? <>طعام شارع.<br />طاقة مهرجان.</> : <>Street food.<br />Festival energy.</>}
-              </h4>
-            </div>
           </motion.div>
 
-          {/* RIGHT — SIDE IMAGES (Updated with re-triggering animation) */}
+          {/* RIGHT IMAGES */}
           <div className="grid grid-rows-2 gap-6 h-full">
             <motion.div
               variants={imageAnimation}

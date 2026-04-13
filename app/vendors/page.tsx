@@ -7,8 +7,8 @@ import { useLanguage } from "@/context/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
 import { restaurants } from "@/data/restaurants";
 import Navbar from "@/components/Navbar";
-import NewHero from "@/components/NewHero";
 import { Search, SlidersHorizontal, X, LayoutGrid, Grid2X2 ,Grid3X3} from "lucide-react";
+import VendorsHero from "@/components/VendorsHero";
 
 export default function VendorsPage() {
   const { lang } = useLanguage();
@@ -47,7 +47,7 @@ export default function VendorsPage() {
   return (
     <section dir={isArabic ? "rtl" : "ltr"} className=" pb-24 bg-white min-h-screen">
       <Navbar />
-              <NewHero />
+      <VendorsHero/>
       <div className="w-[94vw] pt-32 mx-auto">
         
         <SectionHeader

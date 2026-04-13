@@ -81,8 +81,8 @@ export default function ExperienceSouk() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-xl border border-black/10 h-[300px] md:h-[520px] lg:h-[620px]">
                 <Image
-                  src="/event1.jpg"
-                  alt="Experience Al Zal"
+                  src="/explore1.jpg"
+                  alt="Experience Street Food"
                   fill
                   className="object-cover"
                   priority

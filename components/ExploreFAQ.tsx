@@ -144,7 +144,7 @@ export default function ExploreFAQ() {
           <div className="col-span-12 lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <div className="relative overflow-hidden rounded-xl border border-black/10 h-[320px] md:h-[380px] lg:h-[520px]">
-                <Image src="/events3.jpg" alt="Azzal moments" fill className="object-cover" />
+                <Image src="/explore6.jpg" alt="Azzal moments" fill className="object-cover" />
               </div>
 
          
