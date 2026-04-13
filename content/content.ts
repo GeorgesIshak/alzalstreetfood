@@ -30,7 +30,7 @@ We love the bold flavors, the energy of the streets, and the way great food brin
       vendors: "الباعة",
     },
     hero: {
-      title: "وجهة منوعة",
+      title: "مذاقات منوعة",
      
     },
     typoAnimText: `في الزل ستريت فود، نحن لا نقدّم الطعام فقط — بل نحتفل به.
