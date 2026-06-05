@@ -31,9 +31,12 @@ export default function VendorsPage() {
     return [...restaurants]
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
       .filter((r) => {
+        // FIXED: Access .en and .ar properties safely instead of treating r.name as a string
         const matchesSearch =
-          r.name.toLowerCase().includes(q) ||
-          r.category.toLowerCase().includes(q) ;
+          r.name.en.toLowerCase().includes(q) ||
+          r.name.ar.includes(q) ||
+          r.category.toLowerCase().includes(q);
+          
         const matchesCategory = category === "All" || r.category === category;
         return matchesSearch && matchesCategory;
       });
@@ -87,50 +90,41 @@ export default function VendorsPage() {
           {/* GRID & MOBILE FILTER BUTTON */}
           <div className="flex items-center gap-3">
             {/* Grid Switcher (Desktop Only) */}
-           {/* Grid Switcher (Desktop Only) */}
-<div className="hidden md:flex bg-gray-100 p-1 rounded-xl">
-  
-  {/* 2 Columns */}
-  <button
-    onClick={() => setGridCols(2)}
-    className={`p-2 rounded-lg transition ${
-      gridCols === 2
-        ? "bg-white text-[#6b1415] shadow-sm"
-        : "text-black/40 hover:text-black"
-    }`}
-    aria-label="2 columns"
-  >
-    <Grid2X2 size={18} strokeWidth={gridCols === 2 ? 2.5 : 1.5} />
-  </button>
+            <div className="hidden md:flex bg-gray-100 p-1 rounded-xl">
+              
+              {/* 2 Columns */}
+              <button
+                onClick={() => setGridCols(2)}
+                className={`p-2 rounded-lg transition ${
+                  gridCols === 2 ? "bg-white text-[#6b1415] shadow-sm" : "text-black/40 hover:text-black"
+                }`}
+                aria-label="2 columns"
+              >
+                <Grid2X2 size={18} strokeWidth={gridCols === 2 ? 2.5 : 1.5} />
+              </button>
 
-  {/* 3 Columns */}
-  <button
-    onClick={() => setGridCols(3)}
-    className={`p-2 rounded-lg transition ${
-      gridCols === 3
-        ? "bg-white text-[#6b1415] shadow-sm"
-        : "text-black/40 hover:text-black"
-    }`}
-    aria-label="3 columns"
-  >
-    <Grid3X3 size={18} strokeWidth={gridCols === 3 ? 2.5 : 1.5} />
-  </button>
+              {/* 3 Columns */}
+              <button
+                onClick={() => setGridCols(3)}
+                className={`p-2 rounded-lg transition ${
+                  gridCols === 3 ? "bg-white text-[#6b1415] shadow-sm" : "text-black/40 hover:text-black"
+                }`}
+                aria-label="3 columns"
+              >
+                <Grid3X3 size={18} strokeWidth={gridCols === 3 ? 2.5 : 1.5} />
+              </button>
 
-  {/* 4 Columns */}
-  <button
-    onClick={() => setGridCols(4)}
-    className={`p-2 rounded-lg transition ${
-      gridCols === 4
-        ? "bg-white text-[#6b1415] shadow-sm"
-        : "text-black/40 hover:text-black"
-    }`}
-    aria-label="4 columns"
-  >
-    <LayoutGrid size={18} strokeWidth={gridCols === 4 ? 2.5 : 1.5} />
-  </button>
-
-</div>
-
+              {/* 4 Columns */}
+              <button
+                onClick={() => setGridCols(4)}
+                className={`p-2 rounded-lg transition ${
+                  gridCols === 4 ? "bg-white text-[#6b1415] shadow-sm" : "text-black/40 hover:text-black"
+                }`}
+                aria-label="4 columns"
+              >
+                <LayoutGrid size={18} strokeWidth={gridCols === 4 ? 2.5 : 1.5} />
+              </button>
+            </div>
 
             {/* Mobile Filter Trigger */}
             <button 
@@ -199,32 +193,33 @@ export default function VendorsPage() {
                   key={r.id}
                   className="group cursor-pointer"
                 >
+                  {/* Card Container */}
                   <div className="relative h-[340px] rounded-3xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-500">
                     <Image
                       src={r.image}
-                      alt={r.name}
+                      alt={isArabic ? r.name.ar : r.name.en}
                       fill
-                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-
-                  <div className="mt-6 px-2">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#6b1415] font-black opacity-60">
-                      {r.category}
-                    </span>
-                    <h3 className="mt-2 text-xl font-serif text-[#0B0B0B] group-hover:text-[#6b1415] transition-colors">
-                      {r.name}
-                    </h3>
-                    <p className="mt-3 text-sm text-black/50 leading-relaxed line-clamp-2">
-                      {r.description}
-                    </p>
+                    {/* Soft gradient overlay for layout styling */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    
+                    {/* Text Details Positioned on the Card Overlay */}
+                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                      <p className="text-[10px] uppercase tracking-widest text-white/70 mb-1 font-bold">{r.category}</p>
+                      <h3 className="text-xl font-medium font-serif leading-tight">
+                        {isArabic ? r.name.ar : r.name.en}
+                      </h3>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         </LayoutGroup>
+  
+
 
         {filtered.length === 0 && (
           <div className="text-center py-40">

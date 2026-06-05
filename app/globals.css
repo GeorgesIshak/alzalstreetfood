@@ -133,10 +133,10 @@ background:#ffffff ;
         height: 25vh;
       }
       &:nth-of-type(7) .imageContainer {
-        top: 22.5vh;
+        top: 24.5vh;
         left: 25vw;
         width: 15vw;
-        height: 15vh;
+        height: 17vh;
       }
     }
   }

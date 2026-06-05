@@ -54,7 +54,7 @@ export default function SiteFooter() {
   return (
     <footer
       className="w-full bg-[#FAFAFA] text-[#0B0B0B] pt-20"
-      dir={isArabic ? "rtl" : "ltr"}
+      dir={isArabic ? "ltr" : "ltr"}
     >
       <div className="w-[94vw] mx-auto">
         
@@ -65,7 +65,7 @@ export default function SiteFooter() {
           <div className="lg:col-span-2">
             <Link href="/" aria-label="Home" className="inline-flex">
               <Image
-                src="/street-food.png"
+                src="/street-food.webp"
                 alt="Street Food"
                 width={340}
                 height={120}
@@ -82,8 +82,12 @@ export default function SiteFooter() {
             </h4>
 
             <ul className="space-y-4">
-              {["Explore", "Events", "Food & Drinks", "Find Us"].map((item) => (
-                <li key={item}>
+{[
+  isArabic ? "استكشف" : "Explore",
+  isArabic ? "الفعاليات" : "Events",
+  isArabic ? "المأكولات والمشروبات" : "Food & Drinks",
+  isArabic ? "موقعنا" : "Find Us"
+].map((item) => (                <li key={item}>
                   <Link
                     href={`/${item
                       .toLowerCase()
@@ -105,15 +109,23 @@ export default function SiteFooter() {
             </h4>
 
             <address className="not-italic text-black/60 leading-relaxed mb-6">
-              JAX District – Diriyah, Riyadh
-              <br />
-              Studio Youth · Public Programs Building
-              <br />
-              Riyadh 13732
-            </address>
+  {isArabic ? (
+    <>
+      شارع الشيخ محمد بن إبراهيم<br />
+      حي الديرة<br />
+      الرياض، المملكة العربية السعودية
+    </>
+  ) : (
+    <>
+      Sheikh Mohammed bin Ibrahim Street<br />
+      Deira District<br />
+      Riyadh, Kingdom of Saudi Arabia
+    </>
+  )}
+</address>
 
             <a
-              href="https://maps.google.com"
+              href="https://www.google.com/maps?q=%D8%B3%D9%83%D8%A9+%D8%A7%D9%84%D8%A3%D8%B7%D8%B9%D9%85%D8%A9%D8%8C+%D8%A7%D9%84%D8%B4%D9%8A%D8%AE+%D9%85%D8%AD%D9%85%D8%AF+%D8%A8%D9%86+%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%D8%8C+Ad+Dirah+cheikh,+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6+12634&ftid=0x3e2f05005945f2cb:0x18b4f093e9a78120&entry=gps&shh=CAE&lucs=,94297699,94284472,94231188,94280568,47071704,94218641,94282134,94286869&g_ep=CAISEjI1LjQ2LjEuODMwNDc0Nzc1MBgAIIgnKkgsOTQyOTc2OTksOTQyODQ0NzIsOTQyMzExODgsOTQyODA1NjgsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsOTQyODY4NjlCAlNB&skid=f7fe0276-61cd-4f9b-9b01-aff3edcdd990&g_st=ic"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-black/10 text-sm font-semibold hover:bg-[#6b1415] hover:text-white transition-all duration-300"
@@ -137,12 +149,12 @@ export default function SiteFooter() {
                 <span className="font-semibold text-black/50">
                   {isArabic ? "الهاتف:" : "Phone:"}
                 </span>{" "}
-                <a
-                  href="tel:+966500000000"
-                  className="hover:text-[#6b1415] transition"
-                >
-                  +966 50 000 0000
-                </a>
+              <a
+  href="tel:+966556018333"
+  className="hover:text-[#6b1415] transition"
+>
+  {isArabic ? "٩٦٦ ٥٥٦٠١٨٣٣٣" : "+966 55 601 8333"}
+</a>
               </li>
 
               <li>
@@ -150,10 +162,10 @@ export default function SiteFooter() {
                   {isArabic ? "البريد:" : "Email:"}
                 </span>{" "}
                 <a
-                  href="mailto:hello@alzal.com"
+                  href="mailto:hello@streeetfood.com"
                   className="hover:text-[#6b1415] transition"
                 >
-                  hello@alzal.com
+                  hello@streetfood.com
                 </a>
               </li>
 
@@ -161,11 +173,11 @@ export default function SiteFooter() {
                 <p className="font-semibold text-black/50 mb-2">
                   {isArabic ? "ساعات العمل" : "Opening Hours"}
                 </p>
-                <p>
-                  {isArabic
-                    ? "يومياً: 4:00 مساءً – 12:00 منتصف الليل"
-                    : "Daily: 4:00 PM – 12:00 AM"}
-                </p>
+           <p className="whitespace-pre-line">
+  {isArabic
+    ? "السبت – الأربعاء: 7:00 ص – 12:00 ص\nالخميس: 7:00 ص – 1:00 ص\nالجمعة: 12:00 م – 1:00 ص"
+    : "Sat – Wed: 7:00 AM – 12:00 AM\nThu: 7:00 AM – 1:00 AM\nFriday: 12:00 PM – 1:00 AM"}
+</p>
               </li>
             </ul>
           </div>
@@ -174,7 +186,7 @@ export default function SiteFooter() {
         {/* ===== BOTTOM BAR ===== */}
         <div className="border-t border-black/10 mt-16 py-8 flex flex-col md:flex-row justify-between items-left gap-6">
           <p className="text-[13px] text-black/40">
-            © {new Date().getFullYear()} Azzal.{" "}
+            © {new Date().getFullYear()} Street Food.{" "}
             {isArabic ? "جميع الحقوق محفوظة." : "All rights reserved."}
           </p>
 

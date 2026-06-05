@@ -10,17 +10,31 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 const categories = [
-  { name: "International Desserts", nameAr: "حلويات عالمية", image: "/food1.jpg" },
-  { name: "Saudi Desserts", nameAr: "حلويات سعودية", image: "/food2.jpg" },
-  { name: "Coffee & Beverages", nameAr: "قهوة ومشروبات", image: "/food3.jpg" },
-  { name: "Mexican", nameAr: "مكسيكي", image: "/food4.jpg" },
-  { name: "All-Day Dining", nameAr: "مطاعم طوال اليوم", image: "/food5.jpg" },
-  { name: "Arabic & Mediterranean", nameAr: "عربي ومتوسطي", image: "/food6.jpg" },
-  { name: "Asian Street Food", nameAr: "أطعمة الشارع الآسيوية", image: "/food7.jpg" },
-  { name: "American Street Food", nameAr: "أطعمة الشارع الأمريكية", image: "/food8.jpg" },
-  { name: "Indian Street Food", nameAr: "أطعمة الشارع الهندية", image: "/food9.jpg" },
-  { name: "Traditional Saudi", nameAr: "سعودي تقليدي", image: "/food10.jpg" },
-  { name: "Italian", nameAr: "إيطالي", image: "/food11.jpg" },
+  {
+    name: "Drinks",
+    nameAr: "المشروبات",
+    image: "/drinks.jpg",
+  },
+  {
+    name: "Dessert",
+    nameAr: "الحلويات",
+    image: "/10.jpg",
+  },
+  {
+    name: "International Food",
+    nameAr: "أطعمة عالمية",
+    image: "/1.jpg",
+  },
+  {
+    name: "Mediterranean Food",
+    nameAr: "أطعمة متوسطية",
+    image: "/food2.jpg",
+  },
+  {
+    name: "Traditional Saudi",
+    nameAr: "سعودي تقليدي",
+    image: "/food5.jpg",
+  },
 ];
 
 export default function FoodCategoriesCarousel() {

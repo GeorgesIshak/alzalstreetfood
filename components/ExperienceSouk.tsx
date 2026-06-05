@@ -84,7 +84,7 @@ export default function ExperienceSouk() {
                   src="/explore1.jpg"
                   alt="Experience Street Food"
                   fill
-                  className="object-cover"
+                  className="object-cover object-bottom-left"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />

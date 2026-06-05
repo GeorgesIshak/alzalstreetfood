@@ -30,9 +30,9 @@ export default function HorizontalScrollGallery() {
 
   const images = useMemo(
     () => [
-      '/explore9.jpg', '/explore2.jpg', '/explore3.jpg',
-      '/explore7.jpg', '/explore5.jpg', '/explore6.jpg',  
-      '/explore1.jpg', '/explore8.jpg', '/explore4.jpg',
+      '/street-food7.jpeg', '/street-food1.jpg', '/street-food9.jpg',  
+      '/street-food4.jpg', '/street-food8.jpg', '/street-food2.jpg',
+        '/street-food5.jpg', '/street-food6.jpg', '/street-food10.jpg',
     ],
     []
   );

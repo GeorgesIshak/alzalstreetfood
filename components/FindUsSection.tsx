@@ -117,13 +117,13 @@ const arrive = [
               <div className="rounded-xl border border-black/10 overflow-hidden bg-white">
                 {/* Adjusted height for mobile (h-[300px]) so it fits better on small screens */}
                 <div className="h-[300px] md:h-[430px] lg:h-[520px] w-full">
-                  <iframe
-                    title="Al Zal Location"
-                    className="h-full w-full"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d0!2d0!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v0000000000000"
-                  />
+                 <iframe
+  title="Street Food Location"
+  className="h-full w-full"
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps?q=سكة+الأطعمة+الرياض&output=embed"
+/>
                 </div>
               </div>
 

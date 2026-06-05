@@ -76,14 +76,7 @@ export default function AboutUs() {
               : "Street Food is an open and welcoming destination for food lovers, where authentic local flavors meet globally inspired culinary experiences presented through a contemporary perspective. Here, food goes beyond what is served, becoming a journey of discovery and a shared moment that connects people. At Street Food, the stories of food creators intersect with those of visitors, where flavors and memories come together in a vibrant setting that reflects community spirit and attention to detail. An experience that evolves with every visit and leaves a lasting impression."}
           </p>
 
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            href="#"
-            className="main-button mt-2 inline-block w-fit"
-          >
-            {isArabic ? "تعرف علينا أكثر" : "Learn More"}
-          </motion.a>
+          
         </motion.div>
 
         {/* IMAGES BLOCK: Will appear on the left in Arabic, right in English */}
@@ -93,12 +86,12 @@ export default function AboutUs() {
             className="relative w-2/3 h-[320px] md:h-[380px] lg:h-[500px] rounded-2xl overflow-hidden shadow-lg group"
           >
             <Image
-              src="/experience1.jpg"
+              src="/explore1.jpg"
               alt="Street Food"
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 90vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105 object-bottom-left"
             />
           </motion.div>
 
@@ -129,7 +122,7 @@ export default function AboutUs() {
               className="relative w-full h-[140px] md:h-[160px] lg:h-[200px] rounded-2xl overflow-hidden shadow-lg group"
             >
               <Image
-                src="/experience3.jpg"
+                src="/experience1.jpg"
                 alt=" Street Food"
                 fill
                 priority

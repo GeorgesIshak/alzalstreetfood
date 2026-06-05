@@ -81,7 +81,7 @@ export default function ScrollMedia() {
                   />
                 ) : (
                   <Image
-                    src="/evolving7.jpg"
+                    src="/experience88.jpg"
                     alt={'Street Food '}
                     fill
                     className="object-fill"

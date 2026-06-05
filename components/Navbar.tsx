@@ -21,12 +21,12 @@ export default function Header() {
   const isArabic = lang === "ar";
   const t = siteContent[lang].nav;
 
-  const navLinks = [
-    { name: t.story, href: "#" },
+ const navLinks = [
+    { name: t.story, href: "/#story" },
     { name: t.explore, href: "/explore" },
-    { name: t.whatsOn, href: "#" },
-    { name: t.events, href: "#" },
-    { name: t.food, href: "#" },
+    { name: t.whatsOn, href: "/#whats-on" },
+    { name: t.events, href: "/#events" },
+    { name: t.food, href: "/#food" },
     { name: t.vendors, href: "/vendors" },
   ];
 
@@ -81,7 +81,7 @@ export default function Header() {
           <div className="flex justify-center">
             <Link href="/">
               <Image
-                src="/streetfood-logo.png"
+                src="/logo.webp"
                 alt="Logo"
                 priority
                 width={1000}
@@ -146,7 +146,7 @@ export default function Header() {
           {/* Logo Middle (absolute center) */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 z-10">
             <Image
-              src="/streetfood-logo.png"
+              src="/logo.webp"
               alt="Logo"
               priority
               width={1000}
@@ -180,7 +180,7 @@ export default function Header() {
           >
             <div className="flex justify-between items-center mb-16">
               <Image
-                src="/streetfood-logo.png"
+                src="/logo.webp"
                 alt="Logo"
                 priority
                 width={1000}
