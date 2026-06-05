@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion'; // 💡 Removed local AnimatePresence wrapper
+import { motion, Variants } from 'framer-motion'; 
 
 const words = [ "Hello", "Bonjour", "Ciao", "Olà", "やあ", "Hallå", "Guten tag", "Hallo","مرحبا"];
 
@@ -19,7 +19,6 @@ export default function Preloader({ onFinish }: PreloaderProps) {
   }, []);
 
   useEffect(() => {
-    // 💡 Word array finished: Let the component exit gracefully first
     if (index >= words.length - 1) {
       return;
     }
@@ -30,26 +29,35 @@ export default function Preloader({ onFinish }: PreloaderProps) {
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height} L0 0`;
   const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
 
-  const curve = {
-    initial: { d: initialPath, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
-    exit: { d: targetPath, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 } }
+  // 🛠️ Fixed: Reverted to array format and appended `as const` to tell TypeScript it is a fixed easing array
+  const cubicBezierEasing = [0.76, 0, 0.24, 1] as const;
+
+  const curve: Variants = {
+    initial: { 
+      d: initialPath, 
+      transition: { duration: 0.7, ease: cubicBezierEasing } 
+    },
+    exit: { 
+      d: targetPath, 
+      transition: { duration: 0.7, ease: cubicBezierEasing, delay: 0.3 } 
+    }
+  };
+
+  const panelVariants: Variants = {
+    initial: { top: 0 },
+    exit: { top: "-100vh", transition: { duration: 0.8, ease: cubicBezierEasing, delay: 0.2 } }
   };
 
   return (
     <motion.div
       key="preloader"
-      initial={{ top: 0 }}
-      // 💡 Crucial: Trigger the context update ONLY when this panel completes its full slide up
+      initial="initial"
+      animate={index >= words.length - 1 ? "exit" : "initial"}
+      variants={panelVariants}
       onAnimationComplete={(definition) => {
         if (definition === "exit" || (typeof definition === "object" && "top" in definition && definition.top === "-100vh")) {
           onFinish();
         }
-      }}
-      // 💡 If the word count completes, instantly push the component into its exit state
-      animate={index >= words.length - 1 ? "exit" : "initial"}
-      variants={{
-        initial: { top: 0 },
-        exit: { top: "-100vh", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 } }
       }}
       className="preloader"
       style={{ position: 'fixed', left: 0, zIndex: 9999, width: '100%' }}
