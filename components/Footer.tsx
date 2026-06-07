@@ -84,7 +84,7 @@ export default function SiteFooter() {
             <ul className="space-y-4">
 {[
   isArabic ? "استكشف" : "Explore",
-  isArabic ? "الفعاليات" : "Events",
+  // isArabic ? "الفعاليات" : "Events",
   isArabic ? "المأكولات والمشروبات" : "Food & Drinks",
   isArabic ? "موقعنا" : "Find Us"
 ].map((item) => (                <li key={item}>

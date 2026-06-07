@@ -1,22 +1,6 @@
 import { Flame, Leaf, Bike } from "lucide-react";
 
-export const categories = [
-  "Shawarma",
-  "Chicken",
-  "Falafel",
-  "Street",
-  "Fresh",
-  "Burgers",
-  "Fries",
-  "BBQ",
-  "Wraps",
-  "Manakish",
-  "Karāk",
-  "Desserts",
-  "Cold",
-  "Plates",
-  "Family"
-];
+
 
 export const ourSpecsData = [
   { 
@@ -46,7 +30,10 @@ export const restaurants = [
       ar: "برجر طويق",
       en: "Tuwaiq Burger",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/1.jpg",
   },
   {
@@ -56,7 +43,10 @@ export const restaurants = [
       ar: "الإرث النجدي",
       en: "Al Erth Al Najdi",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/2.jpg",
   },
   {
@@ -66,7 +56,10 @@ export const restaurants = [
       ar: "بيت الكبدة",
       en: "Bayt Al Kibdah",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/3.jpg",
   },
   {
@@ -76,7 +69,10 @@ export const restaurants = [
       ar: "دانيال فرايز",
       en: "International Food",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/4.jpg",
   },
   {
@@ -86,7 +82,10 @@ export const restaurants = [
       ar: "إيت",
       en: "Ette",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/5.jpg",
   },
   {
@@ -96,7 +95,10 @@ export const restaurants = [
       ar: "بوليوود سبايس",
       en: "Bollywood Spice",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/6.jpg",
   },
   {
@@ -106,7 +108,10 @@ export const restaurants = [
       ar: "حمسة حجازية",
       en: "Hamsah Hijaziah",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/7.jpg",
   },
   {
@@ -116,7 +121,10 @@ export const restaurants = [
       ar: "حكاية غادي",
       en: "Hikayat Ghadi",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/8.jpg",
   },
   {
@@ -126,7 +134,10 @@ export const restaurants = [
       ar: "منذ زمن",
       en: "Long Ago",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/9.jpg",
   },
   {
@@ -136,7 +147,10 @@ export const restaurants = [
       ar: "سمسم اللقيمات",
       en: "Luqaimat Simsim",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/10.jpg",
   },
   {
@@ -146,7 +160,10 @@ export const restaurants = [
       ar: "معنى العصير",
       en: "Meaning of Juices",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/11.jpg",
   },
   {
@@ -156,7 +173,10 @@ export const restaurants = [
       ar: "نودومي",
       en: "Noodomi",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/12.jpg",
   },
   {
@@ -166,7 +186,10 @@ export const restaurants = [
       ar: "بيتزاريا بازيليكو",
       en: "Pizzeria Basilico",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/13.jpg",
   },
   {
@@ -176,7 +199,10 @@ export const restaurants = [
       ar: "أسامبلي",
       en: "Assembly",
     },
-    category: "Mediterranean Food",
+    category: {
+      en: "Mediterranean Food",
+      ar: "أطعمة متوسطية"
+    },
     image: "/14.jpg",
   },
   {
@@ -186,7 +212,10 @@ export const restaurants = [
       ar: "ألتاكوي",
       en: "Al Tacos",
     },
-    category: "Asian Street food",
+    category: {
+      en: "Asian Street food",
+      ar: "مأكولات آسيوية"
+    },
     image: "/15.jpg",
   },
   {
@@ -196,7 +225,10 @@ export const restaurants = [
       ar: "الفرتاجية",
       en: "Al Furtajiah",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/16.jpg",
   },
   {
@@ -206,7 +238,10 @@ export const restaurants = [
       ar: "إليجانت مومنتس",
       en: "Elegant Moments",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/17.jpg",
   },
   {
@@ -216,7 +251,10 @@ export const restaurants = [
       ar: "بركان",
       en: "Burkan",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/18.jpg",
   },
   {
@@ -226,7 +264,10 @@ export const restaurants = [
       ar: "تكة 10",
       en: "Tikka 10",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/19.jpg",
   },
   {
@@ -236,7 +277,10 @@ export const restaurants = [
       ar: "جرين جاردن",
       en: "Green Garden",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/20.jpg",
   },
   {
@@ -246,7 +290,10 @@ export const restaurants = [
       ar: "حنيني",
       en: "Hanini",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/21.jpg",
   },
   {
@@ -256,7 +303,10 @@ export const restaurants = [
       ar: "دكان بليلة",
       en: "Dokan Balilah",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/22.jpg",
   },
   {
@@ -266,7 +316,10 @@ export const restaurants = [
       ar: "رقاق الحوي",
       en: "Roqaq Al Hawi",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/23.jpg",
   },
   {
@@ -276,7 +329,10 @@ export const restaurants = [
       ar: "رير جريل",
       en: "Rare Grill",
     },
-    category: "Mediterranean Food",
+    category: {
+      en: "Mediterranean Food",
+      ar: "أطعمة متوسطية"
+    },
     image: "/24.jpg",
   },
   {
@@ -286,7 +342,10 @@ export const restaurants = [
       ar: "رير مشاوي",
       en: "Rare Mashawi",
     },
-    category: "Mediterranean Food",
+    category: {
+      en: "Mediterranean Food",
+      ar: "أطعمة متوسطية"
+    },
     image: "/25.jpg",
   },
   {
@@ -296,7 +355,10 @@ export const restaurants = [
       ar: "شاورما حبكة",
       en: "Shawarma Habkah",
     },
-    category: "Mediterranean Food",
+    category: {
+      en: "Mediterranean Food",
+      ar: "أطعمة متوسطية"
+    },
     image: "/26.jpg",
   },
   {
@@ -306,7 +368,10 @@ export const restaurants = [
       ar: "شاي محبق",
       en: "Chai Mohabaq",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/27.jpg",
   },
   {
@@ -316,7 +381,10 @@ export const restaurants = [
       ar: "شباك ستة",
       en: "Shobbak 6",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/28.jpg",
   },
   {
@@ -326,7 +394,10 @@ export const restaurants = [
       ar: "عزوة",
       en: "Azwa",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/29.jpg",
   },
   {
@@ -336,7 +407,10 @@ export const restaurants = [
       ar: "فلان",
       en: "Flan",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/30.jpg",
   },
   {
@@ -346,7 +420,10 @@ export const restaurants = [
       ar: "فيلي جون",
       en: "Philly Jawn",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/31.jpg",
   },
   {
@@ -356,7 +433,10 @@ export const restaurants = [
       ar: "قرمشة",
       en: "Qarmashah",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/32.jpg",
   },
   {
@@ -366,7 +446,10 @@ export const restaurants = [
       ar: "كريب جبال الألب",
       en: "Crepes Des Alpes",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/33.jpg",
   },
   {
@@ -376,7 +459,10 @@ export const restaurants = [
       ar: "مكرونة جدتي",
       en: "Macaronat Jadati",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/34.jpg",
   },
   {
@@ -386,7 +472,10 @@ export const restaurants = [
       ar: "كريم",
       en: "Krem",
     },
-    category: "Dessert",
+    category: {
+      en: "Dessert",
+      ar: "الحلويات"
+    },
     image: "/35.jpg",
   },
   {
@@ -396,7 +485,10 @@ export const restaurants = [
       ar: "لوبسك",
       en: "Lobisc",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/36.jpg",
   },
   {
@@ -406,7 +498,10 @@ export const restaurants = [
       ar: "لونقو فرايز",
       en: "Longo Fries",
     },
-    category: "International Food",
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
     image: "/37.jpg",
   },
   {
@@ -416,7 +511,10 @@ export const restaurants = [
       ar: "مطلب يزيد",
       en: "Motabaq Yazeed",
     },
-    category: "Traditional Saudi",
+    category: {
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
+    },
     image: "/38.jpg",
   },
   {
@@ -426,7 +524,10 @@ export const restaurants = [
       ar: "نافذة القهوة",
       en: "Nafezat Al Qahwah",
     },
-    category: "Drinks",
+    category: {
+      en: "Drinks",
+      ar: "المشروبات"
+    },
     image: "/39.jpg",
   }
 ];
