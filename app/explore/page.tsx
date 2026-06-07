@@ -14,7 +14,7 @@ export default function ExplorePage() {
     <>
   <HeaderSolid />
        <HeroScrollVideo />
-      <main className="bg-white relative">
+      <main className="bg-white relative overflow-x-hidden">
        
 
 
