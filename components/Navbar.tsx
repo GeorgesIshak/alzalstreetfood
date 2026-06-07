@@ -10,18 +10,16 @@ import { useLanguage } from "@/context/LanguageContext";
 import { siteContent } from "@/content/content";
 
 export default function Header() {
-  // ✅ keep your desktop GSAP refs exactly like your code
   const leftNavRef = useRef<HTMLDivElement | null>(null);
   const rightNavRef = useRef<HTMLDivElement | null>(null);
 
-  // ✅ mobile menu state (like your previous responsive version)
   const [isOpen, setIsOpen] = useState(false);
 
   const { lang, setLang } = useLanguage();
   const isArabic = lang === "ar";
   const t = siteContent[lang].nav;
 
- const navLinks = [
+  const navLinks = [
     { name: t.story, href: "/#story" },
     { name: t.explore, href: "/explore" },
     { name: t.whatsOn, href: "/#whats-on" },
@@ -30,9 +28,9 @@ export default function Header() {
     { name: t.vendors, href: "/vendors" },
   ];
 
-  // ✅ keep desktop GSAP animation, but only run on md+ so we don't touch mobile
+  // ✅ Keep desktop GSAP animation exactly as is, completely safe from breaking on mobile
   useEffect(() => {
-    if (window.innerWidth < 768) return;
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
     const leftLinks = leftNavRef.current?.querySelectorAll("a");
     const rightLinks = rightNavRef.current?.querySelectorAll("a");
@@ -46,7 +44,7 @@ export default function Header() {
       tl.from(rightLinks, { y: -20, opacity: 0, stagger: 0.1 }, 0.2);
   }, []);
 
-  // ✅ lock scroll when mobile menu is open
+  // ✅ Lock scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
@@ -54,11 +52,19 @@ export default function Header() {
     };
   }, [isOpen]);
 
+  // FIXED: Dynamic framer-motion variants to handle slide directions correctly for RTL vs LTR
+  const slideVariants = {
+    initial: { x: isArabic ? "100%" : "-100%" },
+    animate: { x: 0 },
+    exit: { x: isArabic ? "100%" : "-100%" }
+  };
+
   return (
     <>
-      <header className="absolute top-0 left-0 w-full z-50 px-6 py-6 md:px-12">
+      {/* FIXED: Added overflow-hidden to prevent transparent padding from breaking viewports */}
+      <header className="absolute top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 overflow-hidden" dir={isArabic ? "rtl" : "ltr"}>
         {/* =========================
-            DESKTOP (DO NOT TOUCH)
+            DESKTOP (UNTOUCHED)
            ========================= */}
         <div className="hidden md:grid grid-cols-3 items-center w-full">
           {/* LEFT */}
@@ -135,31 +141,31 @@ export default function Header() {
         </div>
 
         {/* =========================
-            MOBILE (RESPONSIVE)
+            MOBILE (FIXED & RESPONSIVE)
            ========================= */}
-        <div className="relative flex md:hidden items-center justify-between w-full">
-          {/* Burger Left */}
-          <button onClick={() => setIsOpen(true)} className="text-white p-2">
-            <Menu size={28} strokeWidth={1.5} />
+        <div className="relative flex md:hidden items-center justify-between w-full h-[50px]">
+          {/* Burger Side */}
+          <button onClick={() => setIsOpen(true)} className="text-white p-2 -ml-2">
+            <Menu size={26} strokeWidth={1.5} />
           </button>
 
           {/* Logo Middle (absolute center) */}
-          <Link href="/" className="absolute left-1/2 -translate-x-1/2 z-10">
+          <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <Image
               src="/logo.webp"
               alt="Logo"
               priority
-              width={1000}
-              height={300}
-              className="h-[45px] w-auto object-contain"
+              width={400}
+              height={120}
+              className="h-[40px] w-auto object-contain"
             />
           </Link>
 
-          {/* Lang Right */}
-          <div className="flex items-center gap-3 text-[12px] font-bold text-white/90">
+          {/* Lang Side */}
+          <div className="flex items-center text-[13px] font-bold text-white tracking-wider">
             <button
               onClick={() => setLang(isArabic ? "en" : "ar")}
-              className="uppercase tracking-widest"
+              className="uppercase p-2 -mr-2"
             >
               {isArabic ? "EN" : "AR"}
             </button>
@@ -170,68 +176,83 @@ export default function Header() {
       {/* --- MOBILE MENU OVERLAY --- */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col p-8"
-            dir={isArabic ? "rtl" : "ltr"}
-          >
-            <div className="flex justify-between items-center mb-16">
-              <Image
-                src="/logo.webp"
-                alt="Logo"
-                priority
-                width={1000}
-                height={300}
-                className="h-[50px] w-auto object-contain"
-              />
-              <button onClick={() => setIsOpen(false)} className="text-black p-2">
-                <X size={30} strokeWidth={1.5} />
-              </button>
-            </div>
+          <>
+            {/* FIXED: Dark blur backdrop overlay behind panel content drawers */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[90]"
+            />
 
-            <nav className="flex flex-col gap-8">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: isArabic ? 20 : -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 * i }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-3xl font-serif text-[#1a1a1a] active:text-[#6b1415]"
+            <motion.div
+              variants={slideVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ type: "spring", damping: 30, stiffness: 220 }}
+              className="fixed top-0 bottom-0 left-0 w-[85vw] max-w-[360px] z-[100] bg-white flex flex-col p-6 shadow-2xl overflow-y-auto"
+              style={isArabic ? { left: 'auto', right: 0 } : { right: 'auto', left: 0 }}
+              dir={isArabic ? "rtl" : "ltr"}
+            >
+              <div className="flex justify-between items-center mb-10 mt-2">
+                <Image
+                  src="/logo.webp"
+                  alt="Logo"
+                  priority
+                  width={400}
+                  height={120}
+                  className="h-[45px] w-auto object-contain brightness-0 filter" // filter turns logo dark for white background readability
+                />
+                <button onClick={() => setIsOpen(false)} className="text-black p-2">
+                  <X size={26} strokeWidth={1.5} />
+                </button>
+              </div>
+
+              {/* FIXED: Clean layout spacing margins for menu options */}
+              <nav className="flex flex-col gap-6 my-auto">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: isArabic ? 15 : -15 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-2xl font-semibold text-[#1a1a1a] hover:text-[#6b1415] active:text-[#6b1415] transition-colors block py-1"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
 
-            <div className="mt-auto pt-10 border-t border-gray-100 flex gap-6 text-sm font-bold tracking-widest text-black/40">
-              <button
-                onClick={() => {
-                  setLang("en");
-                  setIsOpen(false);
-                }}
-                className={lang === "en" ? "text-black" : ""}
-              >
-                ENGLISH
-              </button>
-              <button
-                onClick={() => {
-                  setLang("ar");
-                  setIsOpen(false);
-                }}
-                className={lang === "ar" ? "text-black" : ""}
-              >
-                العربية
-              </button>
-            </div>
-          </motion.div>
+              {/* FIXED: Streamlined bottom translation switchers padding constraints */}
+              <div className="mt-auto pt-6 border-t border-gray-100 flex gap-6 text-xs font-bold tracking-widest text-black/40">
+                <button
+                  onClick={() => {
+                    setLang("en");
+                    setIsOpen(false);
+                  }}
+                  className={lang === "en" ? "text-[#6b1415]" : "hover:text-black"}
+                >
+                  ENGLISH
+                </button>
+                <button
+                  onClick={() => {
+                    setLang("ar");
+                    setIsOpen(false);
+                  }}
+                  className={lang === "ar" ? "text-[#6b1415]" : "hover:text-black"}
+                >
+                  العربية
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

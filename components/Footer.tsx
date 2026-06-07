@@ -157,7 +157,7 @@ export default function SiteFooter() {
 </a>
               </li>
 
-              <li>
+              {/* <li>
                 <span className="font-semibold text-black/50">
                   {isArabic ? "البريد:" : "Email:"}
                 </span>{" "}
@@ -167,7 +167,7 @@ export default function SiteFooter() {
                 >
                   hello@streetfood.com
                 </a>
-              </li>
+              </li> */}
 
               <li className="pt-4 border-t border-black/10">
                 <p className="font-semibold text-black/50 mb-2">
