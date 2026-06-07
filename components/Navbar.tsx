@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { useLanguage } from "@/context/LanguageContext";
 import { siteContent } from "@/content/content";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const leftNavRef = useRef<HTMLDivElement | null>(null);
@@ -18,6 +19,10 @@ export default function Header() {
   const { lang, setLang } = useLanguage();
   const isArabic = lang === "ar";
   const t = siteContent[lang].nav;
+  
+  // 1. ADD THESE TWO LINES HERE TO TRACK PATHS AND ROUTING:
+  const pathname = usePathname(); 
+  const router = useRouter();     
 
   const navLinks = [
     { name: t.story, href: "/#story" },
@@ -28,21 +33,54 @@ export default function Header() {
     { name: t.vendors, href: "/vendors" },
   ];
 
-  // ✅ Keep desktop GSAP animation exactly as is, completely safe from breaking on mobile
+  // 2. ADD THIS SMOOTH CROSS-PAGE SCROLLING LOGIC:
+  const handleScrollLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsOpen(false); // Closes mobile drawer automatically
+
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
+
+      // If user is on a sub-page (like /explore), push them to home first
+      if (pathname !== "/") {
+        e.preventDefault();
+        router.push(href);
+      } else {
+        // If already on the homepage, scroll down smoothly
+        e.preventDefault();
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  };
+
+  // ✅ FIXED EFFECT: Added clearProps and pathname tracking to resolve invisible links bug
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
     const leftLinks = leftNavRef.current?.querySelectorAll("a");
     const rightLinks = rightNavRef.current?.querySelectorAll("a");
 
+    // 1. Wipe out any stuck opacity styles left over from your last page visit
+    gsap.set([leftLinks, rightLinks], { clearProps: "all" });
+
+    // 2. Run clean entrance animation
     const tl = gsap.timeline({
       defaults: { ease: "power3.out", duration: 0.8 },
     });
 
-    if (leftLinks) tl.from(leftLinks, { y: -20, opacity: 0, stagger: 0.1 }, 0);
-    if (rightLinks)
+    if (leftLinks && leftLinks.length > 0) {
+      tl.from(leftLinks, { y: -20, opacity: 0, stagger: 0.1 }, 0);
+    }
+    if (rightLinks && rightLinks.length > 0) {
       tl.from(rightLinks, { y: -20, opacity: 0, stagger: 0.1 }, 0.2);
-  }, []);
+    }
+
+    return () => {
+      tl.kill(); 
+    };
+  }, [lang, pathname]); // 3. ADD pathname HERE so it reruns when returning to homepage
 
   // ✅ Lock scroll when mobile menu is open
   useEffect(() => {
@@ -52,35 +90,38 @@ export default function Header() {
     };
   }, [isOpen]);
 
-  // FIXED: Dynamic framer-motion variants to handle slide directions correctly for RTL vs LTR
+  // Dynamic framer-motion variants
   const slideVariants = {
     initial: { x: isArabic ? "100%" : "-100%" },
     animate: { x: 0 },
     exit: { x: isArabic ? "100%" : "-100%" }
   };
 
+
   return (
     <>
-      {/* FIXED: Added overflow-hidden to prevent transparent padding from breaking viewports */}
+      {/* FIXED: Removed fixed layout sizing to keep the outer margins perfectly inside standard mobile viewports */}
       <header className="absolute top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 overflow-hidden" dir={isArabic ? "rtl" : "ltr"}>
         {/* =========================
-            DESKTOP (UNTOUCHED)
+            DESKTOP (FIXED DYNAMIC MAPS)
            ========================= */}
         <div className="hidden md:grid grid-cols-3 items-center w-full">
-          {/* LEFT */}
+          
+          {/* LEFT NAV - FIXED: Dynamically map structural links 1-3 using global array metrics instead of dead '#' tags */}
           <nav
             ref={leftNavRef}
             className="flex gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-white"
           >
-            <Link href="#" className="hover:text-gray-300 transition-colors">
-              {t.story}
-            </Link>
-            <Link href="/explore" className="hover:text-gray-300 transition-colors">
-              {t.explore}
-            </Link>
-            <Link href="#" className="hover:text-gray-300 transition-colors">
-              {t.whatsOn}
-            </Link>
+            {navLinks.slice(0, 3).map((link) => (
+              <Link 
+                key={link.href}
+                href={link.href} 
+                onClick={(e) => handleScrollLink(e, link.href)}
+                className="hover:text-gray-300 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
 
           {/* CENTER LOGO */}
@@ -102,40 +143,34 @@ export default function Header() {
             <div className="flex items-center uppercase font-bold text-[11px] tracking-widest text-white/60 gap-3">
               <button
                 onClick={() => setLang("en")}
-                className={
-                  lang === "en"
-                    ? "text-white opacity-100"
-                    : "hover:text-white transition-colors"
-                }
+                className={lang === "en" ? "text-white opacity-100" : "hover:text-white transition-colors"}
               >
                 EN
               </button>
               <span className="w-[1px] h-3 bg-white/20"></span>
               <button
                 onClick={() => setLang("ar")}
-                className={
-                  lang === "ar"
-                    ? "text-white opacity-100"
-                    : "hover:text-white transition-colors"
-                }
+                className={lang === "ar" ? "text-white opacity-100" : "hover:text-white transition-colors"}
               >
                 AR
               </button>
             </div>
 
+            {/* RIGHT NAV - FIXED: Dynamically map structural links 4-6 using global array metrics instead of dead '#' tags */}
             <nav
               ref={rightNavRef}
               className="flex gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-white"
             >
-              <Link href="#" className="hover:text-gray-300 transition-colors">
-                {t.events}
-              </Link>
-              <Link href="#" className="hover:text-gray-300 transition-colors">
-                {t.food}
-              </Link>
-              <Link href="/vendors" className="hover:text-gray-300 transition-colors">
-                {t.vendors}
-              </Link>
+              {navLinks.slice(3, 6).map((link) => (
+                <Link 
+                  key={link.href}
+                  href={link.href} 
+                  onClick={(e) => handleScrollLink(e, link.href)}
+                  className="hover:text-gray-300 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </nav>
           </div>
         </div>
@@ -203,14 +238,14 @@ export default function Header() {
                   priority
                   width={400}
                   height={120}
-                  className="h-[45px] w-auto object-contain brightness-0 filter" // filter turns logo dark for white background readability
+                  className="h-[45px] w-auto object-contain brightness-0 filter" 
                 />
                 <button onClick={() => setIsOpen(false)} className="text-black p-2">
                   <X size={26} strokeWidth={1.5} />
                 </button>
               </div>
 
-              {/* FIXED: Clean layout spacing margins for menu options */}
+              {/* FIXED: Clean layout spacing margins for menu options with functional cross-page handle hooks */}
               <nav className="flex flex-col gap-6 my-auto">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -221,7 +256,7 @@ export default function Header() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => handleScrollLink(e, link.href)} // FIXED: Smooth route scrolling integration
                       className="text-2xl font-semibold text-[#1a1a1a] hover:text-[#6b1415] active:text-[#6b1415] transition-colors block py-1"
                     >
                       {link.name}
@@ -257,4 +292,5 @@ export default function Header() {
       </AnimatePresence>
     </>
   );
+
 }

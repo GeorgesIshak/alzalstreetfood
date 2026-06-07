@@ -37,8 +37,11 @@ export default function BecomeVendorSection() {
           </p>
 
           {/* ===== CTA BUTTON ===== */}
+          {/* FIXED: Added target="_blank" and rel="noreferrer" to securely launch the registration form in a new browser tab */}
           <a
-            href="#"
+            href="https://erp.maak.co/vendors-registration-form/new"
+            target="_blank"
+            rel="noreferrer"
             className="main-button mt-10 inline-block"
           >
             {isArabic ? 'قدّم الآن' : 'Apply Now'}

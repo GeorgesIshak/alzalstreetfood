@@ -9,6 +9,7 @@ import { restaurants } from "@/data/restaurants";
 import Navbar from "@/components/Navbar";
 import { Search, SlidersHorizontal, X, LayoutGrid, Grid2X2 ,Grid3X3} from "lucide-react";
 import VendorsHero from "@/components/VendorsHero";
+import SiteFooter from "@/components/Footer";
 
 export default function VendorsPage() {
   const { lang } = useLanguage();
@@ -60,6 +61,7 @@ export default function VendorsPage() {
   };
 
   return (
+     <>
     <section dir={isArabic ? "rtl" : "ltr"} className="pb-24 bg-white min-h-screen overflow-hidden">
       <Navbar />
       <VendorsHero/>
@@ -244,5 +246,9 @@ export default function VendorsPage() {
         )}
       </div>
     </section>
+
+   <SiteFooter />      
+  </>  
+
   );
 }

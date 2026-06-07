@@ -11,19 +11,14 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const categories = [
   {
-    name: "Drinks",
-    nameAr: "المشروبات",
-    image: "/drinks.jpg",
-  },
-  {
-    name: "Dessert",
-    nameAr: "الحلويات",
-    image: "/10.jpg",
-  },
-  {
     name: "International Food",
     nameAr: "أطعمة عالمية",
     image: "/1.jpg",
+  },
+  {
+    name: "Saudi Food",
+    nameAr: "أطعمة سعودية",
+    image: "/food5.jpg",
   },
   {
     name: "Mediterranean Food",
@@ -31,9 +26,14 @@ const categories = [
     image: "/food2.jpg",
   },
   {
-    name: "Traditional Saudi",
-    nameAr: "سعودي تقليدي",
-    image: "/food5.jpg",
+    name: "Drinks",
+    nameAr: "المشروبات",
+    image: "/drinks.jpg",
+  },
+  {
+    name: "Desserts",
+    nameAr: "الحلويات",
+    image: "/10.jpg",
   },
 ];
 

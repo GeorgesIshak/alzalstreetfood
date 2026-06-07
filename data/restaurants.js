@@ -67,7 +67,7 @@ export const restaurants = [
     order: 4,
     name: {
       ar: "دانيال فرايز",
-      en: "International Food",
+      en: "Danial Fries",
     },
     category: {
       en: "International Food",
@@ -135,8 +135,8 @@ export const restaurants = [
       en: "Long Ago",
     },
     category: {
-      en: "Drinks",
-      ar: "المشروبات"
+      en: "Traditional Saudi",
+      ar: "سعودي تقليدي"
     },
     image: "/9.jpg",
   },
@@ -145,7 +145,7 @@ export const restaurants = [
     order: 10,
     name: {
       ar: "سمسم اللقيمات",
-      en: "Luqaimat Simsim",
+      en: "Simsim Luqaimat",
     },
     category: {
       en: "Dessert",
@@ -177,7 +177,7 @@ export const restaurants = [
       en: "International Food",
       ar: "أطعمة عالمية"
     },
-    image: "/12.jpg",
+    image: "/nodomi.jpeg",
   },
   {
     id: 13,
@@ -190,7 +190,7 @@ export const restaurants = [
       en: "International Food",
       ar: "أطعمة عالمية"
     },
-    image: "/13.jpg",
+    image: "/14.jpg",
   },
   {
     id: 14,
@@ -203,7 +203,7 @@ export const restaurants = [
       en: "Mediterranean Food",
       ar: "أطعمة متوسطية"
     },
-    image: "/14.jpg",
+    image: "/assembly.jpeg",
   },
   {
     id: 15,
@@ -213,10 +213,10 @@ export const restaurants = [
       en: "Al Tacos",
     },
     category: {
-      en: "Asian Street food",
-      ar: "مأكولات آسيوية"
+      en: "International Food",
+      ar: "أطعمة عالمية"
     },
-    image: "/15.jpg",
+    image: "/tacoy.jpeg",
   },
   {
     id: 16,
@@ -229,7 +229,7 @@ export const restaurants = [
       en: "Traditional Saudi",
       ar: "سعودي تقليدي"
     },
-    image: "/16.jpg",
+    image: "/fertajya.jpeg",
   },
   {
     id: 17,
@@ -242,7 +242,7 @@ export const restaurants = [
       en: "Dessert",
       ar: "الحلويات"
     },
-    image: "/17.jpg",
+    image: "/elegant-moment.jpeg",
   },
   {
     id: 18,
@@ -255,7 +255,7 @@ export const restaurants = [
       en: "Dessert",
       ar: "الحلويات"
     },
-    image: "/18.jpg",
+    image: "/borkan.jpeg",
   },
   {
     id: 19,
@@ -320,7 +320,7 @@ export const restaurants = [
       en: "Traditional Saudi",
       ar: "سعودي تقليدي"
     },
-    image: "/23.jpg",
+    image: "/rakaek-al-halwa.jpeg",
   },
   {
     id: 24,
@@ -463,7 +463,7 @@ export const restaurants = [
       en: "Traditional Saudi",
       ar: "سعودي تقليدي"
     },
-    image: "/34.jpg",
+    image: "/makarona-jaddati.jpeg",
   },
   {
     id: 35,
@@ -476,7 +476,7 @@ export const restaurants = [
       en: "Dessert",
       ar: "الحلويات"
     },
-    image: "/35.jpg",
+    image: "/34.jpg",
   },
   {
     id: 36,
@@ -489,7 +489,7 @@ export const restaurants = [
       en: "Drinks",
       ar: "المشروبات"
     },
-    image: "/36.jpg",
+    image: "/lobsek.jpeg",
   },
   {
     id: 37,
@@ -502,20 +502,20 @@ export const restaurants = [
       en: "International Food",
       ar: "أطعمة عالمية"
     },
-    image: "/37.jpg",
+    image: "/36.jpg",
   },
   {
     id: 38,
     order: 38,
     name: {
-      ar: "مطلب يزيد",
+      ar: "مطبق يزيد ",
       en: "Motabaq Yazeed",
     },
     category: {
       en: "Traditional Saudi",
       ar: "سعودي تقليدي"
     },
-    image: "/38.jpg",
+    image: "/motabak-yazid.jpeg",
   },
   {
     id: 39,
@@ -530,5 +530,56 @@ export const restaurants = [
     },
     image: "/39.jpg",
   }
+  ,{    id: 40,
+    order: 40,
+    name: {
+      ar: "درش",
+      en: "Darsh",
+    },
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
+    image: "/darsh.jpeg",
+  },
+  {
+    id: 41,
+    order: 41,
+    name: {
+      ar: "هلا باستا",
+      en: "Hala Pasta",
+    },
+    category: {
+      en: "International Food",
+      ar: "أطعمة عالمية"
+    },
+    image: "/hala-pasta.jpeg",
+  },
+//  {
+//     id: 42,
+//     order: 42,
+//     name: {
+//       ar: "درب المذاق",
+//       en: "Darb Almathag",
+//     },
+//     category: {
+//       en: "International Food",
+//       ar: "أطعمة عالمية"
+//     },
+//     image: "/1.jpg",
+//   },
+//  {
+//     id: 43,
+//     order: 43,
+//     name: {
+//       ar: "سلايسر",
+//       en: "Slicer",
+//     },
+//     category: {
+//       en: "International Food",
+//       ar: "أطعمة عالمية"
+//     },
+//     image: "/1.jpg",
+//   },
 ];
 

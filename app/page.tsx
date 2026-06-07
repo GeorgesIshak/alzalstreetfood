@@ -16,10 +16,16 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <NewHero />
-      <StorySection />
-      <TypoAnim />
-      <ScrollImages />
+ <div id="story">
+        <StorySection />
+      </div>      <TypoAnim />
+      <div id="whats-on">
+        <ScrollImages />
+      </div>
+
+<div id="food">
       <FoodCategoriesCarousel />
+      </div>
       <ScrollImageGallery />
       <FindUs />
       <BecomeVendorSection />

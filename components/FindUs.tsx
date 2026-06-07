@@ -63,13 +63,7 @@ export default function WhereToFindUs() {
       line2: isArabic ? 'اتصل أو واتساب' : 'Call or WhatsApp',
       link: 'tel:+966556018333',
     },
-    {
-      icon: Mail,
-      title: isArabic ? 'البريد الإلكتروني والتجّار' : 'Email & Vendors',
-      line1: 'info@steeetfood.com',
-      line2: isArabic ? 'استفسارات التجّار والفعاليات' : 'Vendor & event inquiries',
-      link: 'mailto:info@steeetfood.com',
-    },
+ 
   ];
 
   return (

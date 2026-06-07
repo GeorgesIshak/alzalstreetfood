@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation"; // FIXED: Added to track application routes
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
@@ -13,15 +14,40 @@ export default function HeaderSolid() {
   const { lang, setLang } = useLanguage();
   const isArabic = lang === "ar";
   const t = siteContent[lang].nav;
+  
+  const pathname = usePathname(); // FIXED: Captures exact page instance context
+  const router = useRouter();     // FIXED: Triggers application redirections safely
 
   const navLinks = [
-    { name: t.story, href: "#" },
-    { name: t.explore, href: "#" },
-    { name: t.whatsOn, href: "#" },
-    { name: t.events, href: "#" },
-    { name: t.food, href: "#" },
-    { name: t.vendors, href: "#" },
+    { name: t.story, href: "/#story" },
+    { name: t.explore, href: "/explore" },
+    { name: t.whatsOn, href: "/#whats-on" },
+    { name: t.events, href: "/#events" },
+    { name: t.food, href: "/#food" },
+    { name: t.vendors, href: "/vendors" },
   ];
+
+  // FIXED: Smooth cross-page hashing helper utility hook
+  const handleScrollLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsOpen(false); // Auto-closes mobile drawer safely
+
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
+
+      // Case A: User triggers button from outside home route screen
+      if (pathname !== "/") {
+        e.preventDefault();
+        router.push(href);
+      } else {
+        // Case B: User triggers link directly inside home route grid layer
+        e.preventDefault();
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
@@ -30,7 +56,6 @@ export default function HeaderSolid() {
     };
   }, [isOpen]);
 
-  // FIXED: Dynamic slide coordinates to adapt smoothly to RTL/LTR script adjustments
   const slideVariants = {
     initial: { x: isArabic ? "100%" : "-100%" },
     animate: { x: 0 },
@@ -40,17 +65,23 @@ export default function HeaderSolid() {
   return (
     <>
       {/* HEADER */}
-      {/* FIXED: Removed fixed layout sizing to keep the outer margins perfectly inside standard mobile viewports */}
       <header className="w-full bg-white border-b border-[#6b1415]/10 z-50 px-4 py-4 md:px-12 md:py-6" dir={isArabic ? "rtl" : "ltr"}>
         
         {/* DESKTOP */}
         <div className="hidden md:grid grid-cols-3 items-center w-full">
 
-          {/* LEFT */}
+          {/* LEFT NAV - FIXED: Dynamically map links 1-3 using actual array variables instead of dead '#' keys */}
           <nav className="flex gap-8 lg:gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-[#6b1415]">
-            <Link href="#" className="hover:opacity-70 transition-opacity">{t.story}</Link>
-            <Link href="#" className="hover:opacity-70 transition-opacity">{t.explore}</Link>
-            <Link href="#" className="hover:opacity-70 transition-opacity">{t.whatsOn}</Link>
+            {navLinks.slice(0, 3).map((link) => (
+              <Link 
+                key={link.href} 
+                href={link.href} 
+                onClick={(e) => handleScrollLink(e, link.href)}
+                className="hover:opacity-70 transition-opacity"
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
 
           {/* CENTER LOGO */}
@@ -87,16 +118,23 @@ export default function HeaderSolid() {
               </button>
             </div>
 
-            {/* RIGHT NAV */}
+            {/* RIGHT NAV - FIXED: Dynamically map links 4-6 using actual array variables instead of dead '#' keys */}
             <nav className="flex gap-8 lg:gap-10 uppercase font-medium text-[13px] tracking-[0.15em] text-[#6b1415]">
-              <Link href="#" className="hover:opacity-70 transition-opacity">{t.events}</Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity">{t.food}</Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity">{t.vendors}</Link>
+              {navLinks.slice(3, 6).map((link) => (
+                <Link 
+                  key={link.href} 
+                  href={link.href} 
+                  onClick={(e) => handleScrollLink(e, link.href)}
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </nav>
           </div>
         </div>
 
-        {/* MOBILE */}
+        {/* MOBILE BAR */}
         <div className="relative flex md:hidden items-center justify-between w-full h-[60px]">
           <button onClick={() => setIsOpen(true)} className="text-[#6b1415] p-2 -ml-2">
             <Menu size={26} strokeWidth={1.5} />
@@ -121,11 +159,10 @@ export default function HeaderSolid() {
         </div>
       </header>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE PANEL OVERLAY */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* FIXED: Dark blur overlay backdrop to isolate the nav links when menu drops down */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -145,7 +182,6 @@ export default function HeaderSolid() {
               dir={isArabic ? "rtl" : "ltr"}
             >
               <div className="flex justify-between items-center mb-10 mt-2">
-                {/* FIXED: Corrected image source format extension path target from .png to .webp */}
                 <Image
                   src="/streetfood.webp"
                   alt="Logo"
@@ -158,7 +194,6 @@ export default function HeaderSolid() {
                 </button>
               </div>
 
-              {/* FIXED: Adjusted responsive line break spacings and text constraints */}
               <nav className="flex flex-col gap-6 text-[#6b1415] my-auto">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -169,7 +204,7 @@ export default function HeaderSolid() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => handleScrollLink(e, link.href)} // FIXED: Appended helper engine function click listener hook
                       className="text-2xl font-semibold hover:opacity-70 active:opacity-50 block py-1 transition-opacity"
                     >
                       {link.name}

@@ -102,7 +102,7 @@ export default function HorizontalScrollGallery() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <a href="#" className="main-button mt-8 inline-block">
+          <a href="/explore" className="main-button mt-8 inline-block">
             {isArabic ? 'اكتشف المزيد' : 'Explore More'}
           </a>
         </motion.div>
